@@ -4,7 +4,7 @@ function checkCharacter(event){
   var domain_part = "[ A-Z | a-z | 0-9 | \. |-]";
 
   keynum = event.which;
-  input_Email = document.getElementById("emailAddress");
+  input_Email = document.getElementsByName("email")[0];
 
   if (input_Email.value.includes("@")) {
     if (validateCharacter(domain_part, keynum) == null) {
