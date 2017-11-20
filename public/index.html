@@ -5,10 +5,23 @@
     <title>consensus</title>
     <script type="text/javascript" src="js/characterValidator.js"></script>
     <script type="text/javascript" src="js/lost_focus.js"></script>
+    <link rel="stylesheet" type="text/css" href="styles/valid_email_visualizer.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 
 <body>
     Email: <input type="email" name="email" onblur="lost_focus(this)" onkeypress="checkCharacter(event)">
+    <div id="temp_email_toggler">
+        <button id='validation_button'>valid!</button>
+        <button id='invalidation_button'>invalid!</button>
+    </div>
+    <div id="valid_email_visualizer" class="valid_email_visualizer">
+        <input class="valid_email_visualizer__input" type="text" placeholder="Your email..."></input>
+    </div>
+    <div id="invalid_email_message" class="hidden">The introduced email address is invalid</div>
+
+    <script src="./javascript/ValidEmailVisualizer.js"></script>
+    <script src="./javascript/TempEmailToggler.js"></script>
 </body>
 
 <script>
