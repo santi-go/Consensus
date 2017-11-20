@@ -1,0 +1,11 @@
+.ruby-version
+.env
+/.bundle/
+/vendor/
+/lib/bundler/man/
+.ruby-version
+.ruby-gemset
+.rvmrc
+
+.Spotlight-V100
+.DS_Store
