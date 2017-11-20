@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+
+  <input type="email" name="email" onblur="lost_focus(this)">
+  <script type="text/javascript" src="lost_focus.js"></script>
+
+    <script>
+
+        function emailValidator(mail){
+            let regularExpersion=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+            return regularExpersion.test(mail1);
+
+        }
+
+        let mail1="manolo@manolo.es"
+        console.log(mail1+" -"+emailValidator(mail1));
+
+        mail1="manolo~manolo.es"
+        console.log(mail1+" -"+emailValidator(mail1));
+
+        mail1="manolo@manoloes"
+        console.log(mail1+" -"+emailValidator(mail1));
+
+        mail1="manolo@manolo.esxxx"
+        console.log(mail1+" -"+emailValidator(mail1));
+
+        mail1="man.olo@manolo.esxxx"
+        console.log(mail1+" -"+emailValidator(mail1));
+
+        mail1="mano..lo@manolo.esxxx"
+        console.log(mail1+" -"+emailValidator(mail1));
+    </script>
+</body>
+</html>
