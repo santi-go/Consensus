@@ -2,6 +2,38 @@ body {
     background-color: #E5E3D6;
 }
 
-.hidden {
+ #proposer-email input {
+    font-size: 20px;
+    height: 50px;
+    width: 500px;
+    text-align: center;
+    margin-left: 45px;
+    margin-top: 7px;
+    border-radius: 10px;
+}
+
+#proposer-email {
+    background-color: #CCC3B4;
+    height: 70px;
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 20em;
+    border-radius: 10px;
+}
+
+#proposer-email.invalid {
+    background-color: #990000;
+}
+
+#proposer-email span {
+    margin-top: 10px;
+    font-family: arial;
+    color: #990000;
+    width: 100%;
+    text-align: center;
     display: none;
+}
+
+#proposer-email.invalid span {
+    display: block;
 }

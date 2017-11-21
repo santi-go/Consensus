@@ -3,50 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>consensus</title>
-    <script type="text/javascript" src="js/characterValidator.js"></script>
-    <script type="text/javascript" src="js/lost_focus.js"></script>
-    <link rel="stylesheet" type="text/css" href="styles/valid_email_visualizer.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
 </head>
 
 <body>
-    Email: <input type="email" name="email" onblur="lost_focus(this)" onkeypress="checkCharacter(event)">
-    <div id="temp_email_toggler">
-        <button id='validation_button'>valid!</button>
-        <button id='invalidation_button'>invalid!</button>
+    <div id="proposer-email">
+        <input type="text" placeholder="Your email..."></input>
+        <span>The introduced email address is invalid</span>
     </div>
-    <div id="valid_email_visualizer" class="valid_email_visualizer">
-        <input class="valid_email_visualizer__input" type="text" placeholder="Your email..."></input>
-    </div>
-    <div id="invalid_email_message" class="hidden">The introduced email address is invalid</div>
 
-    <script src="./javascript/ValidEmailVisualizer.js"></script>
-    <script src="./javascript/TempEmailToggler.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
 </body>
-
-<script>
-function emailValidator(mail){
-  let regularExpersion=/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return regularExpersion.test(mail1);
-}
-
-let mail1="manolo@manolo.es"
-console.log(mail1+" -"+emailValidator(mail1));
-
-mail1="manolo~manolo.es"
-console.log(mail1+" -"+emailValidator(mail1));
-
-mail1="manolo@manoloes"
-console.log(mail1+" -"+emailValidator(mail1));
-
-mail1="manolo@manolo.esxxx"
-console.log(mail1+" -"+emailValidator(mail1));
-
-mail1="man.olo@manolo.esxxx"
-console.log(mail1+" -"+emailValidator(mail1));
-
-mail1="mano..lo@manolo.esxxx"
-console.log(mail1+" -"+emailValidator(mail1));
-</script>
-
 </html>
