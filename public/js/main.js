@@ -65,6 +65,26 @@ var ProposerEmail = {
     }
 };
 
+var Proposal = {
+    textBlock: document.getElementById('proposal'),
+    text: '',
+    paragraphs: [],
+
+    initialize: function() {
+        this.text = this.textBlock.querySelector('div').innerText;
+        this.addParagraphTags();
+    },
+
+    addParagraphTags: function() {
+        var newBlock = '';
+        this.paragraphs = this.text.split("\n");
+        var lines=this.paragraphs;
+        for (key in lines){
+            newBlock += "<p>" + lines[key].trim() + "</p>\n";
+            }
+        this.textBlock.querySelector('div').innerText = newBlock;
+    }
+};
+
 ProposerEmail.initialize();
-
-
+Proposal.initialize();
