@@ -2,7 +2,7 @@ body {
     background-color: #E5E3D6;
 }
 
- #proposer-email input {
+#proposer-email input {
     font-size: 20px;
     height: 50px;
     width: 500px;
@@ -17,7 +17,7 @@ body {
     height: 70px;
     width: 600px;
     margin: 0 auto;
-    margin-top: 20em;
+    margin-top: 15em;
     border-radius: 10px;
 }
 
@@ -37,3 +37,17 @@ body {
 #proposer-email.invalid span {
     display: block;
 }
+
+#proposal {
+    background-color: white;
+    width: 600px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 30px;
+    border-radius:10px;
+    font-family: arial;
+    padding: 10px;
+    color: #666666;
+    text-align: justify;
+}
+
