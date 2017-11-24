@@ -32,6 +32,9 @@ var ProposerEmail = {
     maskInput: function(event) {
         var text = event.target;
         var keynum = event.which;
+        if (keynum == 0 || keynum == 8 || keynum == 13) {
+            return;
+            };
         var character = String.fromCharCode(keynum);
 
         var thePattern = this.selectPattern(text.value);
