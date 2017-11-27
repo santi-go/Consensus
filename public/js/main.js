@@ -96,10 +96,9 @@ var GuestsEmail = {
         }
         return emailsList;
     },
-<<<<<<< HEAD
+
     extractMail: function() {
         var emailsList = this.parseMail();
-        console.log(emailsList);
         for (var i = 0; i < emailsList.length; i++){
             var newEmail = document.createElement('div');
             document.querySelector('.box').appendChild(newEmail);
@@ -111,10 +110,7 @@ var GuestsEmail = {
             }
         }
     }
-=======
->>>>>>> cf18144bc52f895bf73b94693389b1d5bbf09b1c
 }
-
 
 GuestsEmail.initialize();
 ProposerEmail.initialize();
