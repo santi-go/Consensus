@@ -85,8 +85,8 @@ var GuestsEmail = {
 
     parseMail: function() {
         var input = this.container.querySelector('input');
-        input.value.split(' ').join('');
-        var emails = input.value.split(",");
+        var inputStr = input.value.replace(' ', '');
+        var emails = inputStr.split(",");
         var emailsList = [];
         for(var i = 0; i < emails.length; i++){
             emailsList.push({
@@ -96,6 +96,7 @@ var GuestsEmail = {
         }
         return emailsList;
     },
+<<<<<<< HEAD
     extractMail: function() {
         var emailsList = this.parseMail();
         console.log(emailsList);
@@ -110,6 +111,8 @@ var GuestsEmail = {
             }
         }
     }
+=======
+>>>>>>> cf18144bc52f895bf73b94693389b1d5bbf09b1c
 }
 
 
