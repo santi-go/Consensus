@@ -74,6 +74,7 @@ var GuestsEmail = {
 
     initialize: function() {
         var input = this.container.querySelector('input');
+        input.addEventListener('blur', this.extractMail.bind(this));
         input.addEventListener('blur', this.parseMail.bind(this));
     },
 
@@ -94,6 +95,20 @@ var GuestsEmail = {
             });
         }
         return emailsList;
+    },
+    extractMail: function() {
+        var emailsList = this.parseMail();
+        console.log(emailsList);
+        for (var i = 0; i < emailsList.length; i++){
+            var newEmail = document.createElement('div');
+            document.querySelector('.box').appendChild(newEmail);
+            newEmail.innerText = emailsList[i].email;
+            if(emailsList[i].valid == true){
+                newEmail.classList.add("validBox");
+            } else {
+                newEmail.classList.add("invalidBox");
+            }
+        }
     }
 }
 
