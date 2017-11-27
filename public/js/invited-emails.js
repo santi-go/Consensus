@@ -29,12 +29,16 @@ var InvitedEmails = {
 
     parseArrayToString(array){
         return array.toString();
-    },    
+    },
 
     updateInputEmails: function(emails){
         this.container.value = emails;
+    },
+
+    createRemoveButton: function(emailBox, buttonStyle, action) {
+        var removeButton = document.createElement('div');
+        emailBox.appendChild(removeButton).classList.add(buttonStyle);
+        removeButton.textContent = "x";
+        removeButton.addEventListener("click", action);
     }
-
 }
-
-
