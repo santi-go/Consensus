@@ -84,8 +84,8 @@ var GuestsEmail = {
 
     parseMail: function() {
         var input = this.container.querySelector('input');
-        input.value.split(' ').join('');
-        var emails = input.value.split(",");
+        var inputStr = input.value.replace(' ', '');
+        var emails = inputStr.split(",");
         var emailsList = [];
         for(var i = 0; i < emails.length; i++){
             emailsList.push({
@@ -94,7 +94,7 @@ var GuestsEmail = {
             });
         }
         return emailsList;
-    }
+    },
 }
 
 
