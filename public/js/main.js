@@ -54,7 +54,7 @@ var ProposerEmail = {
 
     selectPattern: function(text) {
         var patterns = {
-            local: "[ \@ | A-Z | a-z | 0-9 | \! | \# | \$ | \% | \& | \' | \* | \+ | \- | \/ | \= | \? | \^ | \_ | \` | \{ | \| | \} | \& ]",
+            local: "[ \@ | A-Z | a-z | 0-9 | \! | \# | \$ | \% | \& | \' | \* | \+ | \- | \/ | \= | \? | \^ | \_ | \` | \{ | \| | \} | \& | \,]",
             domain: "[ A-Z | a-z | 0-9 | \. |-]"
         };
 
@@ -65,7 +65,38 @@ var ProposerEmail = {
         };
 
         return result;
-    }
+    },
+
 };
 
+var GuestsEmail = {
+    container: document.getElementById('guests-email'),
+
+    initialize: function() {
+        var input = this.container.querySelector('input');
+        input.addEventListener('blur', this.parseMail.bind(this));
+    },
+
+    validateEmail: function(email){
+        var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return emailPattern.test(email);
+    },
+
+    parseMail: function() {
+        var input = this.container.querySelector('input');
+        input.value.split(' ').join('');
+        var emails = input.value.split(",");
+        var emailsList = [];
+        for(var i = 0; i < emails.length; i++){
+            emailsList.push({
+                email: emails[i],
+                valid: this.validateEmail(emails[i])
+            });
+        }
+        return emailsList;
+    }
+}
+
+
+GuestsEmail.initialize();
 ProposerEmail.initialize();
