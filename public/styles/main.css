@@ -1,5 +1,7 @@
 body {
     background-color: #E5E3D6;
+    font-family: arial, helvetica;
+    font-weight: 900;
 }
 
 .email {
@@ -22,6 +24,7 @@ body {
 
 .email.invalid {
     background-color: #990000;
+    color: white;
 }
 
 .email span {
@@ -40,7 +43,7 @@ body {
     margin-top: 1em;
 }
 
-.box div {
+.box > div {
     font-size: 20px;
     height: 50px;
     min-width: 50px;
@@ -72,6 +75,7 @@ body {
   white-space: nowrap;
   -webkit-border-radius: 3px;
   border-radius: 3px;
+  color: white;
 }
 
 #proposal {
@@ -86,3 +90,12 @@ body {
     color: #666666;
     text-align: justify;
 }
+
+.close {
+  background-color: black;
+  color: white;
+  width: 20px;
+  line-height: 20px;
+  float: right;
+  text-align: center;
+  }

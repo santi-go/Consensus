@@ -108,7 +108,15 @@ var GuestsEmail = {
             } else {
                 newEmail.classList.add("invalidBox");
             }
+            InvitedEmails.createRemoveButton(newEmail, 'close', this.cleanEmail);
         }
+        var input = this.container.querySelector('input');
+        input.value = "";
+    },
+
+    cleanEmail: function(event) {
+      var theEmail = event.target.parentElement;
+      theEmail.parentElement.removeChild(theEmail);
     }
 }
 
