@@ -127,7 +127,7 @@ var Proposal = {
     text_box: document.getElementById('proposal'),
 
     initialize: function() {
-        document.addEventListener('paste', this.pasteProposal.bind(this));
+        this.text_box.addEventListener('paste', this.pasteProposal.bind(this));
         this.text_box.textContent = "Insert your proposal here...";
     },
 
@@ -135,8 +135,7 @@ var Proposal = {
         var pastedText = event.clipboardData.getData('text');
         sanitizedText = this.sanitize(pastedText);
 
-        this.text_box.textContent = sanitizedText;
-        ProcessBlock.initialize();
+        ProcessBlock.initialize(sanitizedText);
     },
 
     sanitize: function(text) {
@@ -147,12 +146,11 @@ var Proposal = {
 }
 
 var ProcessBlock = {
-    textBlock: document.getElementById('proposal'),
     text: '',
     paragraphs: [],
 
-    initialize: function() {
-        this.text = this.textBlock.innerText;
+    initialize: function(text) {
+        this.text = text;
         this.addBlockTags();
     },
 
@@ -170,7 +168,8 @@ var ProcessBlock = {
             }
             newBlock += convertedLine;
         }
-        this.textBlock.innerText = newBlock;
+        document.getElementById('proposal2').innerHTML = newBlock;
+        console.log(newBlock);
     },
 
     addBrTag: function() {
