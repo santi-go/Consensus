@@ -9,7 +9,9 @@ var ProposerEmail = {
     },
 
     checkMail: function(event) {
-        isValid = this.validateEmail(event.target.value);
+        var text = event.target.value;
+        if(text.trim()=='') return this.markValidity(true);
+        isValid = this.validateEmail(text);
 
         this.markValidity(isValid);
     },
@@ -86,6 +88,8 @@ var GuestsEmail = {
     parseMail: function() {
         var input = this.container.querySelector('input');
         var inputStr = input.value.replace(' ', '');
+        inputStr = inputStr.trim();
+        if(inputStr == '') return [];
         var emails = inputStr.split(",");
         var emailsList = [];
         for(var i = 0; i < emails.length; i++){
