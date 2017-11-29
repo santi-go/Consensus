@@ -1,75 +1,3 @@
-var ProposerEmail = {
-    container: document.getElementById('proposer-email'),
-
-    initialize: function() {
-        var input = this.container.querySelector('input');
-
-        input.addEventListener('blur', this.checkMail.bind(this));
-        input.addEventListener('keypress', this.maskInput.bind(this));
-    },
-
-    checkMail: function(event) {
-        var text = event.target.value;
-        if(text.trim()=='') return this.markValidity(true);
-        isValid = this.validateEmail(text);
-
-        this.markValidity(isValid);
-    },
-
-    markValidity: function(isValid) {
-        var mark = 'invalid';
-
-        if(isValid) {
-            this.container.classList.remove(mark);
-        } else {
-            this.container.classList.add(mark);
-        }
-    },
-
-    validateEmail: function(email){
-        var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return emailPattern.test(email);
-    },
-
-    maskInput: function(event) {
-        var text = event.target;
-        var keynum = event.which;
-        if (keynum == 0 || keynum == 8 || keynum == 13) {
-            return;
-            }
-        var character = String.fromCharCode(keynum);
-
-        var thePattern = this.selectPattern(text.value);
-
-        var isAllowed = this.employ(thePattern, character);
-
-        if(!isAllowed) {
-            event.preventDefault();
-        }
-    },
-
-    employ: function(pattern, character) {
-        var matcher = new RegExp(pattern);
-        var result = matcher.exec(character);
-        return result;
-    },
-
-    selectPattern: function(text) {
-        var patterns = {
-            local: /[@!#$%&'*+/=?^_`{|}~.-]|[a-z]|[0-9]/ig,
-            domain: /[.-]|[a-z]|[0-9]/ig
-        };
-
-        var result = patterns.local;
-
-        if(text.includes('@')) {
-            result = patterns.domain;
-        }
-
-        return result;
-    },
-
-};
 
 var GuestsEmail = {
     container: document.getElementById('guests-email'),
@@ -77,7 +5,6 @@ var GuestsEmail = {
     initialize: function() {
         var input = this.container.querySelector('input');
         input.addEventListener('blur', this.extractMail.bind(this));
-        input.addEventListener('blur', this.parseMail.bind(this));
     },
 
     validateEmail: function(email){
@@ -125,7 +52,7 @@ var GuestsEmail = {
 };
 
 GuestsEmail.initialize();
-ProposerEmail.initialize();
+Proposer.initialize('proposer-email');
 
 var Proposal = {
     text_box: document.getElementById('proposal'),
@@ -227,7 +154,10 @@ var InvitedEmails = {
 
     createRemoveButton: function(emailBox, buttonStyle, action) {
         var removeButton = document.createElement('div');
-        emailBox.appendChild(removeButton).classList.add(buttonStyle);
+        emailBox.appendChild(removeButton);
+        if (buttonStyle != ""){
+          removeButton.classList.add(buttonStyle);
+        }
         removeButton.textContent = "x";
         removeButton.addEventListener("click", action);
     }
