@@ -56,8 +56,8 @@ var ProposerEmail = {
 
     selectPattern: function(text) {
         var patterns = {
-            local: "[ \@ | A-Z | a-z | 0-9 | \! | \# | \$ | \% | \& | \' | \* | \+ | \- | \/ | \= | \? | \^ | \_ | \` | \{ | \| | \} | \& | \,]",
-            domain: "[ A-Z | a-z | 0-9 | \. |-]"
+            local: /[@!#$%&'*+/=?^_`{|}~.-]|[a-z]|[0-9]/ig,
+            domain: /[.-]|[a-z]|[0-9]/ig
         };
 
         var result = patterns.local;
