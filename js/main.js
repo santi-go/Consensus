@@ -23,7 +23,7 @@ var ProposerEmail = {
             this.container.classList.remove(mark);
         } else {
             this.container.classList.add(mark);
-        };
+        }
     },
 
     validateEmail: function(email){
@@ -36,7 +36,7 @@ var ProposerEmail = {
         var keynum = event.which;
         if (keynum == 0 || keynum == 8 || keynum == 13) {
             return;
-            };
+            }
         var character = String.fromCharCode(keynum);
 
         var thePattern = this.selectPattern(text.value);
@@ -45,7 +45,7 @@ var ProposerEmail = {
 
         if(!isAllowed) {
             event.preventDefault();
-        };
+        }
     },
 
     employ: function(pattern, character) {
@@ -64,7 +64,7 @@ var ProposerEmail = {
 
         if(text.includes('@')) {
             result = patterns.domain;
-        };
+        }
 
         return result;
     },
@@ -122,7 +122,7 @@ var GuestsEmail = {
       var theEmail = event.target.parentElement;
       theEmail.parentElement.removeChild(theEmail);
     }
-}
+};
 
 GuestsEmail.initialize();
 ProposerEmail.initialize();
@@ -143,11 +143,11 @@ var Proposal = {
     },
 
     sanitize: function(text) {
-        result = text.replace(/<(?:.|\n)*?>/gm, '')
+        result = text.replace(/<(?:.|\n)*?>/gm, '');
 
         return result;
     }
-}
+};
 
 var ProcessBlock = {
     text: '',
@@ -162,7 +162,7 @@ var ProcessBlock = {
         var newBlock = '';
         this.paragraphs = this.text.split("\n");
         var lines=this.paragraphs;
-        for (key in lines){
+        for (var key in lines){
             var convertedLine = "";
             var lineInProcess = lines[key].trim();
             if (lineInProcess == "") {
@@ -183,7 +183,7 @@ var ProcessBlock = {
     addParagraphTag: function(lineInProcess) {
         return "<p>" + lineInProcess + "</p>\n";
     }
-}
+};
 
 Proposal.initialize();
 
@@ -203,7 +203,7 @@ var InvitedEmails = {
         return this.container.value;
     },
 
-    parseStringToArray(string){
+    parseStringToArray: function(string){
         return string.split(',');
     },
 
@@ -217,7 +217,7 @@ var InvitedEmails = {
         return newArray;
     },
 
-    parseArrayToString(array){
+    parseArrayToString: function(array){
         return array.toString();
     },
 
@@ -231,4 +231,4 @@ var InvitedEmails = {
         removeButton.textContent = "x";
         removeButton.addEventListener("click", action);
     }
-}
+};
