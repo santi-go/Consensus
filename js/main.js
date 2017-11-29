@@ -1,57 +1,5 @@
 
-var GuestsEmail = {
-    container: document.getElementById('guests-email'),
-
-    initialize: function() {
-        var input = this.container.querySelector('input');
-        input.addEventListener('blur', this.extractMail.bind(this));
-    },
-
-    validateEmail: function(email){
-        var emailPattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return emailPattern.test(email);
-    },
-
-    parseMail: function() {
-        var input = this.container.querySelector('input');
-        var inputStr = input.value.replace(' ', '');
-        inputStr = inputStr.trim();
-        if(inputStr == '') return [];
-        var emails = inputStr.split(",");
-        var emailsList = [];
-        for(var i = 0; i < emails.length; i++){
-            emailsList.push({
-                email: emails[i],
-                valid: this.validateEmail(emails[i])
-            });
-        }
-        return emailsList;
-    },
-
-    extractMail: function() {
-        var emailsList = this.parseMail();
-        for (var i = 0; i < emailsList.length; i++){
-            var newEmail = document.createElement('div');
-            document.querySelector('.box').appendChild(newEmail);
-            newEmail.innerText = emailsList[i].email;
-            if(emailsList[i].valid == true){
-                newEmail.classList.add("validBox");
-            } else {
-                newEmail.classList.add("invalidBox");
-            }
-            InvitedEmails.createRemoveButton(newEmail, 'close', this.cleanEmail);
-        }
-        var input = this.container.querySelector('input');
-        input.value = "";
-    },
-
-    cleanEmail: function(event) {
-      var theEmail = event.target.parentElement;
-      theEmail.parentElement.removeChild(theEmail);
-    }
-};
-
-GuestsEmail.initialize();
+Invited.initialize('guests-email');
 Proposer.initialize('proposer-email');
 
 var Proposal = {
