@@ -29,7 +29,7 @@ var Invited = {
       theClass = "validBox";
     }
     box.classList.add(theClass);
-    this.createRemoveButton(box, 'close', this.cleanEmail);
+    this.createRemoveButton(box);
   },
 
   cleanInput: function(){
@@ -59,26 +59,24 @@ var Invited = {
   tokenize: function(text) {
     var tokens = text.split(",");
     var result = [];
-    tokens.forEach (function(token){
-      var trimmed = token.trim();
-      if (trimmed != "") { result.push(trimmed);}
-    });
+    for (let token of tokens) {
+      let trimmed = token.trim();
+      if (trimmed != "") {result.push(trimmed);}
+    }
     return result;
   },
 
-  cleanEmail: function(event) {
-    var theEmail = event.target.parentElement;
-    theEmail.parentElement.removeChild(theEmail);
+  removeEmailBox: function(event) {
+    var emailBox = event.target.parentElement;
+    emailBox.parentElement.removeChild(emailBox);
   },
 
-  createRemoveButton: function(emailBox, buttonStyle, action) {
+  createRemoveButton: function(emailBox) {
     var removeButton = document.createElement('div');
     emailBox.appendChild(removeButton);
-    if (buttonStyle != ""){
-      removeButton.classList.add(buttonStyle);
-    }
+    removeButton.classList.add("close");
     removeButton.textContent = "x";
-    removeButton.addEventListener("click", action);
+    removeButton.addEventListener("click", this.removeEmailBox);
   },
 
 };
