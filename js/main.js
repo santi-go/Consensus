@@ -1,66 +1,6 @@
-
 Invited.initialize('guests-email');
 Proposer.initialize('proposer-email');
-
-var Proposal = {
-    text_box: document.getElementById('proposal'),
-
-    initialize: function() {
-        this.text_box.addEventListener('paste', this.pasteProposal.bind(this));
-        this.text_box.textContent = "Insert your proposal here...";
-    },
-
-    pasteProposal: function(event) {
-        var pastedText = event.clipboardData.getData('text');
-        sanitizedText = this.sanitize(pastedText);
-
-        ProcessBlock.initialize(sanitizedText);
-    },
-
-    sanitize: function(text) {
-        result = text.replace(/<(?:.|\n)*?>/gm, '');
-
-        return result;
-    }
-};
-
-var ProcessBlock = {
-    text: '',
-    paragraphs: [],
-
-    initialize: function(text) {
-        this.text = text;
-        this.addBlockTags();
-    },
-
-    addBlockTags: function() {
-        var newBlock = '';
-        this.paragraphs = this.text.split("\n");
-        var lines=this.paragraphs;
-        for (var key in lines){
-            var convertedLine = "";
-            var lineInProcess = lines[key].trim();
-            if (lineInProcess == "") {
-                convertedLine = this.addBrTag();
-            } else {
-                convertedLine = this.addParagraphTag(lineInProcess);
-            }
-            newBlock += convertedLine;
-        }
-        document.getElementById('proposal2').innerHTML = newBlock;
-        console.log(newBlock);
-    },
-
-    addBrTag: function() {
-        return "<br>\n";
-    },
-
-    addParagraphTag: function(lineInProcess) {
-        return "<p>" + lineInProcess + "</p>\n";
-    }
-};
-
-Proposal.initialize();
+Proposal.initialize('proposal');
 
 
 var InvitedEmails = {
