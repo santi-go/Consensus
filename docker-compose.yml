@@ -1,0 +1,29 @@
+version: '3'
+services:
+  consensus:
+    image: nginx
+    ports:
+      - 8080:80
+    volumes:
+      - './src:/usr/share/nginx/html'
+
+  selenium:
+    image: selenium/standalone-chrome
+    environment:
+      - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    ports:
+      - 4444:4444
+
+  e2e:
+    build:
+      context: .
+      dockerfile: e2e.docker
+    volumes:
+      - '.:/test'
+    depends_on:
+      - consensus
+      - selenium
+
+volumes:
+  bundle:
+    driver: local
