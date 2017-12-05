@@ -1,4 +1,4 @@
-var Proposal = {
+export var Proposal = {
   inputContainer: null,
   outputContainer: null,
 

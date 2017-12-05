@@ -20,3 +20,7 @@ docker-compose up --build
 
 docker-compose run --rm e2e npm run test
 
+
+### Run unit tests:
+
+docker-compose run --rm e2e npm run unit-test

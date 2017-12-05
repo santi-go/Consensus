@@ -4,13 +4,26 @@
   "description": "End2end test suite",
   "dependencies": {},
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-es2015-native-modules": "^6.9.4",
     "chai": "^3.5.0",
     "mocha": "^3.4.1",
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
-    "webdriverio": "^4.7.1"
+    "webdriverio": "^4.7.1",
+    "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "wdio ./wdio.conf.js"
+    "unit-test": "mocha --compilers js:babel-core/register",
+    "test": "wdio ./wdio.conf.js",
+    "build": "webpack --progress",
+    "e2e": "webpack --progress && wdio ./wdio.conf.js",
+    "build-watch": "webpack --progress --watch"
+  },
+  "babel": {
+    "presets": [
+     		["es2015"]
+    ]
   }
 }
