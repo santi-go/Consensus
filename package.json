@@ -15,11 +15,11 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "unit-test": "mocha --compilers js:babel-core/register",
+    "unit-test": "mocha tests/unit --compilers js:babel-core/register",
     "test": "wdio ./wdio.conf.js",
     "build": "webpack --progress",
-    "e2e": "webpack --progress && wdio ./wdio.conf.js",
-    "build-watch": "webpack --progress --watch"
+    "build-watch": "webpack --progress --watch",
+    "e2e": "webpack --progress && wdio ./wdio.conf.js"
   },
   "babel": {
     "presets": [

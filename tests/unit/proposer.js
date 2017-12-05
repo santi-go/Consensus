@@ -1,7 +1,7 @@
 var assert = require('chai').assert
 var expect = require('chai').expect
-//import Proposer from '../src/js/proposer';
-var {Proposer} = require('../src/js/proposer')
+
+var {Proposer} = require('../../src/js/proposer')
 
 describe('Proposer', function(){
   it('accepts valid email', function(){

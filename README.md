@@ -1,5 +1,6 @@
 # CONSENSUS
 
+## Start project
 
 ### Build:
 
@@ -16,7 +17,16 @@ docker-compose up
 docker-compose up --build
 
 
-### Run test:
+## Build assets
+
+docker-compose run --rm e2e npm run build
+
+docker-compose run --rm e2e npm run build-watch
+
+
+## Launch tests
+
+### Run end to end test:
 
 docker-compose run --rm e2e npm run test
 
