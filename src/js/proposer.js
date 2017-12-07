@@ -20,18 +20,20 @@ export var Proposer = {
   },
 
   maskInput: function(event) {
-    var text = event.target.value;
-    var pressedKeyCode = event.which;
-    var character = String.fromCharCode(pressedKeyCode);
-    var isAllowed = this.isAllowedIn(text, character);
+    let text = event.target.value
+    let pressedKeyCode = event.which
+    let position = event.target.selectionStart
+    let character = String.fromCharCode(pressedKeyCode)
+    let isAllowed = this.isAllowedIn(text, character, position)
     if(!isAllowed) {
-      event.preventDefault();
+      event.preventDefault()
     }
   },
 
-  isAllowedIn: function(text, character){
-    var thePattern = this.selectPattern(text);
-    return this.matches(thePattern, character);
+  isAllowedIn: function(text, character, position){
+    if (text.includes('@') && character == '@') return null
+    let thePattern = this.selectPattern(text, position)
+    return this.matches(thePattern, character)
   },
 
   markValidity: function(isValid) {
@@ -54,14 +56,14 @@ export var Proposer = {
     return result;
   },
 
-  selectPattern: function(text) {
-    var patterns = {
+  selectPattern: function(text, position) {
+    let patterns = {
       local: /[@!#$%&'*+/=?^_`{|}~.-]|[a-z]|[0-9]/ig,
       domain: /[.-]|[a-z]|[0-9]/ig
-    };
-    var result = patterns.local;
-    if(text.includes('@')) result = patterns.domain;
-    return result;
+    }
+    let result = patterns.local;
+    let positionOfAt = text.indexOf('@')
+    if(text.includes('@') && positionOfAt < position) result = patterns.domain
+    return result
   },
-
 };
