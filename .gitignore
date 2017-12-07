@@ -7,6 +7,7 @@
 /node_modules/
 /vendor/
 /lib/bundler/man/
+/src/build/
 
 .Spotlight-V100
 .DS_Store
