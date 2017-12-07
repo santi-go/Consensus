@@ -1,4 +1,4 @@
-export var Proposer = {
+export let Proposer = {
   container: null,
   EMAIL_PATTERN: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
@@ -8,14 +8,14 @@ export var Proposer = {
   },
 
   prepareEvents: function(){
-    var input = this.container.querySelector('input');
+    let input = this.container.querySelector('input');
     input.addEventListener('blur', this.checkForMail.bind(this));
     input.addEventListener('keypress', this.maskInput.bind(this));
   },
 
   checkForMail: function(event) {
-    var text = event.target.value;
-    var isValid = this.validateEmail(text);
+    let text = event.target.value;
+    let isValid = this.validateEmail(text);
     this.markValidity(isValid);
   },
 
@@ -37,7 +37,7 @@ export var Proposer = {
   },
 
   markValidity: function(isValid) {
-    var mark = 'invalid';
+    let mark = 'invalid';
     if(isValid) {
       this.container.classList.remove(mark);
     } else {
@@ -51,8 +51,8 @@ export var Proposer = {
   },
 
   matches: function(pattern, character) {
-    var matcher = new RegExp(pattern);
-    var result = matcher.exec(character);
+    let matcher = new RegExp(pattern);
+    let result = matcher.exec(character);
     return result;
   },
 
