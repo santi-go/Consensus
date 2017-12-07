@@ -13,7 +13,7 @@ export var Invited = {
   },
 
   extractMail: function() {
-    var emailsList = this.parseMail();
+    var emailsList = this.readInput();
     for (var i = 0; i < emailsList.length; i++){
       this.createEmailBox(emailsList[i]);
     }
@@ -41,8 +41,13 @@ export var Invited = {
     return this.EMAIL_PATTERN.test(email);
   },
 
-  parseMail: function() {
+  readInput: function() {
     var text = this.container.querySelector('input').value;
+    return this.parseMail(text);
+  },
+
+  parseMail: function(collectedInput) {
+    var text = collectedInput;
     if(text.trim() == '') return [];
 
     var emails = this.tokenize(text);
