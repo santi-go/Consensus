@@ -90,6 +90,10 @@ body {
     text-align: justify;
 }
 
+#proposal:focus {
+  background-color: #f4f4aa;
+}
+
 .close {
   background-color: black;
   color: white;
