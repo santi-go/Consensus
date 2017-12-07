@@ -1,4 +1,4 @@
-export var Proposer = {
+export let Proposer = {
   container: null,
   EMAIL_PATTERN: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
@@ -8,34 +8,34 @@ export var Proposer = {
   },
 
   prepareEvents: function(){
-    var input = this.container.querySelector('input');
+    let input = this.container.querySelector('input');
     input.addEventListener('blur', this.checkForMail.bind(this));
     input.addEventListener('keypress', this.maskInput.bind(this));
   },
 
   checkForMail: function(event) {
-    var text = event.target.value;
-    var isValid = this.validateEmail(text);
+    let text = event.target.value;
+    let isValid = this.validateEmail(text);
     this.markValidity(isValid);
   },
 
   maskInput: function(event) {
-    var text = event.target.value;
-    var pressedKeyCode = event.which;
-    var character = String.fromCharCode(pressedKeyCode);
-    var isAllowed = this.isAllowedIn(text, character);
+    let text = event.target.value;
+    let pressedKeyCode = event.which;
+    let character = String.fromCharCode(pressedKeyCode);
+    let isAllowed = this.isAllowedIn(text, character);
     if(!isAllowed) {
       event.preventDefault();
     }
   },
 
   isAllowedIn: function(text, character){
-    var thePattern = this.selectPattern(text);
+    let thePattern = this.selectPattern(text);
     return this.matches(thePattern, character);
   },
 
   markValidity: function(isValid) {
-    var mark = 'invalid';
+    let mark = 'invalid';
     if(isValid) {
       this.container.classList.remove(mark);
     } else {
@@ -49,17 +49,17 @@ export var Proposer = {
   },
 
   matches: function(pattern, character) {
-    var matcher = new RegExp(pattern);
-    var result = matcher.exec(character);
+    let matcher = new RegExp(pattern);
+    let result = matcher.exec(character);
     return result;
   },
 
   selectPattern: function(text) {
-    var patterns = {
+    let patterns = {
       local: /[@!#$%&'*+/=?^_`{|}~.-]|[a-z]|[0-9]/ig,
       domain: /[.-]|[a-z]|[0-9]/ig
     };
-    var result = patterns.local;
+    let result = patterns.local;
     if(text.includes('@')) result = patterns.domain;
     return result;
   },

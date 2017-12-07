@@ -1,4 +1,4 @@
-export var Invited = {
+export let Invited = {
   container: null,
   EMAIL_PATTERN: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
@@ -8,23 +8,23 @@ export var Invited = {
   },
 
   prepareEvents: function() {
-    var input = this.container.querySelector('input');
+    let input = this.container.querySelector('input');
     input.addEventListener('blur', this.extractMail.bind(this));
   },
 
   extractMail: function() {
-    var emailsList = this.parseMail();
-    for (var i = 0; i < emailsList.length; i++){
+    let emailsList = this.parseMail();
+    for (let i = 0; i < emailsList.length; i++){
       this.createEmailBox(emailsList[i]);
     }
     this.cleanInput();
   },
 
   createEmailBox: function(emailElement){
-    var box = document.createElement('div');
+    let box = document.createElement('div');
     this.container.querySelector('div').appendChild(box);
     box.innerText = emailElement.email;
-    var theClass = "invalidBox";
+    let theClass = "invalidBox";
     if(emailElement.valid){
       theClass = "validBox";
     }
@@ -33,7 +33,7 @@ export var Invited = {
   },
 
   cleanInput: function(){
-    var input = this.container.querySelector('input');
+    let input = this.container.querySelector('input');
     input.value = "";
   },
 
@@ -42,12 +42,12 @@ export var Invited = {
   },
 
   parseMail: function() {
-    var text = this.container.querySelector('input').value;
+    let text = this.container.querySelector('input').value;
     if(text.trim() == '') return [];
 
-    var emails = this.tokenize(text);
-    var result = [];
-    for(var i = 0; i < emails.length; i++){
+    let emails = this.tokenize(text);
+    let result = [];
+    for(let i = 0; i < emails.length; i++){
       result.push({
         email: emails[i],
         valid: this.validateEmail(emails[i])
@@ -57,8 +57,8 @@ export var Invited = {
   },
 
   tokenize: function(text) {
-    var tokens = text.split(",");
-    var result = [];
+    let tokens = text.split(",");
+    let result = [];
     for (let token of tokens) {
       let trimmed = token.trim();
       if (trimmed != "") {result.push(trimmed);}
@@ -67,12 +67,12 @@ export var Invited = {
   },
 
   removeEmailBox: function(event) {
-    var emailBox = event.target.parentElement;
+    let emailBox = event.target.parentElement;
     emailBox.parentElement.removeChild(emailBox);
   },
 
   createRemoveButton: function(emailBox) {
-    var removeButton = document.createElement('div');
+    let removeButton = document.createElement('div');
     emailBox.appendChild(removeButton);
     removeButton.classList.add("close");
     removeButton.textContent = "x";

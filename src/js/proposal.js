@@ -46,11 +46,11 @@ export var Proposal = {
     return convertedLine;
   },
 
-  addBrTag: function() {
+  addBrTag: () => {
     return "<br>\n";
   },
 
-  addParagraphTag: function(lineInProcess) {
+  addParagraphTag: (lineInProcess) => {
     return "<p>" + lineInProcess + "</p>\n";
   },
 };
