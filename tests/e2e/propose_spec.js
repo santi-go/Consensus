@@ -64,6 +64,17 @@ describe('Inviting', ()=>{
     expect(page.firstValidInvitation()).to.include(validMail)
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
+
+  it ('has close button in invitation', ()=> {
+    page = new Propose()
+    let mail = 'valid@mail.com'
+    
+    page.invite(mail)    
+    page.lostFocusOnInvited()
+
+    expect(page.existCloseButton()).to.be.true
+
+  })
 })
 
 class Propose {
@@ -105,5 +116,11 @@ class Propose {
   proposalIsMarkedForPaste(){
     let element = $('#proposal').getAttribute('tabindex')
     return element
+  }
+  existCloseButton() {
+    let component = $('#guests-email')
+    let divValidBox = component.$('div div .close')
+
+    return divValidBox.getText().includes('x')
   }
 }
