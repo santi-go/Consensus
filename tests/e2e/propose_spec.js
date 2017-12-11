@@ -24,17 +24,72 @@ describe('Identify proposer', () => {
 })
 
 describe('Proposal',()=>{
-  it ('has tabindex attribute', ()=>{
+  it ('has a visual clue when you can paste', ()=>{
     page = new Propose()
-    expect(page.hasProposalTabindexAttribute()).to.not.equal(null)
+    expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
 })
 
+describe('Inviting', ()=>{
+  it('allows single mail', ()=>{
+    let validMail = 'valid@mail.com'
+    page = new Propose()
+
+    page.invite(validMail)
+    page.lostFocusOnInvited()
+
+    expect(page.firstValidInvitation()).to.include(validMail)
+  })
+
+  it ('detects an invalid invitation', ()=>{
+    let invalidMail = 'invalidMail'
+    page = new Propose()
+
+    page.invite(invalidMail)
+    page.lostFocusOnInvited()
+
+    expect(page.firstInvalidInvitation()).to.include(invalidMail)
+  })
+
+  it ('parses mails separated by comma', ()=>{
+    let validMail = 'valid@mail.com'
+    let invalidMail = 'invalidMail'
+    let mails = validMail + ', ' + invalidMail
+    page = new Propose()
+
+    page.invite(mails)
+    page.lostFocusOnInvited()
+
+    expect(page.firstValidInvitation()).to.include(validMail)
+    expect(page.firstInvalidInvitation()).to.include(invalidMail)
+  })
+})
 
 class Propose {
   constructor() {
     browser.url('/')
+  }
+  invite(mail) {
+    let component = $('#guests-email')
+    let input = component.$('input')
+
+    input.setValue(mail)
+  }
+  lostFocusOnInvited(){
+    browser.click('#proposer-email')
+  }
+  firstValidInvitation(){
+    let component = $('#guests-email')
+    let divValidBox = component.$('div .validBox')
+
+    return divValidBox.getText();
+  }
+  firstInvalidInvitation() {
+    let component = $('#guests-email')
+    let divValidBox = component.$('div .invalidBox')
+
+    return divValidBox.getText();
   }
   identifyProposer(mail) {
     let component = $('#proposer-email')
@@ -47,10 +102,8 @@ class Propose {
     let classes = $('#proposer-email').getAttribute('class')
     return classes.includes('invalid')
   }
-  hasProposalTabindexAttribute(){
+  proposalIsMarkedForPaste(){
     let element = $('#proposal').getAttribute('tabindex')
-    console.log(element)
     return element
-
   }
 }
