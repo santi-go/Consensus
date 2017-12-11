@@ -23,6 +23,15 @@ describe('Identify proposer', () => {
 
 })
 
+describe('Proposal',()=>{
+  it ('has tabindex attribute', ()=>{
+    page = new Propose()
+    expect(page.hasProposalTabindexAttribute()).to.not.equal(null)
+  })
+
+})
+
+
 class Propose {
   constructor() {
     browser.url('/')
@@ -37,5 +46,11 @@ class Propose {
   isProposerInvalid() {
     let classes = $('#proposer-email').getAttribute('class')
     return classes.includes('invalid')
+  }
+  hasProposalTabindexAttribute(){
+    let element = $('#proposal').getAttribute('tabindex')
+    console.log(element)
+    return element
+
   }
 }
