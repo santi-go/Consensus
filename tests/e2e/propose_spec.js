@@ -64,6 +64,19 @@ describe('Inviting', ()=>{
     expect(page.firstValidInvitation()).to.include(validMail)
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
+
+    it ('delete element to click X', ()=>{
+      let invalidMail = 'invalidMail'
+      page = new Propose()
+
+      page.invite(invalidMail)
+      page.lostFocusOnInvited()
+
+      browser.click('.close')
+
+      expect($('div .invalidBox').value).to.be.null
+
+    })
 })
 
 class Propose {
