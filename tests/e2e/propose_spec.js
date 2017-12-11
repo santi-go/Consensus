@@ -89,6 +89,21 @@ describe('Inviting', ()=>{
 
     })
 
+    it('clears input with enter key', () => {
+      let page = new Propose()
+      let email = 'hola@devscola.org'
+      page.invite(email)
+      page.clickEnter()
+      expect(page.inputValue()).to.equal('')
+    })
+
+    it('clears input with comma key', () => {
+      let page = new Propose()
+      let email = 'hola@devscola.org'
+      page.invite(email)
+      page.clickComma()
+      expect(page.inputValue()).to.equal('')
+    })
 
 })
 
@@ -101,6 +116,11 @@ class Propose {
     let input = component.$('input')
 
     input.setValue(mail)
+  }
+  inputValue(){
+    let component = $('#guests-email')
+    let input = component.$('input')
+    return input.getValue()
   }
   lostFocusOnInvited(){
     browser.click('#proposer-email')
@@ -137,5 +157,19 @@ class Propose {
     let divValidBox = component.$('div div .close')
 
     return divValidBox.getText().includes('x')
+  }
+
+  clickEnter() {
+    let component = $('#guests-email')
+    let input = component.$('input')
+    let keyEnter = '\uE007'
+    input.keys('\uE007');
+  }
+
+  clickComma() {
+    let component = $('#guests-email')
+    let input = component.$('input')
+    let keyEnter = '\u002C'
+    input.keys(keyEnter);
   }
 }

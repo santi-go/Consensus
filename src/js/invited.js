@@ -10,6 +10,14 @@ export let Invited = {
   prepareEvents: function() {
     let input = this.container.querySelector('input');
     input.addEventListener('blur', this.extractMail.bind(this));
+    input.addEventListener('keypress', this.acceptKeysPress.bind(this));
+  },
+
+  acceptKeysPress: function(e) {
+    if(e.keyCode == 13 || e.keyCode == 44){
+      this.extractMail()
+      e.preventDefault()
+    }
   },
 
   extractMail: function() {
