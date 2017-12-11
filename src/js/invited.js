@@ -41,13 +41,8 @@ export let Invited = {
     return this.EMAIL_PATTERN.test(email);
   },
 
-  readInput: function() {
+  parseMail: function() {
     let text = this.container.querySelector('input').value;
-    return this.parseMail(text);
-  },
-
-  parseMail: function(collectedInput) {
-    let text = collectedInput;
     if(text.trim() == '') return [];
 
     let emails = this.tokenize(text);
