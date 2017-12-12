@@ -26,15 +26,20 @@ docker-compose run --rm e2e npm run build-watch
 
 ## Launch tests
 
+### Run all the test:
+
+- This command builds the javascript before run the tests:
+`docker-compose run --rm e2e npm run test-all`
+
 ### Run end to end test:
 
-docker-compose run --rm e2e npm run test
-
+- This command builds the javascript before run the tests:
+`docker-compose run --rm e2e npm run test-e2e`
 
 ### Run unit tests:
 
-docker-compose run --rm e2e npm run unit-test
-
+- This command builds the javascript before run the tests:
+`docker-compose run --rm e2e npm run test-unit`
 
 ## ESLint
 

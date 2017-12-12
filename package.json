@@ -21,6 +21,9 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
+    "test-all": "npm run build && npm run test && npm run unit-test",
+    "test-e2e": "npm run build && npm run test",
+    "test-unit": "npm run build && npm run unit-test",
     "unit-test": "mocha tests/unit --compilers js:babel-core/register",
     "test": "wdio ./wdio.conf.js",
     "build": "webpack --progress",
