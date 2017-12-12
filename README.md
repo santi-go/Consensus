@@ -41,21 +41,48 @@ docker-compose run --rm e2e npm run build-watch
 - This command builds the javascript before run the tests:
 `docker-compose run --rm e2e npm run test-unit`
 
+
 ## ESLint
 
-### First install in docker (already created)
+### Run ESLint
+
+`docker-compose run --rm e2e npm run linter`
+
+
+## How to configure at first time ESLint (already created)
+
+### First install in docker
 
 Install the 'eslint' tool in the project:
 
 docker-compose run --rm e2e npm install eslint --save-dev
-docker-compose run --rm e2e ./node_modules/.bin/eslint --init
+
+
+### Configure linter
+
+To run initial configuration:
+`docker-compose run --rm e2e ./node_modules/.bin/eslint --init`
+
+If you choice personal style you can configure:
+~~~
+? Are you using ECMAScript 6 features?
+? Are you using ES6 modules?
+? Where will your code run?
+? Do you use JSX?
+? What style of indentation do you use?
+? What quotes do you use for strings?
+? What line endings do you use?
+? Do you require semicolons?
+~~~
+
+For more configurations, view the page https://eslint.org/docs/user-guide/configuring
 
 
 ### Create a script
 
 Create a new script in package.json:
 
-"eslintest": "eslint --ignore-path .gitignore ."
+"linter": "eslint --ignore-path .gitignore ."
 
 
 ### Submit changes eslint installation to project:
@@ -66,4 +93,4 @@ git commit -m 'Add eslint automation'
 
 ### Next thing to do
 
-Change the task 'eslintest' to 'pretest' or 'posttest', in this moment have not decided to run automatically.
+Change the task 'linter' to 'pretest' or 'posttest', in this moment have not decided to run automatically.
