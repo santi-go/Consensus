@@ -29,6 +29,15 @@ describe('Proposal',()=>{
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
+  it('is shown in the box when is pasted', ()=>{
+     page = new Propose()
+     let theText = 'A new proposal is here'
+
+     page.addAndCutFromGuestsEmail(theText)
+     let textInTheBox = page.getTextPastedInProposal()
+
+     expect(textInTheBox).to.be.eq(theText)
+   })
 })
 
 describe('Inviting', ()=>{
@@ -172,5 +181,19 @@ class Propose {
     let input = component.$('input')
     let keyComma = '\u002C'
     input.keys(keyComma);
+  }
+  addAndCutFromGuestsEmail(proposal) {
+    let component = $('#guests-email')
+    let input = component.$('input')
+    input.setValue(proposal)
+    browser.keys(['Control', 'ax', 'NULL'])
+  }
+  getTextPastedInProposal() {
+    let component = $('#proposal')
+    browser.click('#proposal')
+    browser.keys(['Control', 'v', 'NULL'])
+    let output = component.$('output')
+    let textFromOutput = output.getText()
+    return textFromOutput
   }
 }
