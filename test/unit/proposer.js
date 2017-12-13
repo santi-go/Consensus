@@ -2,6 +2,7 @@ var assert = require('chai').assert
 var expect = require('chai').expect
 
 var {Proposer} = require('../../src/js/proposer')
+var {Invited} = require('../../src/js/invited')
 
 describe('Proposer', function(){
   it('accepts valid email', function(){
@@ -46,5 +47,13 @@ describe('Proposer', function(){
     let positionOfNewCharacter = 0
     let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
     expect(isValid).to.equal(null);
+  });
+});
+
+describe('Invited', function(){
+  it('checks an email as valid', function(){
+    let validEmail = 'hola@devscola.org'
+    let isValid = Invited.validateEmail(validEmail)
+    expect(isValid).to.be.true;
   });
 });
