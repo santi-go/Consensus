@@ -26,6 +26,9 @@ docker-compose run --rm e2e npm run build-watch
 
 ## Launch tests
 
+The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script build) and the posttest (script linter).
+
+
 ### Run all the test:
 
 - This command builds the javascript before run the tests:
