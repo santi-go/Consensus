@@ -94,4 +94,13 @@ describe('Invited', () => {
     expect(result.length).to.equal(1)
     expect(result[0]).to.equal('invalid.email hola@samuel.com')
   })
+
+  it('recognizes a mixture of guest emails with commas', () => {
+    let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
+
+    let result = Invited.tokenize(chainGuestEmails)
+
+    expect(result.length).to.equal(4)
+    expect(result[3]).to.equal('valid@domain.com')
+  })
 })
