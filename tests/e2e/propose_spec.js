@@ -41,6 +41,15 @@ describe('Proposal',()=>{
     
   })
 
+  it('is shown in the box when is pasted', ()=>{
+     page = new Propose()
+     let theText = 'A new proposal is here'
+
+     page.addAndCutFromGuestsEmail(theText)
+     let textInTheBox = page.getTextPastedInProposal()
+
+     expect(textInTheBox).to.be.eq(theText)
+   })
 })
 
 describe('Inviting', ()=>{
@@ -105,7 +114,7 @@ describe('Inviting', ()=>{
       let page = new Propose()
       let email = 'hola@devscola.org'
       page.invite(email)
-      page.clickEnter()
+      page.pressEnter()
       expect(page.inputValue()).to.equal('')
     })
 
@@ -113,7 +122,7 @@ describe('Inviting', ()=>{
       let page = new Propose()
       let email = 'hola@devscola.org'
       page.invite(email)
-      page.clickComma()
+      page.pressComma()
       expect(page.inputValue()).to.equal('')
     })
 
@@ -135,7 +144,8 @@ class Propose {
     return input.getValue()
   }
   lostFocusOnInvited(){
-    browser.click('#proposer-email')
+    let keyTab = '\u0009'
+    browser.keys(keyTab)
   }
   firstValidInvitation(){
     let component = $('#guests-email')
@@ -171,18 +181,32 @@ class Propose {
     return divValidBox.getText().includes('x')
   }
 
-  clickEnter() {
+  pressEnter() {
     let component = $('#guests-email')
     let input = component.$('input')
     let keyEnter = '\uE007'
-    input.keys('\uE007');
+    input.keys(keyEnter);
   }
 
-  clickComma() {
+  pressComma() {
     let component = $('#guests-email')
     let input = component.$('input')
-    let keyEnter = '\u002C'
-    input.keys(keyEnter);
+    let keyComma = '\u002C'
+    input.keys(keyComma);
+  }
+  addAndCutFromGuestsEmail(proposal) {
+    let component = $('#guests-email')
+    let input = component.$('input')
+    input.setValue(proposal)
+    browser.keys(['Control', 'ax', 'NULL'])
+  }
+  getTextPastedInProposal() {
+    let component = $('#proposal')
+    browser.click('#proposal')
+    browser.keys(['Control', 'v', 'NULL'])
+    let output = component.$('output')
+    let textFromOutput = output.getText()
+    return textFromOutput
   }
   
   pasteProposal(proposal) {
