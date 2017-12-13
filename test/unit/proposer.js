@@ -2,6 +2,7 @@ var assert = require('chai').assert
 var expect = require('chai').expect
 
 var {Proposer} = require('../../src/js/proposer')
+var {Proposal} = require('../../src/js/proposal')
 
 describe('Proposer', function(){
   it('accepts valid email', function(){
@@ -47,4 +48,35 @@ describe('Proposer', function(){
     let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
     expect(isValid).to.equal(null);
   });
+});
+
+describe('Proposal', function(){
+
+  it('sanitized text', function(){
+    let HTMLText = '<h1>Devscola</h1>'
+    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola');
+    HTMLText = '<h1>Devscola</h1'
+    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola</h1');
+    HTMLText = '<p>Devscola</p><span> Como estas!!</span>'
+    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola Como estas!!');
+    HTMLText = '<br>Devscola'
+    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola');
+  });
+
+  it('adds <br> when is necessary', function(){
+    let text = ''
+    let HTMLText = Proposal.addTag(text)
+
+    expect(HTMLText).to.equal('<br>\n');
+
+  });
+
+  it('adds <p> when is necessary', function(){ 
+    let text = 'Devscola'
+    let HTMLText = Proposal.addTag(text)
+
+    expect(HTMLText).to.equal('<p>Devscola</p>\n');
+    
+  });
+  
 });
