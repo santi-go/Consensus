@@ -86,6 +86,14 @@ describe('Invited', () => {
     expect(result).to.equal(false)
   })
 
+  it('recognizes a valid email', () => {
+    let validEmail = 'valid.email@domain.com'
+
+    let result = Invited.validateEmail(validEmail)
+
+    expect(result).to.equal(true)
+  })
+
   it('recognizes a mixture of guest emails without commas', () => {
     let chainGuestEmails = 'invalid.email hola@samuel.com'
 
@@ -93,5 +101,23 @@ describe('Invited', () => {
 
     expect(result.length).to.equal(1)
     expect(result[0]).to.equal('invalid.email hola@samuel.com')
+  })
+
+  it('recognizes a mixture of guest emails with commas', () => {
+    let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
+
+    let result = Invited.tokenize(chainGuestEmails)
+
+    expect(result.length).to.equal(4)
+    expect(result[3]).to.equal('valid@domain.com')
+  })
+
+  it('recognizes and avoid an empty chain', () => {
+    let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
+
+    let result = Invited.tokenize(chainGuestEmails)
+
+    expect(result.length).to.equal(1)
+    expect(result[0]).to.equal('valid@domain.com')
   })
 })
