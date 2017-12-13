@@ -7,7 +7,7 @@ exports.config = {
   port: 4444,
   baseUrl: 'http://consensus',
   capabilities: [{
-   browserName: 'chrome'
+    browserName: 'chrome'
   }],
   reporters: ['spec']
 }
