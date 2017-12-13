@@ -1,13 +1,13 @@
 exports.config = {
   specs: [
-    './tests/e2e/**/*.js'
+    './test/e2e/**/*.js'
   ],
   maxInstances: 1,
   host: 'selenium',
   port: 4444,
   baseUrl: 'http://consensus',
   capabilities: [{
-   browserName: 'chrome'
+    browserName: 'chrome'
   }],
   reporters: ['spec']
 }

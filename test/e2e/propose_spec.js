@@ -24,9 +24,21 @@ describe('Identify proposer', () => {
 })
 
 describe('Proposal',()=>{
+
   it ('has a visual clue when you can paste', ()=>{
     page = new Propose()
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
+  })
+
+  it ('allows HTML tags and appears whitout this tags', ()=> {
+    page = new Propose()
+
+    let proposal = '<p>textwithoutHTML</p>'
+    let textWithoutHTML = 'textwithoutHTML'
+    let textProposal = page.pasteProposal(proposal)
+
+    expect(textProposal).to.equal(textWithoutHTML)
+
   })
 
   it('is shown in the box when is pasted', ()=>{
@@ -195,5 +207,30 @@ class Propose {
     let output = component.$('output')
     let textFromOutput = output.getText()
     return textFromOutput
+  }
+
+  pasteProposal(proposal) {
+    let input = $('#guests-email input')
+    let output = $('#proposal output')
+
+    input.setValue(proposal)
+    this.selectAll()
+    this.copyToClipboard()
+    browser.click('#proposal pre')
+    this.pasteFromClipboard()
+
+    return output.getText()
+  }
+
+  selectAll() {
+    browser.keys(['Control', 'a', 'NULL'])
+  }
+
+  copyToClipboard() {
+    browser.keys(['Control', 'c', 'NULL'])
+  }
+
+  pasteFromClipboard() {
+    browser.keys(['Control', 'v', 'NULL'])
   }
 }
