@@ -86,29 +86,17 @@ describe('Inviting', ()=>{
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
 
-  it ('has close button in invitation', ()=> {
-    page = new Propose()
-    let mail = 'valid@mail.com'
+  it('Allows deleting an email by pressing X button', () => {
+    let validMail = 'valid@mail.com'
+    let page = new Propose()
 
-    page.invite(mail)
+    page.invite(validMail)
     page.lostFocusOnInvited()
 
     expect(page.existCloseButton()).to.be.true
-
+    browser.click('.close')
+    expect($('div .validBox').value).to.be.null
   })
-
-    it ('delete element to click X', ()=>{
-      let invalidMail = 'invalidMail'
-      page = new Propose()
-
-      page.invite(invalidMail)
-      page.lostFocusOnInvited()
-
-      browser.click('.close')
-
-      expect($('div .invalidBox').value).to.be.null
-
-    })
 
     it('clears input with enter key', () => {
       let page = new Propose()
