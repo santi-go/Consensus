@@ -8,7 +8,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "chai": "^3.5.0",
-    "eslint": "^4.13.0",
+    "eslint": "^4.13.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-import": "^2.8.0",
     "eslint-plugin-node": "^5.2.1",
