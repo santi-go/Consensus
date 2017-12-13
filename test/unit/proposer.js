@@ -86,6 +86,14 @@ describe('Invited', () => {
     expect(result).to.equal(false)
   })
 
+  it('recognizes a valid email', () => {
+    let validEmail = 'valid.email@domain.com'
+
+    let result = Invited.validateEmail(validEmail)
+
+    expect(result).to.equal(true)
+  })
+
   it('recognizes a mixture of guest emails without commas', () => {
     let chainGuestEmails = 'invalid.email hola@samuel.com'
 
