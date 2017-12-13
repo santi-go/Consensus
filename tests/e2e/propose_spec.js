@@ -2,7 +2,7 @@ var assert = require('chai').assert
 var expect = require('chai').expect
 
 describe('Identify proposer', () => {
-
+  
   it('accepts valid mails', () => {
     let page = new Propose()
     let validMail = "hola@devscola.org"
@@ -24,9 +24,21 @@ describe('Identify proposer', () => {
 })
 
 describe('Proposal',()=>{
+  
   it ('has a visual clue when you can paste', ()=>{
     page = new Propose()
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
+  })
+
+  it ('allows HTML tags and appears whitout this tags', ()=> {
+    page = new Propose()
+
+    let proposal = '<p>textwithoutHTML</p>'
+    let textWithoutHTML = 'textwithoutHTML'
+    let textProposal = page.pasteProposal(proposal)
+
+    expect(textProposal).to.equal(textWithoutHTML)
+    
   })
 
 })
@@ -172,4 +184,29 @@ class Propose {
     let keyEnter = '\u002C'
     input.keys(keyEnter);
   }
+  
+  pasteProposal(proposal) {
+    let input = $('#guests-email input')
+    let output = $('#proposal output')
+
+    input.setValue(proposal)
+    this.selectAll()
+    this.copyToClipboard()
+    browser.click('#proposal pre')
+    this.pasteFromClipboard()
+
+    return output.getText()
+  }
+
+  selectAll() {
+    browser.keys(['Control', 'a', 'NULL'])
+  }  
+
+  copyToClipboard() {
+    browser.keys(['Control', 'c', 'NULL'])
+  }  
+  
+  pasteFromClipboard() {
+    browser.keys(['Control', 'v', 'NULL'])
+  }  
 }
