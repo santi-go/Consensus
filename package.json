@@ -22,11 +22,15 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "pretest-e2e pretest-unit pretest-all": "webpack --progress",
-    "posttest-e2e posttest-unit posttest-all": "eslint --ignore-path .gitignore .",
-    "test-all": "wdio ./wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
     "test-unit": "mocha test/unit --compilers js:babel-core/register",
     "test-e2e": "wdio ./wdio.conf.js",
+    "test-all": "wdio ./wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
+    "pretest-all": "npm run build",
+    "posttest-all": "npm run linter",
+    "pretest-unit": "npm run build",
+    "posttest-unit": "npm run linter",
+    "pretest-e2e": "npm run build",
+    "posttest-e2e": "npm run linter",
     "build": "webpack --progress",
     "build-watch": "webpack --progress --watch",
     "linter": "eslint --ignore-path .gitignore ."
