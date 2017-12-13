@@ -3,6 +3,7 @@ var expect = require('chai').expect
 
 var {Proposer} = require('../../src/js/proposer')
 var {Proposal} = require('../../src/js/proposal')
+var {Invited} = require('../../src/js/invited')
 
 describe('Proposer', function(){
   it('accepts valid email', function(){
@@ -71,12 +72,22 @@ describe('Proposal', function(){
 
   });
 
-  it('adds <p> when is necessary', function(){ 
+  it('adds <p> when is necessary', function(){
     let text = 'Devscola'
     let HTMLText = Proposal.addTag(text)
 
     expect(HTMLText).to.equal('<p>Devscola</p>\n');
-    
+
   });
-  
+
 });
+
+describe('Invited', ()=>{
+  it('recognizes an invalid email', ()=>{
+    let invalidEmail = 'invalid.email'
+
+    let result = Invited.validateEmail(invalidEmail)
+
+    expect(result).to.equal(false)
+  })
+})
