@@ -1,5 +1,5 @@
-const webpack = require('webpack');
-const nodeEnv = process.env.NODE_ENV || 'production';
+const webpack = require('webpack')
+const nodeEnv = process.env.NODE_ENV || 'production'
 
 module.exports = {
   devtool: 'source-map',
@@ -35,4 +35,4 @@ module.exports = {
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     })
   ]
-};
+}
