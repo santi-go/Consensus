@@ -103,4 +103,13 @@ describe('Invited', () => {
     expect(result.length).to.equal(4)
     expect(result[3]).to.equal('valid@domain.com')
   })
+
+  it('recognizes and avoid an empty chain', () => {
+    let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
+
+    let result = Invited.tokenize(chainGuestEmails)
+
+    expect(result.length).to.equal(1)
+    expect(result[0]).to.equal('valid@domain.com')
+  })
 })
