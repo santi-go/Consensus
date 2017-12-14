@@ -4,4 +4,4 @@ ENV TEST /test
 RUN mkdir -p $TEST
 WORKDIR $TEST
 
-CMD npm install
+CMD npm install 
