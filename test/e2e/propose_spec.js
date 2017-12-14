@@ -48,7 +48,7 @@ describe('Proposal', () => {
 })
 
 describe('Inviting', () => {
-  it('allows single mail', () => {
+  it('allows mail', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
 
