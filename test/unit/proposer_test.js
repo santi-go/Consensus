@@ -11,111 +11,131 @@ describe('Proposer', function () {
     expect(isValid).to.be.true
   })
 
-  it('not accepts invalid email', function () {
+  it('does not accept invalid email', function () {
     let invalidEmail = 'holadevscola.org'
     let isValid = Proposer.validateEmail(invalidEmail)
     expect(isValid).to.be.false
   })
 
-  it('not allows to push a character not included in local pattern if the email has not @', function () {
-    let text = '##hola'
-    let pushedCharacter = '¬'
-    let positionOfNewCharacter = 0
-    let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
-    expect(isValid).to.equal(null)
-  })
+  context('when gets a character ', () => {
+    it('does not allow more than an @', function () {
+      let text = '##hola@'
+      let pushedCharacter = '@'
+      let positionOfNewCharacter = 0
 
-  it('not allows to push a character not included in domain pattern if the email has @', function () {
-    let text = '##hola@'
-    let pushedCharacter = '%'
-    let positionOfNewCharacter = 7
-    let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
-    expect(isValid).to.equal(null)
-  })
+      let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
-  it('allows to push local-pattern-characters in local if the email has @', function () {
-    let text = '##hola@'
-    let pushedCharacter = '%'
-    let positionOfNewCharacter = 0
-    let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
-    expect(isValid).to.not.equal(null)
-  })
+      expect(isValid).to.equal(null)
+    })
 
-  it('not allows to push more than 1 @', function () {
-    let text = '##hola@'
-    let pushedCharacter = '@'
-    let positionOfNewCharacter = 0
-    let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
-    expect(isValid).to.equal(null)
+    context('in the domain pattern', () => {
+      it('does not allow invalid characters', function () {
+        let text = '##hola@'
+        let pushedCharacter = '%'
+        let positionOfNewCharacter = 7
+
+        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+
+        expect(isValid).to.equal(null)
+      })
+    })
+
+    context('in the local pattern', () => {
+      it('does not allow invalid characters', function () {
+        let text = '##hola'
+        let pushedCharacter = '¬'
+        let positionOfNewCharacter = 0
+
+        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+
+        expect(isValid).to.equal(null)
+      })
+
+      it('allows valid characters', function () {
+        let text = '##hola@'
+        let pushedCharacter = '%'
+        let positionOfNewCharacter = 0
+
+        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+
+        expect(isValid).to.not.equal(null)
+      })
+    })
   })
 })
 
 describe('Proposal', function () {
-  it('sanitized text', function () {
-    let HTMLText = '<h1>Devscola</h1>'
-    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola')
-    HTMLText = '<h1>Devscola</h1'
-    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola</h1')
-    HTMLText = '<p>Devscola</p><span> Como estas!!</span>'
-    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola Como estas!!')
-    HTMLText = '<br>Devscola'
-    expect(Proposal.sanitize(HTMLText)).to.equal('Devscola')
+  it('sanitizes text', function () {
+    let textWithLabels = '<h1>Devscola</h1> <h1>Devscola</h1 <p>Devscola</p><span> Como estas!!</span> <br>Devscola'
+    let sanitizedText = 'Devscola DevscolaDevscola Como estas!! Devscola'
+
+    let result = Proposal.sanitize(textWithLabels)
+
+    expect(result).to.equal(sanitizedText)
   })
 
-  it('adds <br> when is necessary', function () {
-    let text = ''
-    let HTMLText = Proposal.addTag(text)
+  context('adds tag', () => {
+    it('new line for an empty text', function () {
+      let text = ''
 
-    expect(HTMLText).to.equal('<br>\n')
-  })
+      let HTMLText = Proposal.addTag(text)
 
-  it('adds <p> when is necessary', function () {
-    let text = 'Devscola'
-    let HTMLText = Proposal.addTag(text)
+      expect(HTMLText).to.equal('<br>\n')
+    })
 
-    expect(HTMLText).to.equal('<p>Devscola</p>\n')
+    it('paragraph for a text', function () {
+      let text = 'Devscola'
+
+      let HTMLText = Proposal.addTag(text)
+
+      expect(HTMLText).to.equal('<p>Devscola</p>\n')
+    })
   })
 })
 
-describe('Invited', () => {
-  it('checks an email as valid', function () {
-    let validEmail = 'hola@devscola.org'
-    let isValid = Involved.validateEmail(validEmail)
-    expect(isValid).to.be.true
+describe('Involved', () => {
+  context('recognizes an email as', () => {
+    it('valid', function () {
+      let validEmail = 'hola@devscola.org'
+
+      let isValid = Involved.validateEmail(validEmail)
+
+      expect(isValid).to.be.true
+    })
+
+    it('invalid', () => {
+      let invalidEmail = 'invalid.email'
+
+      let result = Involved.validateEmail(invalidEmail)
+
+      expect(result).to.equal(false)
+    })
   })
 
-  it('recognizes an invalid email', () => {
-    let invalidEmail = 'invalid.email'
+  context('recognizes a list of emails', () => {
+    it('as an email if breacked by spaces', () => {
+      let chainGuestEmails = 'invalid.email hola@samuel.com'
 
-    let result = Involved.validateEmail(invalidEmail)
+      let result = Involved.tokenize(chainGuestEmails)
 
-    expect(result).to.equal(false)
-  })
+      expect(result[0]).to.equal('invalid.email hola@samuel.com')
+    })
 
-  it('recognizes a mixture of guest emails without commas', () => {
-    let chainGuestEmails = 'invalid.email hola@samuel.com'
+    it('breaked by commas', () => {
+      let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
 
-    let result = Involved.tokenize(chainGuestEmails)
+      let result = Involved.tokenize(chainGuestEmails)
 
-    expect(result.length).to.equal(1)
-    expect(result[0]).to.equal('invalid.email hola@samuel.com')
-  })
+      expect(result.length).to.equal(4)
+      expect(result[3]).to.equal('valid@domain.com')
+    })
 
-  it('recognizes a mixture of guest emails with commas', () => {
-    let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
+    it('removing the empty chains', () => {
+      let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
 
-    let result = Involved.tokenize(chainGuestEmails)
+      let result = Involved.tokenize(chainGuestEmails)
 
-    expect(result.length).to.equal(4)
-    expect(result[3]).to.equal('valid@domain.com')
-  })
-
-  it('recognizes and avoid an empty chain', () => {
-    let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
-
-    let result = Involved.tokenize(chainGuestEmails)
-
-    expect(result.length).to.equal(1)
-    expect(result[0]).to.equal('valid@domain.com')
+      expect(result[0]).to.equal('valid@domain.com')
+    })
   })
 })
