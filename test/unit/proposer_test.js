@@ -2,7 +2,7 @@ var expect = require('chai').expect
 
 var {Proposer} = require('../../src/js/proposer')
 var {Proposal} = require('../../src/js/proposal')
-var {Invited} = require('../../src/js/invited')
+var {Involved} = require('../../src/js/involved')
 
 describe('Proposer', function () {
   it('accepts valid email', function () {
@@ -80,14 +80,14 @@ describe('Proposal', function () {
 describe('Invited', () => {
   it('checks an email as valid', function () {
     let validEmail = 'hola@devscola.org'
-    let isValid = Invited.validateEmail(validEmail)
+    let isValid = Involved.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
   it('recognizes an invalid email', () => {
     let invalidEmail = 'invalid.email'
 
-    let result = Invited.validateEmail(invalidEmail)
+    let result = Involved.validateEmail(invalidEmail)
 
     expect(result).to.equal(false)
   })
@@ -95,7 +95,7 @@ describe('Invited', () => {
   it('recognizes a mixture of guest emails without commas', () => {
     let chainGuestEmails = 'invalid.email hola@samuel.com'
 
-    let result = Invited.tokenize(chainGuestEmails)
+    let result = Involved.tokenize(chainGuestEmails)
 
     expect(result.length).to.equal(1)
     expect(result[0]).to.equal('invalid.email hola@samuel.com')
@@ -104,7 +104,7 @@ describe('Invited', () => {
   it('recognizes a mixture of guest emails with commas', () => {
     let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
 
-    let result = Invited.tokenize(chainGuestEmails)
+    let result = Involved.tokenize(chainGuestEmails)
 
     expect(result.length).to.equal(4)
     expect(result[3]).to.equal('valid@domain.com')
@@ -113,7 +113,7 @@ describe('Invited', () => {
   it('recognizes and avoid an empty chain', () => {
     let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
 
-    let result = Invited.tokenize(chainGuestEmails)
+    let result = Involved.tokenize(chainGuestEmails)
 
     expect(result.length).to.equal(1)
     expect(result[0]).to.equal('valid@domain.com')

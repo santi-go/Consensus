@@ -115,13 +115,13 @@ class Propose {
     browser.url('/')
   }
   invite (mail) {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let input = component.$('input')
 
     input.setValue(mail)
   }
   inputValue () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let input = component.$('input')
     return input.getValue()
   }
@@ -130,13 +130,13 @@ class Propose {
     browser.keys(keyTab)
   }
   firstValidInvitation () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let divValidBox = component.$('div .validBox')
 
     return divValidBox.getText()
   }
   firstInvalidInvitation () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let divValidBox = component.$('div .invalidBox')
 
     return divValidBox.getText()
@@ -157,25 +157,25 @@ class Propose {
     return element
   }
   existCloseButton () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let divValidBox = component.$('div div .close')
 
     return divValidBox.getText().includes('x')
   }
   pressEnter () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let input = component.$('input')
     let keyEnter = '\uE007'
     input.keys(keyEnter)
   }
   pressComma () {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let input = component.$('input')
     let keyComma = '\u002C'
     input.keys(keyComma)
   }
   addAndCutFromGuestsEmail (proposal) {
-    let component = $('#guests-email')
+    let component = $('#circle-email')
     let input = component.$('input')
     input.setValue(proposal)
     browser.keys(['Control', 'ax', 'NULL'])
@@ -189,7 +189,7 @@ class Propose {
     return textFromOutput
   }
   pasteProposal (proposal) {
-    let input = $('#guests-email input')
+    let input = $('#circle-email input')
     let output = $('#proposal output')
 
     input.setValue(proposal)
