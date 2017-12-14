@@ -1,13 +1,6 @@
-.ruby-version
 .env
-.ruby-version
-.ruby-gemset
-.rvmrc
-/.bundle/
 /node_modules/
-/vendor/
-/lib/bundler/man/
-/src/build/
+/dist/
 
 .Spotlight-V100
 .DS_Store

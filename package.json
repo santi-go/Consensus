@@ -29,7 +29,7 @@
     "test-all": "npm run pre && wdio ./wdio.conf.js && mocha test/unit --compilers js:babel-core/register && npm run post",
     "build": "webpack --progress",
     "build-watch": "webpack --progress --watch",
-    "linter": "eslint --ignore-path .gitignore ."
+    "linter": "eslint --ignore-path .gitignore . /dist/"
   },
   "babel": {
     "presets": [
