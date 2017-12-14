@@ -1,11 +1,9 @@
-var assert = require('chai').assert
 var expect = require('chai').expect
 
 describe('Identify proposer', () => {
-
   it('accepts valid mails', () => {
     let page = new Propose()
-    let validMail = "hola@devscola.org"
+    let validMail = 'hola@devscola.org'
 
     page.identifyProposer(validMail)
 
@@ -13,49 +11,46 @@ describe('Identify proposer', () => {
   })
 
   it(`doesn't accepts invalid mails`, () => {
-    page = new Propose()
-    let invalidMail = "errordecorreo"
+    let page = new Propose()
+    let invalidMail = 'errordecorreo'
 
     page.identifyProposer(invalidMail)
 
     expect(page.isProposerInvalid()).to.be.true
   })
-
 })
 
-describe('Proposal',()=>{
-
-  it ('has a visual clue when you can paste', ()=>{
-    page = new Propose()
+describe('Proposal', () => {
+  it('has a visual clue when you can paste', () => {
+    let page = new Propose()
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
-  it ('allows HTML tags and appears whitout this tags', ()=> {
-    page = new Propose()
-
+  it('allows HTML tags and appears whitout this tags', () => {
+    let page = new Propose()
     let proposal = '<p>textwithoutHTML</p>'
     let textWithoutHTML = 'textwithoutHTML'
+
     let textProposal = page.pasteProposal(proposal)
 
     expect(textProposal).to.equal(textWithoutHTML)
-
   })
 
-  it('is shown in the box when is pasted', ()=>{
-     page = new Propose()
-     let theText = 'A new proposal is here'
+  it('is shown in the box when is pasted', () => {
+    let page = new Propose()
+    let theText = 'A new proposal is here'
 
-     page.addAndCutFromGuestsEmail(theText)
-     let textInTheBox = page.getTextPastedInProposal()
+    page.addAndCutFromGuestsEmail(theText)
+    let textInTheBox = page.getTextPastedInProposal()
 
-     expect(textInTheBox).to.be.eq(theText)
-   })
+    expect(textInTheBox).to.be.eq(theText)
+  })
 })
 
-describe('Inviting', ()=>{
-  it('allows single mail', ()=>{
+describe('Inviting', () => {
+  it('allows single mail', () => {
     let validMail = 'valid@mail.com'
-    page = new Propose()
+    let page = new Propose()
 
     page.invite(validMail)
     page.lostFocusOnInvited()
@@ -63,9 +58,9 @@ describe('Inviting', ()=>{
     expect(page.firstValidInvitation()).to.include(validMail)
   })
 
-  it ('detects an invalid invitation', ()=>{
+  it('detects an invalid invitation', () => {
     let invalidMail = 'invalidMail'
-    page = new Propose()
+    let page = new Propose()
 
     page.invite(invalidMail)
     page.lostFocusOnInvited()
@@ -73,11 +68,11 @@ describe('Inviting', ()=>{
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
 
-  it ('parses mails separated by comma', ()=>{
+  it('parses mails separated by comma', () => {
     let validMail = 'valid@mail.com'
     let invalidMail = 'invalidMail'
     let mails = validMail + ', ' + invalidMail
-    page = new Propose()
+    let page = new Propose()
 
     page.invite(mails)
     page.lostFocusOnInvited()
@@ -86,121 +81,106 @@ describe('Inviting', ()=>{
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
 
-  it ('has close button in invitation', ()=> {
-    page = new Propose()
-    let mail = 'valid@mail.com'
+  it('Allows deleting an email by pressing X button', () => {
+    let validMail = 'valid@mail.com'
+    let page = new Propose()
 
-    page.invite(mail)
+    page.invite(validMail)
     page.lostFocusOnInvited()
 
     expect(page.existCloseButton()).to.be.true
-
+    browser.click('.close')
+    expect($('div .validBox').value).to.be.null
   })
 
-    it ('delete element to click X', ()=>{
-      let invalidMail = 'invalidMail'
-      page = new Propose()
+  it('clears input with enter key', () => {
+    let page = new Propose()
+    let email = 'hola@devscola.org'
+    page.invite(email)
+    page.pressEnter()
+    expect(page.inputValue()).to.equal('')
+  })
 
-      page.invite(invalidMail)
-      page.lostFocusOnInvited()
-
-      browser.click('.close')
-
-      expect($('div .invalidBox').value).to.be.null
-
-    })
-
-    it('clears input with enter key', () => {
-      let page = new Propose()
-      let email = 'hola@devscola.org'
-      page.invite(email)
-      page.pressEnter()
-      expect(page.inputValue()).to.equal('')
-    })
-
-    it('clears input with comma key', () => {
-      let page = new Propose()
-      let email = 'hola@devscola.org'
-      page.invite(email)
-      page.pressComma()
-      expect(page.inputValue()).to.equal('')
-    })
-
+  it('clears input with comma key', () => {
+    let page = new Propose()
+    let email = 'hola@devscola.org'
+    page.invite(email)
+    page.pressComma()
+    expect(page.inputValue()).to.equal('')
+  })
 })
 
 class Propose {
-  constructor() {
+  constructor () {
     browser.url('/')
   }
-  invite(mail) {
+  invite (mail) {
     let component = $('#guests-email')
     let input = component.$('input')
 
     input.setValue(mail)
   }
-  inputValue(){
+  inputValue () {
     let component = $('#guests-email')
     let input = component.$('input')
     return input.getValue()
   }
-  lostFocusOnInvited(){
+  lostFocusOnInvited () {
     let keyTab = '\u0009'
     browser.keys(keyTab)
   }
-  firstValidInvitation(){
+  firstValidInvitation () {
     let component = $('#guests-email')
     let divValidBox = component.$('div .validBox')
 
-    return divValidBox.getText();
+    return divValidBox.getText()
   }
-  firstInvalidInvitation() {
+  firstInvalidInvitation () {
     let component = $('#guests-email')
     let divValidBox = component.$('div .invalidBox')
 
-    return divValidBox.getText();
+    return divValidBox.getText()
   }
-  identifyProposer(mail) {
+  identifyProposer (mail) {
     let component = $('#proposer-email')
     let input = component.$('input')
 
     input.setValue(mail)
     browser.click('body')
   }
-  isProposerInvalid() {
+  isProposerInvalid () {
     let classes = $('#proposer-email').getAttribute('class')
     return classes.includes('invalid')
   }
-  proposalIsMarkedForPaste(){
+  proposalIsMarkedForPaste () {
     let element = $('#proposal').getAttribute('tabindex')
     return element
   }
-  existCloseButton() {
+  existCloseButton () {
     let component = $('#guests-email')
     let divValidBox = component.$('div div .close')
 
     return divValidBox.getText().includes('x')
   }
-
-  pressEnter() {
+  pressEnter () {
     let component = $('#guests-email')
     let input = component.$('input')
     let keyEnter = '\uE007'
-    input.keys(keyEnter);
+    input.keys(keyEnter)
   }
-
-  pressComma() {
+  pressComma () {
     let component = $('#guests-email')
     let input = component.$('input')
     let keyComma = '\u002C'
-    input.keys(keyComma);
+    input.keys(keyComma)
   }
-  addAndCutFromGuestsEmail(proposal) {
+  addAndCutFromGuestsEmail (proposal) {
     let component = $('#guests-email')
     let input = component.$('input')
     input.setValue(proposal)
     browser.keys(['Control', 'ax', 'NULL'])
   }
-  getTextPastedInProposal() {
+  getTextPastedInProposal () {
     let component = $('#proposal')
     browser.click('#proposal')
     browser.keys(['Control', 'v', 'NULL'])
@@ -208,8 +188,7 @@ class Propose {
     let textFromOutput = output.getText()
     return textFromOutput
   }
-
-  pasteProposal(proposal) {
+  pasteProposal (proposal) {
     let input = $('#guests-email input')
     let output = $('#proposal output')
 
@@ -221,16 +200,13 @@ class Propose {
 
     return output.getText()
   }
-
-  selectAll() {
+  selectAll () {
     browser.keys(['Control', 'a', 'NULL'])
   }
-
-  copyToClipboard() {
+  copyToClipboard () {
     browser.keys(['Control', 'c', 'NULL'])
   }
-
-  pasteFromClipboard() {
+  pasteFromClipboard () {
     browser.keys(['Control', 'v', 'NULL'])
   }
 }
