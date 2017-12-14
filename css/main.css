@@ -30,7 +30,7 @@ body {
 .email span {
     margin-top: 10px;
     font-family: arial;
-    color: #990000;
+    color: white;
     width: 100%;
     text-align: center;
     display: none;
@@ -39,11 +39,11 @@ body {
 .email.invalid span {
     display: block;
 }
-#guests-email {
+#circle-email {
     margin-top: 1em;
 }
 
-#guests-email > div > div {
+#circle-email > div > div {
     font-size: 20px;
     height: 50px;
     min-width: 50px;
