@@ -1,6 +1,7 @@
 .env
 /node_modules/
 /dist/
+/src/build/
 
 .Spotlight-V100
 .DS_Store

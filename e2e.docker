@@ -4,4 +4,7 @@ ENV TEST /test
 RUN mkdir -p $TEST
 WORKDIR $TEST
 
-CMD npm install 
+RUN chown node:node $TEST
+USER node
+
+CMD npm install
