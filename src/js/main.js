@@ -1,7 +1,7 @@
-import {Invited} from './invited'
+import {Involved} from './involved'
 import {Proposer} from './proposer'
 import {Proposal} from './proposal'
 
-Invited.initialize('guests-email')
+Involved.initialize('circle-email')
 Proposer.initialize('proposer-email')
 Proposal.initialize('proposal')
