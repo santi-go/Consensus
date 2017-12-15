@@ -93,6 +93,10 @@ body {
 #proposal:focus {
   background-color: #f4f4aa;
 }
+.separator{
+  border-bottom: 1px solid black;
+  padding-bottom: 1rem;
+}
 
 .close {
   background-color: black;

@@ -1,7 +1,7 @@
 require 'net/http'
 require 'rspec'
 
-describe 'App' do
+describe 'System' do
   it 'is up' do
     uri = URI('http://localhost:4567')
 
