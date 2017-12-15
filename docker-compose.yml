@@ -23,7 +23,15 @@ services:
     depends_on:
       - consensus
       - selenium
+      - system
     command: sh -c 'npm install && npm run build'
+
+  system:
+    build:
+      context: ./system
+    volumes:
+      - './system:/system'
+    command: rackup --port 4567 -o 0.0.0.0
 
 volumes:
   bundle:

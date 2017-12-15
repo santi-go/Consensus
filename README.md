@@ -2,17 +2,7 @@
 
 ## Start project
 
-### Build:
-
-docker-compose build
-
-
 ### Up:
-
-docker-compose up
-
-
-### Up&build:
 
 docker-compose up --build
 
@@ -31,15 +21,23 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 ### Run all the test:
 
+`make test`
+
+### Run all the system test
+
+`docker-compose exec system bundle exec rspec`
+
+### Run all the e2e test
+
 - This command builds the javascript before run the tests:
 `docker-compose run --rm e2e npm run test-all`
 
-### Run end to end test:
+### Run e2e end to end test:
 
 - This command builds the javascript before run the tests:
 `docker-compose run --rm e2e npm run test-e2e`
 
-### Run unit tests:
+### Run e2e unit tests:
 
 - This command builds the javascript before run the tests:
 `docker-compose run --rm e2e npm run test-unit`
