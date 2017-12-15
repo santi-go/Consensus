@@ -19,6 +19,11 @@ export var Proposal = {
     let text = this.sanitize(pastedText)
     let newBlock = this.addBlockTags(text)
     this.outputContainer.innerHTML = newBlock
+    this.addSeparator()
+  },
+
+  addSeparator: function () {
+    this.inputContainer.classList.add('separator')
   },
 
   sanitize: function (text) {
