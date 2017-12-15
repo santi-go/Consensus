@@ -4,21 +4,21 @@ var {Proposer} = require('../../src/js/proposer')
 var {Proposal} = require('../../src/js/proposal')
 var {Involved} = require('../../src/js/involved')
 
-describe('Proposer', function () {
-  it('accepts valid email', function () {
+describe('The proposer field', function () {
+  it('accepts a valid email', function () {
     let validEmail = 'hola@devscola.org'
     let isValid = Proposer.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
-  it('does not accept invalid email', function () {
+  it('does not accept an invalid email', function () {
     let invalidEmail = 'holadevscola.org'
     let isValid = Proposer.validateEmail(invalidEmail)
     expect(isValid).to.be.false
   })
 
-  context('when gets a character ', () => {
-    it('does not allow more than an @', function () {
+  context('upon receiving a @ character ', () => {
+    it('it does not allow to introduce more @ characters', function () {
       let text = '##hola@'
       let pushedCharacter = '@'
       let positionOfNewCharacter = 0
@@ -64,8 +64,8 @@ describe('Proposer', function () {
   })
 })
 
-describe('Proposal', function () {
-  it('sanitizes text', function () {
+describe('The proposal field', function () {
+  it('sanitizes the text', function () {
     let textWithLabels = '<h1>Devscola</h1> <h1>Devscola</h1 <p>Devscola</p><span> Como estas!!</span> <br>Devscola'
     let sanitizedText = 'Devscola DevscolaDevscola Como estas!! Devscola'
 
@@ -74,8 +74,8 @@ describe('Proposal', function () {
     expect(result).to.equal(sanitizedText)
   })
 
-  context('adds tag', () => {
-    it('new line for an empty text', function () {
+  context('adds tags', () => {
+    it('of a new line for an empty input line', function () {
       let text = ''
 
       let HTMLText = Proposal.addTag(text)
@@ -83,7 +83,7 @@ describe('Proposal', function () {
       expect(HTMLText).to.equal('<br>\n')
     })
 
-    it('paragraph for a text', function () {
+    it('of paragraphs for a text blocks', function () {
       let text = 'Devscola'
 
       let HTMLText = Proposal.addTag(text)
@@ -93,7 +93,7 @@ describe('Proposal', function () {
   })
 })
 
-describe('Involved', () => {
+describe('The Involved field', () => {
   context('recognizes an email as', () => {
     it('valid', function () {
       let validEmail = 'hola@devscola.org'
@@ -113,7 +113,7 @@ describe('Involved', () => {
   })
 
   context('recognizes a list of emails', () => {
-    it('as an email if breacked by spaces', () => {
+    it('by breaking the emails appart using spaces', () => {
       let chainGuestEmails = 'invalid.email hola@samuel.com'
 
       let result = Involved.tokenize(chainGuestEmails)
@@ -121,7 +121,7 @@ describe('Involved', () => {
       expect(result[0]).to.equal('invalid.email hola@samuel.com')
     })
 
-    it('breaked by commas', () => {
+    it('by breaking the emails appart by commas', () => {
       let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
 
       let result = Involved.tokenize(chainGuestEmails)
@@ -130,7 +130,7 @@ describe('Involved', () => {
       expect(result[3]).to.equal('valid@domain.com')
     })
 
-    it('removing the empty chains', () => {
+    it('by removing empty chains', () => {
       let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
 
       let result = Involved.tokenize(chainGuestEmails)

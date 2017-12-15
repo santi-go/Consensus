@@ -1,7 +1,7 @@
 var expect = require('chai').expect
 
-describe('Identify proposer', () => {
-  it('accepts valid mails', () => {
+describe('When identifying the proposer', () => {
+  it('it accepts valid emails', () => {
     let page = new Propose()
     let validMail = 'hola@devscola.org'
 
@@ -10,7 +10,7 @@ describe('Identify proposer', () => {
     expect(page.isProposerInvalid()).to.be.false
   })
 
-  it(`doesn't accepts invalid mails`, () => {
+  it(`it doesn't accept invalid emails`, () => {
     let page = new Propose()
     let invalidMail = 'errordecorreo'
 
@@ -20,13 +20,13 @@ describe('Identify proposer', () => {
   })
 })
 
-describe('Proposal', () => {
-  it('has a visual clue when you can paste', () => {
+describe('The proposal', () => {
+  it('has a visual clue when you hoover on top in order to paste', () => {
     let page = new Propose()
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
-  it('allows HTML tags and appears whitout this tags', () => {
+  it('once it is pasted, allows HTML tags but appears whitout them', () => {
     let page = new Propose()
     let proposal = '<p>textwithoutHTML</p>'
     let textWithoutHTML = 'textwithoutHTML'
@@ -47,8 +47,8 @@ describe('Proposal', () => {
   })
 })
 
-describe('Inviting', () => {
-  it('allows mail', () => {
+describe('When involving a circle member', () => {
+  it('it allows the input of emails', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
 
@@ -58,7 +58,7 @@ describe('Inviting', () => {
     expect(page.firstValidInvitation()).to.include(validMail)
   })
 
-  it('detects an invalid invitation', () => {
+  it('it detects an invalid attempt of adding a member email', () => {
     let invalidMail = 'invalidMail'
     let page = new Propose()
 
@@ -68,7 +68,7 @@ describe('Inviting', () => {
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
 
-  it('parses mails separated by comma', () => {
+  it('it parses emails separated by commas and spaces', () => {
     let validMail = 'valid@mail.com'
     let invalidMail = 'invalidMail'
     let mails = validMail + ', ' + invalidMail
@@ -81,7 +81,7 @@ describe('Inviting', () => {
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
 
-  it('Allows deleting an email by pressing X button', () => {
+  it('you can delete an inserted email by pressing the X button', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
 
@@ -93,7 +93,7 @@ describe('Inviting', () => {
     expect($('div .validBox').value).to.be.null
   })
 
-  it('clears input with enter key', () => {
+  it('you can clear the input with the enter key', () => {
     let page = new Propose()
     let email = 'hola@devscola.org'
     page.invite(email)
@@ -101,7 +101,7 @@ describe('Inviting', () => {
     expect(page.inputValue()).to.equal('')
   })
 
-  it('clears input with comma key', () => {
+  it('you can clear the input with the comma key', () => {
     let page = new Propose()
     let email = 'hola@devscola.org'
     page.invite(email)
