@@ -4,14 +4,14 @@
 
 ### Up:
 
-docker-compose up --build
+`docker-compose up --build`
 
 
 ## Build assets
 
-docker-compose run --rm e2e npm run build
+`docker-compose run --rm e2e npm run build`
 
-docker-compose run --rm e2e npm run build-watch
+`docker-compose run --rm e2e npm run build-watch`
 
 
 ## Launch tests
@@ -21,7 +21,7 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 ### Run all the test:
 
-`make test`
+`make test-all`
 
 ### Run all the system test
 
