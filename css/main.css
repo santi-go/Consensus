@@ -87,13 +87,27 @@ body {
     font-family: arial;
     padding: 10px;
     color: #666666;
-    text-align: justify;
 }
 
 #proposal:focus {
   background-color: #f4f4aa;
 }
-.separator{
+
+#proposal input {
+ color: transparent;
+ border: none;
+ width: 100%;
+}
+
+#proposal input:focus {
+ outline: none;
+}
+
+#proposal input::placeholder {
+  color: #111111;
+}
+
+#proposal .separator{
   border-bottom: 1px solid black;
   padding-bottom: 1rem;
 }

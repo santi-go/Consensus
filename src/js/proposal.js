@@ -4,14 +4,21 @@ export var Proposal = {
 
   initialize: function (inputContainerId) {
     let container = document.getElementById(inputContainerId)
-    this.inputContainer = container.querySelector('pre')
-    this.inputContainer.textContent = 'Insert your proposal here...'
+    this.inputContainer = container.querySelector('input')
     this.outputContainer = container.querySelector('output')
     this.prepareEvents()
   },
 
   prepareEvents: function () {
     this.inputContainer.addEventListener('paste', this.pasteProposal.bind(this))
+    this.inputContainer.addEventListener('keypress', this.preventCharRender.bind(this))
+  },
+
+  preventCharRender: function (event) {
+    let notCtrlV = !event.ctrlKey && event.keyCode !== 86
+    if(notCtrlV){
+      event.preventDefault()
+    }
   },
 
   pasteProposal: function (event) {
@@ -20,6 +27,7 @@ export var Proposal = {
     let newBlock = this.addBlockTags(text)
     this.outputContainer.innerHTML = newBlock
     this.addSeparator()
+    event.preventDefault()
   },
 
   addSeparator: function () {
