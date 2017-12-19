@@ -3,6 +3,7 @@ var expect = require('chai').expect
 var {Proposer} = require('../../src/js/proposer')
 var {Proposal} = require('../../src/js/proposal')
 var {Involved} = require('../../src/js/involved')
+var {SendPropose} = require('../../src/js/send_propose')
 
 describe('The proposer field', function () {
   it('accepts a valid email', function () {
@@ -137,5 +138,17 @@ describe('The Involved field', () => {
 
       expect(result[0]).to.equal('valid@domain.com')
     })
+  })
+})
+describe('Send Propose', () => {
+  it('respose status 200', () => {
+    SendPropose.get()
+      .then((result) => {
+        expect(result.status).to.equal(200)
+      })
+      .catch((message) => {
+        console.log(message)
+        expect(message).to.equal('Connection Error')
+      })
   })
 })

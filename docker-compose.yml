@@ -34,6 +34,8 @@ services:
     volumes:
       - './system:/system'
     command: rackup --port 4567 -o 0.0.0.0
+    ports:
+      - 4567:4567
 
 volumes:
   bundle:
