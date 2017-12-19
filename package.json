@@ -19,7 +19,8 @@
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "xmlhttprequest": "^1.8.0"
   },
   "scripts": {
     "pre": "npm run build",
