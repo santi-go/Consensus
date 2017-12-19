@@ -16,7 +16,7 @@ export var Proposal = {
 
   preventCharRender: function (event) {
     let notCtrlV = !event.ctrlKey && event.keyCode !== 86
-    if(notCtrlV){
+    if (notCtrlV) {
       event.preventDefault()
     }
   },

@@ -195,7 +195,7 @@ class Propose {
     input.setValue(proposal)
     this.selectAll()
     this.copyToClipboard()
-    browser.click('#proposal pre')
+    browser.click('#proposal input')
     this.pasteFromClipboard()
 
     return output.getText()
