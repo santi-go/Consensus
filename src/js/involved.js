@@ -1,16 +1,18 @@
 export let Involved = {
   container: null,
+  panel: null,
   circle: [],
   EMAIL_PATTERN: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
   initialize: function (containerId) {
     this.container = document.getElementById(containerId)
+    this.panel = document.getElementById('panel')
     this.prepareEvents()
   },
 
   prepareEvents: function () {
     let input = this.getInputContainer()
-    let submitButton = this.container.querySelector('#submit')
+    let submitButton = this.panel.querySelector('#submit')
     input.addEventListener('blur', this.extractMail.bind(this))
     input.addEventListener('keypress', this.acceptKeysPress.bind(this))
     submitButton.addEventListener('click', this.putCircle.bind(this))
