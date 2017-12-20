@@ -1,6 +1,6 @@
 export let Involved = {
   container: null,
-  circle: '',
+  circle: [],
   EMAIL_PATTERN: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
   initialize: function (containerId) {
@@ -27,8 +27,13 @@ export let Involved = {
     let emailsList = this.parseMail()
     for (let i = 0; i < emailsList.length; i++) {
       this.createEmailBox(emailsList[i])
+      this.addEmailToCircle(emailsList[i])
     }
     this.cleanInput()
+  },
+
+  addEmailToCircle: function (email) {
+    this.circle.push(email)
   },
 
   createEmailBox: function (emailElement) {
@@ -77,6 +82,19 @@ export let Involved = {
     return result
   },
 
+  removeEmail: function (event) {
+    let email = event.target.parentElement.innerText.slice(0, -1)
+    this.removeEmailFromCircle(email)
+    this.removeEmailBox(event)
+  },
+
+  removeEmailFromCircle: function (email) {
+    let index = this.circle.indexOf(email)
+    if (index > -1) {
+      this.circle.splice(index, 1)
+    }
+  },
+
   removeEmailBox: function (event) {
     let emailBox = event.target.parentElement
     emailBox.parentElement.removeChild(emailBox)
@@ -87,7 +105,7 @@ export let Involved = {
     emailBox.appendChild(removeButton)
     removeButton.classList.add('close')
     removeButton.textContent = 'x'
-    removeButton.addEventListener('click', this.removeEmailBox)
+    removeButton.addEventListener('click', this.removeEmail.bind(this))
   },
 
   putCircle: function () {
@@ -95,12 +113,10 @@ export let Involved = {
     let validMails = circleEmail.querySelectorAll('.validBox')
     let result = []
     validMails.forEach((mail) => {
-      let clone = mail.cloneNode(mail)
-      clone.removeChild(clone.firstElementChild)
-      result.push(clone.innerText)
+      result.push(mail.innerText.slice(0, -1))
     })
-    this.circle = result.toString()
-    circleEmail.dataset.circle = this.circle
+    this.circle = result
+    circleEmail.dataset.circle = this.circle.toString()
   }
 
 }

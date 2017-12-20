@@ -90,7 +90,7 @@ describe('When involving a circle member', () => {
 
     expect(page.existCloseButton()).to.be.true
     browser.click('.close')
-    expect($('div .validBox').value).to.be.null
+    expect(browser.isExisting('.validBox')).to.be.false
   })
 
   it('you can clear the input with the enter key', () => {

@@ -140,6 +140,20 @@ describe('The Involved field', () => {
     })
   })
 })
+
+describe('The circle', () => {
+  it('is updated when the user changes the invited mails', () => {
+    Involved.addEmailToCircle('user@devscola.org')
+    Involved.addEmailToCircle('invalid.mail')
+    Involved.addEmailToCircle('consensus@devscola.org')
+    Involved.removeEmailFromCircle('user@devscola.org')
+
+    let result = Involved.circle
+
+    expect(result.toString()).to.equal(['invalid.mail', 'consensus@devscola.org'].toString())
+  })
+})
+
 describe('Send Propose', () => {
   it('respose status 200', () => {
     SendPropose.get()
