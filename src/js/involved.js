@@ -9,11 +9,12 @@ export let Involved = {
   },
 
   prepareEvents: function () {
-    let input = this.container.querySelector('input')
+    let input = this.getInputContainer()
     let submitButton = this.container.querySelector('#submit')
     input.addEventListener('blur', this.extractMail.bind(this))
     input.addEventListener('keypress', this.acceptKeysPress.bind(this))
     submitButton.addEventListener('click', this.putCircle.bind(this))
+    this.container.addEventListener('click', this.putFocusOnInput.bind(this))
   },
 
   acceptKeysPress: function (e) {
@@ -21,6 +22,16 @@ export let Involved = {
       this.extractMail()
       e.preventDefault()
     }
+  },
+
+  getInputContainer: function () {
+    let input = this.container.querySelector('input')
+    return input
+  },
+
+  putFocusOnInput: function () {
+    let input = this.getInputContainer()
+    input.focus()
   },
 
   extractMail: function () {
@@ -38,7 +49,8 @@ export let Involved = {
 
   createEmailBox: function (emailElement) {
     let box = document.createElement('div')
-    this.container.querySelector('div').appendChild(box)
+    let input = this.getInputContainer()
+    this.container.querySelector('div').insertBefore(box, input)
     box.innerText = emailElement.email
     let theClass = 'invalidBox'
     if (emailElement.valid) {
@@ -49,7 +61,7 @@ export let Involved = {
   },
 
   cleanInput: function () {
-    let input = this.container.querySelector('input')
+    let input = this.getInputContainer()
     input.value = ''
   },
 
@@ -58,7 +70,7 @@ export let Involved = {
   },
 
   parseMail: function () {
-    let text = this.container.querySelector('input').value
+    let text = this.getInputContainer().value
     if (text.trim() === '') return []
 
     let emails = this.tokenize(text)
@@ -83,7 +95,7 @@ export let Involved = {
   },
 
   removeEmail: function (event) {
-    let email = event.target.parentElement.innerText.slice(0, -1)
+    let email = event.target.parentElement.innerText
     this.removeEmailFromCircle(email)
     this.removeEmailBox(event)
   },
@@ -101,10 +113,10 @@ export let Involved = {
   },
 
   createRemoveButton: function (emailBox) {
-    let removeButton = document.createElement('div')
+    let removeButton = document.createElement('button')
     emailBox.appendChild(removeButton)
     removeButton.classList.add('close')
-    removeButton.textContent = 'x'
+    removeButton.innerHTML = '<span>Delete</span>'
     removeButton.addEventListener('click', this.removeEmail.bind(this))
   },
 
@@ -113,7 +125,7 @@ export let Involved = {
     let validMails = circleEmail.querySelectorAll('.validBox')
     let result = []
     validMails.forEach((mail) => {
-      result.push(mail.innerText.slice(0, -1))
+      result.push(mail.innerText)
     })
     this.circle = result
     circleEmail.dataset.circle = this.circle.toString()

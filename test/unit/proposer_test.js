@@ -162,7 +162,7 @@ describe('Send Propose', () => {
       })
       .catch((message) => {
         console.log(message)
-        expect(message).to.equal('Connection Error')
+        expect(message).to.equal('[Error: Connection Error]')
       })
   })
 })
