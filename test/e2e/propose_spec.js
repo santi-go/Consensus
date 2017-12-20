@@ -171,9 +171,9 @@ class Propose {
   }
   existCloseButton () {
     let component = $('#circle-email')
-    let divValidBox = component.$('div div .close')
+    let divValidBox = component.$('div div')
 
-    return divValidBox.getText().includes('x')
+    return divValidBox.getHTML().includes('<button')
   }
   pressEnter () {
     let component = $('#circle-email')
