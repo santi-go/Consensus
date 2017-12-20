@@ -108,6 +108,19 @@ describe('When involving a circle member', () => {
     page.pressComma()
     expect(page.inputValue()).to.equal('')
   })
+
+  it('returns a list of valid mails', () => {
+    let page = new Propose()
+    let validAndInvalidMails = ' guest@user.com, invalid.mail, hola@devscola.org, user@devscola.org'
+
+    page.invite(validAndInvalidMails)
+    page.lostFocusOnInvited()
+    browser.click('.close')
+    browser.click('#submit')
+    let circle = page.circle()
+
+    expect(circle).to.equal('hola@devscola.org,user@devscola.org')
+  })
 })
 
 class Propose {
@@ -195,7 +208,7 @@ class Propose {
     input.setValue(proposal)
     this.selectAll()
     this.copyToClipboard()
-    browser.click('#proposal pre')
+    browser.click('#proposal input')
     this.pasteFromClipboard()
 
     return output.getText()
@@ -208,5 +221,8 @@ class Propose {
   }
   pasteFromClipboard () {
     browser.keys(['Control', 'v', 'NULL'])
+  }
+  circle () {
+    return $('#circle-email').getAttribute('data-circle')
   }
 }

@@ -1,5 +1,6 @@
 export let Involved = {
   container: null,
+  circle: '',
   EMAIL_PATTERN: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 
   initialize: function (containerId) {
@@ -9,8 +10,10 @@ export let Involved = {
 
   prepareEvents: function () {
     let input = this.getInputContainer()
+    let submitButton = this.container.querySelector('#submit')
     input.addEventListener('blur', this.extractMail.bind(this))
     input.addEventListener('keypress', this.acceptKeysPress.bind(this))
+    submitButton.addEventListener('click', this.putCircle.bind(this))
     this.container.addEventListener('click', this.putFocusOnInput.bind(this))
   },
 
@@ -97,6 +100,19 @@ export let Involved = {
     removeButton.classList.add('close')
     removeButton.innerHTML = '<span>Delete</span>'
     removeButton.addEventListener('click', this.removeEmailBox)
+  },
+
+  putCircle: function () {
+    let circleEmail = this.container
+    let validMails = circleEmail.querySelectorAll('.validBox')
+    let result = []
+    validMails.forEach((mail) => {
+      let clone = mail.cloneNode(mail)
+      clone.removeChild(clone.firstElementChild)
+      result.push(clone.innerText)
+    })
+    this.circle = result.toString()
+    circleEmail.dataset.circle = this.circle
   }
 
 }
