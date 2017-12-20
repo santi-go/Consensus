@@ -33,7 +33,6 @@ services:
       context: ./system
     volumes:
       - './system:/system'
-    command: shotgun --port 4567 -o 0.0.0.0
     ports:
       - 4567:4567
 
