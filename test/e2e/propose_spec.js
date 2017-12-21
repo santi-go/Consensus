@@ -166,7 +166,7 @@ class Propose {
     return classes.includes('invalid')
   }
   proposalIsMarkedForPaste () {
-    let element = $('#proposal').getAttribute('tabindex')
+    let element = $('#proposal').getAttribute('class')
     return element
   }
   existCloseButton () {
