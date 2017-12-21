@@ -1,26 +1,36 @@
+require 'rubygems'
+require 'sinatra'
+require 'mail'
 
-def first_six_words(text)
+class App < Sinatra::Base
 
-  text = text.gsub(/<p>/, "")
+  get '/' do
+    'Consensus'
+  end
 
-  if text.include? "</p>" then
-    index_p_end = text.index('</p>')
-    if (index_p_end > 0) then
-      text = text[0, index_p_end]
+  get '/SendPropose' do
+  end
+
+
+  Mail.defaults do
+    delivery_method :smtp, {
+      address: 'smtp.sendgrid.net',
+      port: 25,
+      user_name: 'apikey',
+      password: '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'
+    }
+  end
+
+
+  get '/send-mail' do
+    mail = Mail.new do
+      from    'hola@devscola.org'
+      to      'elenamg31@gmail.com'
+      subject 'This is a test email'
+      content_type 'text/html; charset=UTF-8'
+      body    '<h1>Hello</h1>'
     end
-  end
-
-  if text.include? "<br>" then
-    index_break_line = text.index('<br>')
-    if (index_break_line > 0) then text = text[0, index_break_line] end
-  end
-
-  text = text.split[0..5].join(" ")
-
-  if text.include?(".")
-    length_to_dot = text.index(".")
-    return text[0, length_to_dot + 1]
-  else
-      text + "..."
+    body mail.to_s
+    mail.deliver!
   end
 end
