@@ -1,39 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>consensus</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
-</head> 
+  <meta charset="UTF-8">
+  <title>consensus</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+</head>
 
 <body>
-    <header></header>
-    <main> 
+  <header></header>
+  <main>
+    <form name="consesus-proposal" action="">
       <div id="proposer-email" class="email">
-          <label>Insert your email</label>
-          <input type="text" autofocus></input>
-          <span>The introduced email address is invalid</span>
+        <label for="proposer-email-input">Insert your email</label>
+        <input type="text" id="proposer-input" name="proposer-input" autofocus>
+        <span>The introduced email address is invalid</span>
       </div>
 
       <div id="circle-email" class="email">
         <div class="circle-email-list">
-          <label>Who do you want to invite?</label>
-          <input type="text"></input>
+          <label for="circle-emai-input">Who do you want to invite?</label>
+          <input type="text" id="circle-emai-input" name="circle-emai-input">
         </div>
-        <div></div>
       </div>
-      
-      <div id="proposal" class="email" tabindex="0">
-        <label>Paste your proposal here...</label>
-        <input type="text"></input>
+
+      <div id="proposal" class="email">
+        <label for="proposal-input">Paste your proposal here...</label>
+        <input type="text" id="proposal-input" name="proposal-input"></input>
         <output></output>
       </div>
 
       <div id="panel">
-        <button id="submit">Submit</button>
-   </div>
+        <button id="submit" form="consesus-proposal">Submit</button>
+      </div>
+    </form>
   </main>
-         <script type="text/javascript" src="dist/bundle.js"></script>
+  <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>
