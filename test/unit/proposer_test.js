@@ -63,6 +63,15 @@ describe('The proposer field', function () {
       })
     })
   })
+
+  it('save the mail', function () {
+    let proposer = 'consensus@devscola.org'
+
+    Proposer.validateEmail(proposer)
+    let result = Proposer.proposerEmail
+
+    expect(result).to.be.equal(proposer)
+  })
 })
 
 describe('The proposal field', function () {
@@ -91,6 +100,15 @@ describe('The proposal field', function () {
 
       expect(HTMLText).to.equal('<p>Devscola</p>\n')
     })
+  })
+
+  it('save the proposal', function () {
+    let proposal = 'Lorem impsum'
+
+    Proposal.addBlockTags(proposal)
+    let result = Proposal.proposalContent
+
+    expect(result).to.be.equal('<p>' + proposal + '</p>\n')
   })
 })
 

@@ -1,6 +1,7 @@
 export var Proposal = {
   inputContainer: null,
   outputContainer: null,
+  proposalContent: null,
 
   initialize: function (inputContainerId) {
     let container = document.getElementById(inputContainerId)
@@ -45,7 +46,8 @@ export var Proposal = {
     for (let line of lines) {
       newBlock += this.addTag(line)
     }
-    return newBlock
+    this.proposalContent = newBlock
+    return this.proposalContent
   },
 
   addTag: function (line) {
