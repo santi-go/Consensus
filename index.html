@@ -1,29 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>consensus</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
+  <meta charset="UTF-8">
+  <title>consensus</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
 </head>
 
 <body>
-
-    <div id="proposer-email" class="email">
-        <input type="text" placeholder="Your email..." alt="Enter the proposal creator email" autofocus></input>
+  <header></header>
+  <main>
+    <form name="consesus-proposal" action="">
+      <div id="proposer-email" class="email">
+        <label for="proposer-email-input">Insert your email:</label>
+        <input type="text" id="proposer-input" name="proposer-input" autofocus>
         <span>The introduced email address is invalid</span>
-    </div>
+      </div>
 
+      <div id="circle-email" class="email">
+        <div class="circle-email-list">
+          <label for="circle-emai-input">Who do you want to invite?</label>
+          <input type="text" id="circle-emai-input" name="circle-emai-input">
+        </div>
+        <div class="clear"></div>
+      </div>
 
-    <div id="circle-email" class="email">
-      <input type="text" placeholder="Your colleagues email..." alt="Enter the emails of the people that the proposal creator wants to involve"></input>
-      <div></div>
-    </div>
+      <div id="proposal" class="email">
+        <label for="proposal-input">Paste your proposal:</label>
+        <input type="text" id="proposal-input" name="proposal-input"></input>
+        <output></output>
+      </div>
 
-    <div id="proposal" tabindex="0">
-      <input type="text" placeholder="Paste your proposal here..." alt="Paste the desired proposal"></input>
-      <output></output>
-    </div>
-
-    <script type="text/javascript" src="dist/bundle.js"></script>
+      <div id="panel">
+        <button id="submit" form="consesus-proposal">Submit</button>
+      </div>
+    </form>
+  </main>
+  <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>

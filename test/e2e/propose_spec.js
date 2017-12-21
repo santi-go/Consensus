@@ -90,7 +90,7 @@ describe('When involving a circle member', () => {
 
     expect(page.existCloseButton()).to.be.true
     browser.click('.close')
-    expect($('div .validBox').value).to.be.null
+    expect(browser.isExisting('.validBox')).to.be.false
   })
 
   it('you can clear the input with the enter key', () => {
@@ -107,6 +107,19 @@ describe('When involving a circle member', () => {
     page.invite(email)
     page.pressComma()
     expect(page.inputValue()).to.equal('')
+  })
+
+  it('returns a list of valid mails', () => {
+    let page = new Propose()
+    let validAndInvalidMails = ' guest@user.com, invalid.mail, hola@devscola.org, user@devscola.org'
+
+    page.invite(validAndInvalidMails)
+    page.lostFocusOnInvited()
+    browser.click('.close')
+    browser.click('#submit')
+    let circle = page.circle()
+
+    expect(circle).to.equal('hola@devscola.org,user@devscola.org')
   })
 })
 
@@ -153,14 +166,14 @@ class Propose {
     return classes.includes('invalid')
   }
   proposalIsMarkedForPaste () {
-    let element = $('#proposal').getAttribute('tabindex')
+    let element = $('#proposal').getAttribute('class')
     return element
   }
   existCloseButton () {
     let component = $('#circle-email')
-    let divValidBox = component.$('div div .close')
+    let divValidBox = component.$('div div')
 
-    return divValidBox.getText().includes('x')
+    return divValidBox.getHTML().includes('<button')
   }
   pressEnter () {
     let component = $('#circle-email')
@@ -208,5 +221,8 @@ class Propose {
   }
   pasteFromClipboard () {
     browser.keys(['Control', 'v', 'NULL'])
+  }
+  circle () {
+    return $('#circle-email').getAttribute('data-circle')
   }
 }

@@ -4,7 +4,7 @@ export let SendPropose = {
   get: function () {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest()
-      xhr.open('GET', 'http://consensus:80/index.html', true)
+      xhr.open('GET', 'http://consensus:80/sendPropose', true)
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -14,7 +14,7 @@ export let SendPropose = {
           }
         }
       }
-      xhr.send()
+      xhr.send('proposal')
     })
   }
 }

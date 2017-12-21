@@ -1,10 +1,4 @@
 require 'sinatra/base'
-
-class App < Sinatra::Base
-  get '/' do
-    'Consensus'
-  end
-end
+require_relative './app'
 
 run App
-
