@@ -1,10 +1,10 @@
 let XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest
 
 export let SendPropose = {
-  get: function () {
+  get: function (url, data) {
     return new Promise((resolve, reject) => {
       let xhr = new XMLHttpRequest()
-      xhr.open('GET', 'http://consensus:80/sendPropose', true)
+      xhr.open('GET', url, true)
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
@@ -14,7 +14,15 @@ export let SendPropose = {
           }
         }
       }
-      xhr.send('proposal')
+      xhr.send(data)
     })
+  },
+
+  packaging: function (proposer, circle, proposal) {
+    return {
+      'proposer': proposer,
+      'circle': circle,
+      'proposal': proposal
+    }
   }
 }

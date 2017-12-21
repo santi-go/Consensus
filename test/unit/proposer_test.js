@@ -63,6 +63,15 @@ describe('The proposer field', function () {
       })
     })
   })
+
+  it('save the mail', function () {
+    let proposer = 'consensus@devscola.org'
+
+    Proposer.validateEmail(proposer)
+    let result = Proposer.proposerEmail
+
+    expect(result).to.be.equal(proposer)
+  })
 })
 
 describe('The proposal field', function () {
@@ -91,6 +100,15 @@ describe('The proposal field', function () {
 
       expect(HTMLText).to.equal('<p>Devscola</p>\n')
     })
+  })
+
+  it('save the proposal', function () {
+    let proposal = 'Lorem impsum'
+
+    Proposal.addBlockTags(proposal)
+    let result = Proposal.proposalContent
+
+    expect(result).to.be.equal('<p>' + proposal + '</p>\n')
   })
 })
 
@@ -154,9 +172,11 @@ describe('The circle', () => {
   })
 })
 
-describe('Send Propose', () => {
-  it('respose status 200', () => {
-    SendPropose.get()
+describe('Call to action', () => {
+  it('send proposal and read a response status 200', () => {
+    let url = 'http://consensus:80/index.html'
+    let data = 'A little proposal for consensus'
+    SendPropose.get(url, data)
       .then((result) => {
         expect(result.status).to.equal(200)
       })
@@ -164,5 +184,38 @@ describe('Send Propose', () => {
         console.log(message)
         expect(message).to.equal('[Error: Connection Error]')
       })
+  })
+
+  context('send proposal', () => {
+    let jsontosend
+    let packagedData
+    beforeEach(function () {
+      let proposer = 'consensus@devscola.org'
+      Proposer.validateEmail(proposer)
+
+      Involved.addEmailToCircle('user@devscola.org')
+      Involved.addEmailToCircle('consensus@devscola.org')
+
+      let proposal = 'Lorem impsum'
+      Proposal.addBlockTags(proposal)
+
+      jsontosend = SendPropose.packaging(Proposer.proposerEmail, Involved.circle, Proposal.proposalContent)
+
+      packagedData = {
+        'proposer': Proposer.proposerEmail,
+        'circle': Involved.circle,
+        'proposal': Proposal.proposalContent
+      }
+    })
+
+    it('preparing data', () => {
+      expect(jsontosend.toString()).to.be.equal(packagedData.toString())
+    })
+    it('send to system', () => {
+      let url = 'http://system:4567/'
+      return SendPropose.get(url, jsontosend)
+        .then((result) => { expect(result.status).to.equal(200) })
+        .catch((message) => { expect(message).to.equal('[Error: Connection Error]') })
+    })
   })
 })
