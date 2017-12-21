@@ -1,137 +1,132 @@
 *{
   outline: none;
 }
+:root{
+  --error-color: #FC4A1A;
+  --success-color: #A9A9A9;
+  --warning-color: rgb(238, 227, 105);
+  --bg-color: #CAEBF2;
+  --main-color: #07889B;
+  --header-color: #EFEFEF;
+  --text-color: #111111;
+}
 body {
-    background-color: #CAEBF2;
-    font-family: 'Barlow', sans-serif;
-    font-weight: 400;
+    align-items: center;
+    color: var(--text-color);
+    background-color: var(--bg-color);
     display:flex;
     flex-direction: column;
-    align-items: center;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
     margin: 0;
-    color: #111111;
 }
-
 main {
   width: 70%;
 }
-
 header {
+  background-color: var(--header-color);
   height: 3rem;
-  background-color: #EFEFEF;
   width: 100%;
-
 }
-
 label {
   font-size: 1.2rem;
-
+  margin-left: 1rem;
 }
-
 .email {
+  border-bottom: 1px solid var(--main-color);
   display: block;
-  padding: 1rem;
   margin-top: 1rem;
+  padding: 1rem 0;  
 }
 .email > * {
   display: block;
 }
-
 input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid #07889B;
   font-size: 1.5rem;
   font-family: 'Barlow', sans-serif;
-  width: 70%;
+  margin-top: 1rem;
+  width: 100%;
 }
-
-button {
+#submit {
   background-color: transparent;
+  border: 1px solid var(--main-color);
   border-radius: 24px;
-  padding: 1rem;
+  cursor: pointer;
   font-size: 1rem;
   min-width: 9rem;
-  border: 1px solid #07889B;
   margin-top: 1rem;
+  padding: 1rem;  
 }
-
+.clear {
+  clear: both;
+}
 .email.invalid {
-  background-color: #FC4A1A;
-  color: white;
+  border: 2px solid var(--error-color);
+  box-shadow: inset 1px -1px var(--error-color);
+  -webkit-box-shadow: inset 1px -1px var(--error-color);
+  -moz-box-shadow: inset 1px -1px var(--error-color);
 }
-
-.email span {
-  display: none;
-}
-
-.email.invalid span {
+.email.invalid span{
   display: block;
 }
-
+.email span {
+  display: none;
+  color: var(--error-color);
+}
 #circle-email {
   margin-top: 1rem;
 }
-
 .circle-email-list {
   width: -moz-fit-content;
 }
-
-.circle-email-list label {
+.circle-email-list > * {
   display: block;
 }
-
 .circle-email-list input {
   float: left;
-  display: block;
+  width: 50%;
 }
-
 .circle-email-list > div {
-  display: inline-block;
   float: left;
 }
-
 #circle-email > div > div {
+  margin: 0.5rem 0.5rem 0 0.5rem;
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
-  margin: 0.2rem 0.5rem;
-  border-radius: 3px;
 }
-
 .validBox {
-  border: 1px solid #c7c7c7;
+  border: 1px solid var(--success-color);
 }
-
 .invalidBox {
-  border: 2px solid #FC4A1A;
+  border: 1px solid var(--error-color);
+  box-shadow: inset 1px -1px var(--error-color);
+  -webkit-box-shadow: inset 1px -1px var(--error-color);
+  -moz-box-shadow: inset 1px -1px var(--error-color);
 }
-
 .close {
-  position: relative;
+  background-color: var(--text-color);
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  float: right;
+  line-height: 20px;
   margin-right: -28px;
   margin-top: -11px;
-  background-color: black;
-  color: white;
-  width: 20px;
-  line-height: 20px;
-  float: right;
   text-align: center;
-  cursor: pointer;
-  border: none;
+  position: relative;
+  width: 20px;
   }
-
 .close span {
   visibility: hidden;
 }
-
 .close::before {
   content: 'x';
 }
-
-#proposal input::placeholder {
-  color: #111111;
+#proposal input:hover {
+  
 } 
-
-#proposal .separator{
-  border-bottom: 1px solid black;
-  padding-bottom: 1rem;
-}
+#proposal input {
+  border: 1px solid var(--main-color);
+  color: transparent;
+} 

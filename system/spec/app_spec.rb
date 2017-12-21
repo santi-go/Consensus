@@ -1,10 +1,10 @@
 require 'net/http'
 require 'rspec'
-require_relative '../app.rb'
+require_relative '../subject_method.rb'
 
 describe 'System' do
   it 'is up' do
-    uri = URI('http://localhost:4567')
+    uri = URI('http://system:4567')
 
     response = Net::HTTP.get_response(uri)
 

@@ -23,7 +23,7 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 `make test-all`
 
-### Run all the system test
+### Run all the system test  (backend)
 
 `docker-compose exec system bundle exec rspec`
 
@@ -48,3 +48,10 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 ### Run ESLint
 
 `docker-compose run --rm e2e npm run linter`
+
+
+## Backend
+
+### Run app.rb
+
+`docker-compose run --rm system rake`
