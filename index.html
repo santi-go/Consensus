@@ -4,32 +4,36 @@
     <meta charset="UTF-8">
     <title>consensus</title>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-</head>
+    <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
+</head> 
 
 <body>
-
-    <div id="proposer-email" class="email">
-        <input type="text" placeholder="Your email..." autofocus></input>
-        <span>The introduced email address is invalid</span>
-    </div>
-
-
-    <div id="circle-email">
-      <div class="circle-email-list">
-          <input type="text" placeholder="Your colleagues email..."></input>
-          <div></div>
+    <header></header>
+    <main> 
+      <div id="proposer-email" class="email">
+          <label>Insert your email</label>
+          <input type="text" autofocus></input>
+          <span>The introduced email address is invalid</span>
       </div>
-    </div>
-    
-    <div id="panel">
-         <button id="submit">Submit</button>
-    </div>
 
-    <div id="proposal" tabindex="0">
-      <input type="text" placeholder="Paste your proposal here..."></input>
-      <output></output>
-    </div>
+      <div id="circle-email" class="email">
+        <div class="circle-email-list">
+          <label>Who do you want to invite?</label>
+          <input type="text"></input>
+        </div>
+        <div></div>
+      </div>
+      
+      <div id="proposal" class="email" tabindex="0">
+        <label>Paste your proposal here...</label>
+        <input type="text"></input>
+        <output></output>
+      </div>
 
-    <script type="text/javascript" src="dist/bundle.js"></script>
+      <div id="panel">
+        <button id="submit">Submit</button>
+   </div>
+  </main>
+         <script type="text/javascript" src="dist/bundle.js"></script>
 </body>
 </html>

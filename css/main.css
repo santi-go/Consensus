@@ -2,63 +2,88 @@
   outline: none;
 }
 body {
-    background-color: #E5E3D6;
-    font-family: arial, helvetica;
-    font-weight: 900;
+    background-color: #CAEBF2;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 400;
     display:flex;
     flex-direction: column;
     align-items: center;
+    margin: 0;
+    color: #111111;
+}
+
+main {
+  width: 70%;
+}
+
+header {
+  height: 3rem;
+  background-color: #EFEFEF;
+  width: 100%;
+
+}
+
+label {
+  font-size: 1.2rem;
+
 }
 
 .email {
-  background-color: #CCC3B4;
-  min-height: 70px;
-  width: 600px;
-  margin: 0 auto;
-  margin-top: 1em;
+  display: block;
+  padding: 1rem;
+  margin-top: 1rem;
+}
+.email > * {
+  display: block;
 }
 
 input {
-    font-size: 1.2rem;
-    width: 80%;
-    padding: 0.3rem;
-    margin-left: 1rem;
-    margin-top: 0.5rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #07889B;
+  font-size: 1.5rem;
+  font-family: 'Barlow', sans-serif;
+  width: 70%;
+}
+
+button {
+  background-color: transparent;
+  border-radius: 24px;
+  padding: 1rem;
+  font-size: 1rem;
+  min-width: 9rem;
+  border: 1px solid #07889B;
+  margin-top: 1rem;
 }
 
 .email.invalid {
-    background-color: #990000;
-    color: white;
+  background-color: #FC4A1A;
+  color: white;
 }
 
 .email span {
-    margin-top: 10px;
-    font-family: arial;
-    color: white;
-    width: 100%;
-    text-align: center;
-    display: none;
+  display: none;
 }
 
 .email.invalid span {
-    display: block;
+  display: block;
 }
 
 #circle-email {
-  background-color: #fff;
   margin-top: 1rem;
-  width: 60%;
 }
 
 .circle-email-list {
-  background-color: #fff;
   width: -moz-fit-content;
 }
 
+.circle-email-list label {
+  display: block;
+}
+
 .circle-email-list input {
-  width: 50%;
-  border: none;
   float: left;
+  display: block;
 }
 
 .circle-email-list > div {
@@ -77,7 +102,7 @@ input {
 }
 
 .invalidBox {
-  border: 2px solid red;
+  border: 2px solid #FC4A1A;
 }
 
 .close {
@@ -102,27 +127,9 @@ input {
   content: 'x';
 }
 
-#proposal {
-    background-color: white;
-    width: 60%;
-    margin: 0 auto;
-    margin-top: 30px;
-    font-family: arial;
-    color: #666666;
-}
-
-#proposal input:focus {
-  background-color: #f4f4aa;
-}
-
-#proposal input {
- color: transparent;
- border: none;
-}
-
 #proposal input::placeholder {
   color: #111111;
-}
+} 
 
 #proposal .separator{
   border-bottom: 1px solid black;
