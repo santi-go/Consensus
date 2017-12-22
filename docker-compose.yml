@@ -3,18 +3,17 @@ services:
   consensus:
     image: nginx
     ports:
-      - 8080:80
+      - '8080:80'
     volumes:
       - '.:/usr/share/nginx/html'
       - './nginx.conf:/etc/nginx/nginx.conf'
-
 
   selenium:
     image: selenium/standalone-chrome
     environment:
       - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
     ports:
-      - 4444:4444
+      - '4444:4444'
 
   e2e:
     build:
@@ -34,7 +33,7 @@ services:
     volumes:
       - './system:/system'
     ports:
-      - 4567:4567
+      - '4567:4567'
 
 volumes:
   bundle:

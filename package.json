@@ -2,7 +2,9 @@
   "name": "e2e",
   "version": "1.0.0",
   "description": "End2end test suite",
-  "dependencies": {},
+  "dependencies": {
+    "xhr2": "*"
+  },
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -19,8 +21,7 @@
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
-    "webpack": "^3.10.0",
-    "xmlhttprequest": "^1.8.0"
+    "webpack": "^3.10.0"
   },
   "scripts": {
     "pre": "npm run build",

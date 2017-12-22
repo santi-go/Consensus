@@ -6,16 +6,13 @@ export let Involved = {
 
   initialize: function (containerId) {
     this.container = document.getElementById(containerId)
-    this.panel = document.getElementById('panel')
     this.prepareEvents()
   },
 
   prepareEvents: function () {
     let input = this.getInputContainer()
-    let submitButton = this.panel.querySelector('#submit')
     input.addEventListener('blur', this.extractMail.bind(this))
     input.addEventListener('keypress', this.acceptKeysPress.bind(this))
-    submitButton.addEventListener('click', this.putCircle.bind(this))
     this.container.addEventListener('click', this.putFocusOnInput.bind(this))
   },
 

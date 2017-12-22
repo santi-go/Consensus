@@ -173,16 +173,19 @@ describe('The circle', () => {
 })
 
 describe('Call to action', () => {
-  it('send proposal and read a response status 200', () => {
-    let url = 'http://consensus:80/index.html'
-    let data = 'A little proposal for consensus'
-    SendPropose.get(url, data)
+  it('send proposal and read a response status 200 from system', () => {
+    let url = 'http://0.0.0.0:4567'
+    let data = {
+      "proposer": "consensus@devscola.org",
+      "circle": ["consensus@devscola.org", "user@devscola.org"],
+      "proposal": "A little proposal for consensus"
+    }
+    SendPropose.post(url, data)
       .then((result) => {
         expect(result.status).to.equal(200)
       })
       .catch((message) => {
-        console.log(message)
-        expect(message).to.equal('[Error: Connection Error]')
+        expect(message.toString()).to.equal('Error: Connection Error')
       })
   })
 
@@ -202,9 +205,9 @@ describe('Call to action', () => {
       jsontosend = SendPropose.packaging(Proposer.proposerEmail, Involved.circle, Proposal.proposalContent)
 
       packagedData = {
-        'proposer': Proposer.proposerEmail,
-        'circle': Involved.circle,
-        'proposal': Proposal.proposalContent
+        "proposer": Proposer.proposerEmail,
+        "circle": Involved.circle,
+        "proposal": Proposal.proposalContent
       }
     })
 
@@ -213,9 +216,9 @@ describe('Call to action', () => {
     })
     it('send to system', () => {
       let url = 'http://system:4567/'
-      return SendPropose.get(url, jsontosend)
+      return SendPropose.post(url, jsontosend)
         .then((result) => { expect(result.status).to.equal(200) })
-        .catch((message) => { expect(message).to.equal('[Error: Connection Error]') })
+        .catch((message) => { console.log(message) })
     })
   })
 })
