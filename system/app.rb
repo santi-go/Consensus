@@ -4,6 +4,8 @@ require 'mail'
 require 'sinatra/cross_origin'
 require 'json'
 
+require_relative './subject_method'
+
 class App < Sinatra::Base
 
   Mail.defaults do

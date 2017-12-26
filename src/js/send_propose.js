@@ -4,7 +4,7 @@ import {Proposal} from './proposal'
 let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
-  url: 'http://0.0.0.0:4567',
+  url: 'http://0.0.0.0:4567/send-mail',
 
   initialize: function (containerId) {
     this.container = document.getElementById(containerId)
