@@ -10,8 +10,11 @@
 #### For build manually the project you must:
 
 ~~~
-docker-compose build --no-cache --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` e2e
-docker-compose up --build
+docker-compose build --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` e2e
+docker-compose build system
+docker-compose build consensus
+docker-compose build selenium
+docker-compose up
 ~~~
 
 ### Up docker
