@@ -47,6 +47,24 @@ describe('The proposal', () => {
   })
 })
 
+describe('The submit button', () => {
+  it('launch the proposal to system', () => {
+    let page = new Propose()
+
+    let proposal = 'A new proposal is here'
+    page.addAndCutFromGuestsEmail(proposal)
+    page.getTextPastedInProposal()
+    let proposer = 'raul@cuchame.es'
+    page.identifyProposer(proposer)
+    let circle = 'raul@cuchame.es'
+    page.invite(circle)
+    page.lostFocusOnInvited()
+    browser.click('#submit')
+
+    expect(page.confirmSuccessful()).to.be.equal('0')
+  })
+})
+
 describe('When involving a circle member', () => {
   it('it allows the input of emails', () => {
     let validMail = 'valid@mail.com'
@@ -126,6 +144,11 @@ describe('When involving a circle member', () => {
 class Propose {
   constructor () {
     browser.url('/')
+  }
+  confirmSuccessful () {
+    let component = $('#panel span')
+    let result = component.getText()
+    return result
   }
   invite (mail) {
     let component = $('#circle-email')

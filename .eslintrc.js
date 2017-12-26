@@ -6,6 +6,7 @@ module.exports = {
       "jquery": true
     },
     "rules": {
+        "quotes": ["off", "double"],
         "no-unused-expressions": 0,
         "chai-friendly/no-unused-expressions": 2
     },

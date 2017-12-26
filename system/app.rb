@@ -1,10 +1,25 @@
 require 'rubygems'
-require 'sinatra'
+require 'sinatra/base'
 require 'mail'
+require 'sinatra/cross_origin'
 
 class App < Sinatra::Base
 
-  get '/' do
+    set :bind, '0.0.0.0'
+    configure do
+      enable :cross_origin
+    end
+    before do
+      response.headers['Access-Control-Allow-Origin'] = '*'
+    end
+
+    options "*" do
+      response.headers["Allow"] = "GET, POST, OPTIONS"
+      response.headers["Access-Control-Allow-Headers"] = "*"
+      response.headers["Access-Control-Allow-Origin"] = "*"
+    end
+
+  post '/' do
     'Consensus'
   end
 
