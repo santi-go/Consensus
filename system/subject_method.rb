@@ -1,4 +1,4 @@
-def first_six_words(text)
+def create_subject(text)
 
   text = text.gsub(/<p>/, "")
 
