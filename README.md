@@ -2,9 +2,21 @@
 
 ## Start project
 
-### Up:
+### Build (automate)
 
-`docker-compose up --build`
+`make build-docker`
+
+
+#### For build manually the project you must:
+
+~~~
+docker-compose build --no-cache --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` e2e
+docker-compose up --build
+~~~
+
+### Up docker
+
+`docker-compose up`
 
 
 ## Build assets
@@ -23,21 +35,35 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 `make test-all`
 
-### Run all the system test  (backend)
+
+### Run all test of System (backend)
 
 `docker-compose exec system bundle exec rspec`
 
-### Run all the e2e test
+or
+
+`make test-system`
+
+
+### Run all test of e2e
 
 - This command builds the javascript before run the tests:
+
 `docker-compose run --rm e2e npm run test-all`
 
-### Run e2e end to end test:
+or
+
+`make test-e2e`
+
+
+### Run end to end test of e2e:
 
 - This command builds the javascript before run the tests:
+
 `docker-compose run --rm e2e npm run test-e2e`
 
-### Run e2e unit tests:
+
+### Run unit tests of e2e:
 
 - This command builds the javascript before run the tests:
 `docker-compose run --rm e2e npm run test-unit`
@@ -48,10 +74,3 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 ### Run ESLint
 
 `docker-compose run --rm e2e npm run linter`
-
-
-## Backend
-
-### Run app.rb
-
-`docker-compose run --rm system rake`
