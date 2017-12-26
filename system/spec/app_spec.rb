@@ -2,16 +2,6 @@ require 'net/http'
 require 'rspec'
 require_relative '../subject_method.rb'
 
-describe 'System' do
-  it 'is up' do
-    uri = URI('http://system:4567')
-
-    response = Net::HTTP.get_response(uri)
-
-    expect(response.code).to eq("200")
-  end
-end
-
 describe 'Email' do
   it 'subject has first six words of the proposal' do
 

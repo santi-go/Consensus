@@ -61,7 +61,7 @@ describe('The submit button', () => {
     page.lostFocusOnInvited()
     browser.click('#submit')
 
-    expect(page.confirmSuccessful()).to.be.equal('0')
+    expect(page.confirmSuccessful()).to.be.equal('Sent')
   })
 })
 

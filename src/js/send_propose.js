@@ -23,7 +23,8 @@ export let SendPropose = {
     let circle = Involved.circle
     let proposal = Proposal.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
-    this.post(url, packagedProposal)
+    let result = this.post(url, packagedProposal)
+    if (result.toString() === '[object Promise]') { this.finishRequest('Sent') }
   },
 
   post: function (url, data) {
@@ -34,10 +35,8 @@ export let SendPropose = {
       xhr.onreadystatechange = function () {
         if (xhr.readyState === 4) {
           if (xhr.status === 200) {
-            SendPropose.browseSuccesfull(xhr.status.toString())
             resolve(xhr)
           } else {
-            SendPropose.browseSuccesfull(xhr.status.toString())
             reject(new Error('Connection Error'))
           }
         }
@@ -46,7 +45,7 @@ export let SendPropose = {
     })
   },
 
-  browseSuccesfull: function (message) {
+  finishRequest: function (message) {
     let confirmSuccessful = this.container.querySelector('span')
     confirmSuccessful.innerHTML = message
   },
