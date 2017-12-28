@@ -2,8 +2,7 @@ var expect = require('chai').expect
 
 var {Proposer} = require('../../src/js/proposer')
 var {Proposal} = require('../../src/js/proposal')
-var {Involved} = require('../../src/js/involved')
-var {SendPropose} = require('../../src/js/send_propose')
+var {Circle} = require('../../src/js/circle')
 
 describe('The proposer field', function () {
   it('accepts a valid email', function () {
@@ -117,7 +116,7 @@ describe('The Involved field', () => {
     it('valid', function () {
       let validEmail = 'hola@devscola.org'
 
-      let isValid = Involved.validateEmail(validEmail)
+      let isValid = Circle.validateEmail(validEmail)
 
       expect(isValid).to.be.true
     })
@@ -125,7 +124,7 @@ describe('The Involved field', () => {
     it('invalid', () => {
       let invalidEmail = 'invalid.email'
 
-      let result = Involved.validateEmail(invalidEmail)
+      let result = Circle.validateEmail(invalidEmail)
 
       expect(result).to.equal(false)
     })
@@ -135,7 +134,7 @@ describe('The Involved field', () => {
     it('by breaking the emails appart using spaces', () => {
       let chainGuestEmails = 'invalid.email hola@samuel.com'
 
-      let result = Involved.tokenize(chainGuestEmails)
+      let result = Circle.tokenize(chainGuestEmails)
 
       expect(result[0]).to.equal('invalid.email hola@samuel.com')
     })
@@ -143,7 +142,7 @@ describe('The Involved field', () => {
     it('by breaking the emails appart by commas', () => {
       let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
 
-      let result = Involved.tokenize(chainGuestEmails)
+      let result = Circle.tokenize(chainGuestEmails)
 
       expect(result.length).to.equal(4)
       expect(result[3]).to.equal('valid@domain.com')
@@ -152,7 +151,7 @@ describe('The Involved field', () => {
     it('by removing empty chains', () => {
       let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
 
-      let result = Involved.tokenize(chainGuestEmails)
+      let result = Circle.tokenize(chainGuestEmails)
 
       expect(result[0]).to.equal('valid@domain.com')
     })
@@ -161,64 +160,13 @@ describe('The Involved field', () => {
 
 describe('The circle', () => {
   it('is updated when the user changes the invited mails', () => {
-    Involved.addEmailToCircle('user@devscola.org')
-    Involved.addEmailToCircle('invalid.mail')
-    Involved.addEmailToCircle('consensus@devscola.org')
-    Involved.removeEmailFromCircle('user@devscola.org')
+    Circle.addEmailToCircle('user@devscola.org')
+    Circle.addEmailToCircle('invalid.mail')
+    Circle.addEmailToCircle('consensus@devscola.org')
+    Circle.removeEmail('user@devscola.org')
 
-    let result = Involved.circle
+    let result = Circle.involved()
 
-    expect(result.toString()).to.equal(['invalid.mail', 'consensus@devscola.org'].toString())
-  })
-})
-
-describe('Call to action', () => {
-  it('send proposal and read a response status 200 from system', () => {
-    let url = 'http://0.0.0.0:4567'
-    let data = {
-      "proposer": "consensus@devscola.org",
-      "circle": ["consensus@devscola.org", "user@devscola.org"],
-      "proposal": "A little proposal for consensus"
-    }
-    SendPropose.post(url, data)
-      .then((result) => {
-        expect(result.status).to.equal(200)
-      })
-      .catch((message) => {
-        expect(message.toString()).to.equal('Error: Connection Error')
-      })
-  })
-
-  context('send proposal', () => {
-    let jsontosend
-    let packagedData
-    beforeEach(function () {
-      let proposer = 'consensus@devscola.org'
-      Proposer.validateEmail(proposer)
-
-      Involved.addEmailToCircle('user@devscola.org')
-      Involved.addEmailToCircle('consensus@devscola.org')
-
-      let proposal = 'Lorem impsum'
-      Proposal.addBlockTags(proposal)
-
-      jsontosend = SendPropose.packaging(Proposer.proposerEmail, Involved.circle, Proposal.proposalContent)
-
-      packagedData = {
-        "proposer": Proposer.proposerEmail,
-        "circle": Involved.circle,
-        "proposal": Proposal.proposalContent
-      }
-    })
-
-    it('preparing data', () => {
-      expect(jsontosend.toString()).to.be.equal(packagedData.toString())
-    })
-    it('send to system', () => {
-      let url = 'http://system:4567/'
-      return SendPropose.post(url, jsontosend)
-        .then((result) => { expect(result.status).to.equal(200) })
-        .catch((message) => { console.log(message) })
-    })
+    expect(result).to.include('consensus@devscola.org')
   })
 })

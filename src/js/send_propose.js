@@ -1,4 +1,4 @@
-import {Involved} from './involved'
+import {Circle} from './circle'
 import {Proposer} from './proposer'
 import {Proposal} from './proposal'
 let XMLHttpRequest = require('xhr2')
@@ -17,10 +17,9 @@ export let SendPropose = {
   },
 
   submitProposal: function () {
-    Involved.putCircle()
     let url = this.url
     let proposer = Proposer.proposerEmail.toString()
-    let circle = Involved.circle
+    let circle = Circle.involved()
     let proposal = Proposal.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
     let result = this.post(url, packagedProposal)
