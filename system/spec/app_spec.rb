@@ -82,7 +82,7 @@ describe 'Send mail' do
 
     post '/send-mail', body.to_json
     sent_email = Mail::TestMailer.deliveries.first
-    expect(sent_email.body).to eq('Nuestra proposal es muy buena, porque lo decimos')
+    expect(sent_email.body).to include('Nuestra proposal es muy buena, porque lo decimos')
   end
 
   it 'extracts subject from the proposal as Subject' do
@@ -94,4 +94,15 @@ describe 'Send mail' do
     sent_email = Mail::TestMailer.deliveries.first
     expect(sent_email.subject).to eq('Nuestra proposal es muy buena, porque...')
   end
+
+    it 'uses a template' do
+      body = { 'proposer': 'pepe@correo.org',
+                    'circle': ['raul@nocucha.es', 'raul@correo.com'],
+                    'proposal': 'Nuestra proposal es muy buena, porque lo decimos'}
+
+      post '/send-mail', body.to_json
+      sent_email = Mail::TestMailer.deliveries.first
+
+      expect(sent_email.body).to include('pepe@correo.org')
+    end
 end

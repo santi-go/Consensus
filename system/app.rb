@@ -41,8 +41,12 @@ class App < Sinatra::Base
     circle = params['circle']
     proposer = params['proposer']
     consensus_to = circle + [proposer]
-    consensus_body = params['proposal']
-    consensus_subject = create_subject(consensus_body)
+    proposal = params['proposal']
+    consensus_subject = create_subject(proposal)
+    consensus_body = erb :proposer_email_template, locals: {
+      proposer: proposer,
+      proposal: proposal
+    }
 
     mail = Mail.new
     mail.from = consensus_email
