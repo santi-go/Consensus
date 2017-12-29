@@ -1,6 +1,7 @@
 import {ProposalView} from "./proposal_view"
 
 export var Proposal = {
+  proposalContent: null,
 
   initialize: function () {
     ProposalView.initialize()
@@ -29,6 +30,7 @@ export var Proposal = {
     for (let line of lines) {
       newBlock += this.addTag(line)
     }
+    this.proposalContent = newBlock
     return newBlock
   },
 

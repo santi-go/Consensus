@@ -1,5 +1,5 @@
 import {Circle} from './circle'
-import {Proposer} from './proposer'
+import {ProposerLogic} from './proposer_logic'
 import {Proposal} from './proposal'
 let XMLHttpRequest = require('xhr2')
 
@@ -18,30 +18,18 @@ export let SendPropose = {
 
   submitProposal: function () {
     let url = this.url
-    let proposer = Proposer.proposerEmail.toString()
+    let proposer = ProposerLogic.proposerEmail.toString()
     let circle = Circle.involved()
     let proposal = Proposal.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
-    let result = this.post(url, packagedProposal)
-    if (result.toString() === '[object Promise]') { this.finishRequest('Sent') }
+    this.post(url, packagedProposal)
+    this.finishRequest('Sent')
   },
 
   post: function (url, data) {
-    return new Promise((resolve, reject) => {
-      let xhr = new XMLHttpRequest()
-      xhr.open('POST', url, true)
-      xhr.setRequestHeader('Access-Control-Allow-Origin', '*')
-      xhr.onreadystatechange = function () {
-        if (xhr.readyState === 4) {
-          if (xhr.status === 200) {
-            resolve(xhr)
-          } else {
-            reject(new Error('Connection Error'))
-          }
-        }
-      }
-      xhr.send(JSON.stringify(data))
-    })
+    let xhr = new XMLHttpRequest()
+    xhr.open('POST', url, true)
+    xhr.send(JSON.stringify(data))
   },
 
   finishRequest: function (message) {

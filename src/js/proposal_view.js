@@ -2,7 +2,6 @@
 export var ProposalView = {
   inputContainer: null,
   outputContainer: null,
-  proposalContent: null,
   container: null,
 
   initialize: function () {
