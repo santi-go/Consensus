@@ -1,19 +1,20 @@
 var expect = require('chai').expect
 
-var {Proposer} = require('../../src/js/proposer')
+var {MailChecker} = require('../../src/js/mail_checker')
+var {ProposerLogic} = require('../../src/js/proposer_logic')
 var {Proposal} = require('../../src/js/proposal')
 var {Circle} = require('../../src/js/circle')
 
 describe('The proposer field', function () {
   it('accepts a valid email', function () {
     let validEmail = 'hola@devscola.org'
-    let isValid = Proposer.validateEmail(validEmail)
+    let isValid = ProposerLogic.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
   it('does not accept an invalid email', function () {
     let invalidEmail = 'holadevscola.org'
-    let isValid = Proposer.validateEmail(invalidEmail)
+    let isValid = ProposerLogic.validateEmail(invalidEmail)
     expect(isValid).to.be.false
   })
 
@@ -23,7 +24,7 @@ describe('The proposer field', function () {
       let pushedCharacter = '@'
       let positionOfNewCharacter = 0
 
-      let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+      let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
       expect(isValid).to.equal(null)
     })
@@ -34,7 +35,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '%'
         let positionOfNewCharacter = 7
 
-        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.equal(null)
       })
@@ -46,7 +47,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '¬'
         let positionOfNewCharacter = 0
 
-        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.equal(null)
       })
@@ -56,7 +57,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '%'
         let positionOfNewCharacter = 0
 
-        let isValid = Proposer.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.not.equal(null)
       })
@@ -66,8 +67,8 @@ describe('The proposer field', function () {
   it('save the mail', function () {
     let proposer = 'consensus@devscola.org'
 
-    Proposer.validateEmail(proposer)
-    let result = Proposer.proposerEmail
+    ProposerLogic.validateEmail(proposer)
+    let result = ProposerLogic.proposerEmail
 
     expect(result).to.be.equal(proposer)
   })
