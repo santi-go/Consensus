@@ -9,32 +9,54 @@ export let Circle = {
     this.listen()
   },
 
-  involved: function () {
-    let result = []
-    this.circle.forEach((email) => {
-      if (email.valid) { result.push(email.email) }
-    })
-    return result
-  },
-
   listen: function () {
     let visualComponent = document.getElementById('circle-email')
     visualComponent.addEventListener('circle.set', this.extractMails.bind(this))
     visualComponent.addEventListener('remove.from.circle', this.removeEmailFromCircle.bind(this))
   },
 
+  eMail: function (email) {
+    return {
+      'email': email.email,
+      'valid': email.valid
+    }
+  },
+
+  addEmailToCircle: function (email) {
+    this.circle.push(this.eMail(email))
+  },
+
+  involved: function () {
+    let result = []
+    this.circle.forEach((email) => {
+      if (email.valid) {
+        result.push(this.eMail(email))
+      }
+    })
+    return result
+  },
+
   extractMails: function (data) {
     let emailsList = this.parseMail(data.detail)
-    emailsList.forEach((email) => {
-      this.addEmailToCircle(email)
-    })
+    this.addListEmailsToCircle(emailsList)
     Involved.render(this.circle)
   },
 
+  addListEmailsToCircle: function (emailsList) {
+    emailsList.forEach((email) => {
+      this.addEmailToCircle(email)
+    })
+  },
+
   parseMail: function (text) {
-    let result = []
-    if (text.trim() === '') return result
+    if (text.trim() === '') return []
     let emails = this.tokenize(text)
+    let result = this.constructMail(emails)
+    return result
+  },
+
+  constructMail: function (emails) {
+    let result = []
     emails.forEach((email) => {
       result.push({
         'email': email,
@@ -59,10 +81,6 @@ export let Circle = {
     this.circle = result
   },
 
-  addEmailToCircle: function (email) {
-    this.circle.push(email)
-  },
-
   validateEmail: function (email) {
     return this.EMAIL_PATTERN.test(email)
   },
@@ -76,5 +94,4 @@ export let Circle = {
     }
     return result
   }
-
 }
