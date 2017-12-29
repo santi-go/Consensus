@@ -105,8 +105,7 @@ describe('The proposal field', function () {
   it('save the proposal', function () {
     let proposal = 'Lorem impsum'
 
-    Proposal.addBlockTags(proposal)
-    let result = Proposal.proposalContent
+    let result = Proposal.addBlockTags(proposal)
 
     expect(result).to.be.equal('<p>' + proposal + '</p>\n')
   })

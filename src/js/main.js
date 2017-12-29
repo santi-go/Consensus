@@ -5,6 +5,5 @@ import {SendPropose} from './send_propose'
 
 Circle.initialize()
 ProposerLogic.initialize()
-
-Proposal.initialize('proposal')
+Proposal.initialize()
 SendPropose.initialize('panel')

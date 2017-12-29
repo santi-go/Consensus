@@ -1,38 +1,21 @@
+import {ProposalView} from "./proposal_view"
+
 export var Proposal = {
-  inputContainer: null,
-  outputContainer: null,
-  proposalContent: null,
 
-  initialize: function (inputContainerId) {
-    let container = document.getElementById(inputContainerId)
-    this.inputContainer = container.querySelector('input')
-    this.outputContainer = container.querySelector('output')
-    this.prepareEvents()
+  initialize: function () {
+    ProposalView.initialize()
+    this.listen()
   },
 
-  prepareEvents: function () {
-    this.inputContainer.addEventListener('paste', this.pasteProposal.bind(this))
-    this.inputContainer.addEventListener('keypress', this.preventCharRender.bind(this))
+  listen: function () {
+    let visualComponent = ProposalView.container
+    visualComponent.addEventListener('send.text', this.formatText.bind(this))
   },
 
-  preventCharRender: function (event) {
-    let notCtrlV = !event.ctrlKey && event.keyCode !== 86
-    if (notCtrlV) {
-      event.preventDefault()
-    }
-  },
-
-  pasteProposal: function (event) {
-    let pastedText = event.clipboardData.getData('text')
-    let text = this.sanitize(pastedText)
+  formatText: function (pastedText) {
+    let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
-    this.outputContainer.innerHTML = newBlock
-    this.addSeparator()
-    event.preventDefault()
-  },
-
-  addSeparator: function () {
-    this.inputContainer.classList.add('separator')
+    ProposalView.render(newBlock)
   },
 
   sanitize: function (text) {
@@ -46,8 +29,7 @@ export var Proposal = {
     for (let line of lines) {
       newBlock += this.addTag(line)
     }
-    this.proposalContent = newBlock
-    return this.proposalContent
+    return newBlock
   },
 
   addTag: function (line) {
