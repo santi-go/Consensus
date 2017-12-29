@@ -12,7 +12,7 @@ export let Circle = {
   involved: function () {
     let result = []
     this.circle.forEach((email) => {
-      if (this.validateEmail(email)) { result.push(email) }
+      if (email.valid) { result.push(email.email) }
     })
     return result
   },
