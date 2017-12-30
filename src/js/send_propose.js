@@ -16,10 +16,20 @@ export let SendPropose = {
     submitButton.addEventListener('click', this.submitProposal.bind(this))
   },
 
+  extractMailsFromCircle: function () {
+    let result = []
+    Circle.circle.forEach((involved) => {
+      if (involved.valid) {
+        result.push(involved.email)
+      }
+    })
+    return result
+  },
+
   submitProposal: function () {
     let url = this.url
     let proposer = ProposerLogic.proposerEmail.toString()
-    let circle = Circle.involved()
+    let circle = this.extractMailsFromCircle()
     let proposal = Proposal.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
     this.post(url, packagedProposal)
