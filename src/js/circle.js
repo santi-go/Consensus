@@ -15,29 +15,25 @@ export let Circle = {
     visualComponent.addEventListener('remove.from.circle', this.removeEmailFromCircle.bind(this))
   },
 
-  eMail: function (email) {
-    return {
-      'email': email.email,
-      'valid': email.valid
-    }
-  },
-
-  addEmailToCircle: function (email) {
-    this.circle.push(this.eMail(email))
-  },
-
   involved: function () {
     let result = []
     this.circle.forEach((email) => {
       if (email.valid) {
-        result.push(this.eMail(email))
+        result.push(email.email)
       }
     })
     return result
   },
 
+  eMail: function (email) {
+    return {
+      'email': email,
+      'valid': this.validateEmail(email)
+    }
+  },
+
   extractMails: function (data) {
-    let emailsList = this.parseMail(data.detail)
+    let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
     Involved.render(this.circle)
   },
@@ -48,7 +44,11 @@ export let Circle = {
     })
   },
 
-  parseMail: function (text) {
+  addEmailToCircle: function (email) {
+    this.circle.push(this.eMail(email.email))
+  },
+
+  parseEmail: function (text) {
     if (text.trim() === '') return []
     let emails = this.tokenize(text)
     let result = this.constructMail(emails)
@@ -58,10 +58,7 @@ export let Circle = {
   constructMail: function (emails) {
     let result = []
     emails.forEach((email) => {
-      result.push({
-        'email': email,
-        'valid': this.validateEmail(email)
-      })
+      result.push(this.eMail(email))
     })
     return result
   },

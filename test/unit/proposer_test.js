@@ -167,6 +167,6 @@ describe('The circle', () => {
 
     let result = Circle.involved()
 
-    expect(result[0].email).to.eq('consensus@devscola.org')
+    expect(result[0]).to.eq('consensus@devscola.org')
   })
 })
