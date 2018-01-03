@@ -15,10 +15,8 @@ services:
     ports:
       - '4444:4444'
 
-  e2e:
-    build:
-      context: .
-      dockerfile: e2e.docker
+  node:
+    build: .
     volumes:
       - '.:/test'
     depends_on:
