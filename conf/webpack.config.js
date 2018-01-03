@@ -4,10 +4,10 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 module.exports = {
   devtool: 'source-map',
   entry: {
-    filename: './src/js/main.js'
+    filename: '../src/js/main.js'
   },
   output: {
-    filename: './dist/bundle.js'
+    filename: '../dist/bundle.js'
   },
   module: {
     loaders: [
