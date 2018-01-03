@@ -1,3 +1,4 @@
+import {Service} from "./service"
 
 export let Involved = {
   container: null,
@@ -15,9 +16,7 @@ export let Involved = {
   },
 
   acceptKeysPress: function (e) {
-    let comma = e.keyCode === 44 || e.charCode === 44
-    let enter = e.keyCode === 13 || e.charCode === 13
-    if (enter || comma) {
+    if (Service.isEnterKey(e) || Service.isCommaKey(e)) {
       this.setCircle()
       e.preventDefault()
     }

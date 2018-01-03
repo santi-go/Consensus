@@ -1,4 +1,5 @@
 import {MailChecker} from "./mail_checker"
+import {Service} from "./service"
 
 export let Proposer = {
   container: null,
@@ -12,7 +13,15 @@ export let Proposer = {
   prepareEvents: function () {
     let input = this.container.querySelector('input')
     input.addEventListener('blur', this.markValidity.bind(this))
-    input.addEventListener('keypress', this.maskInput.bind(this))
+    input.addEventListener('keypress', this.focusOnCircle.bind(this))
+  },
+
+  focusOnCircle: function (event) {
+    this.maskInput(event)
+    if (Service.isEnterKey(event)) {
+      this.containerCircle = document.getElementById('circle-email')
+      this.containerCircle.querySelector('input').focus()
+    }
   },
 
   markValidity: function (event) {

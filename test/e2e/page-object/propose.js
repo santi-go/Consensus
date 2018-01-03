@@ -3,6 +3,18 @@ class Propose {
   constructor () {
     browser.url('/')
   }
+  inviteWithComponent (componentId, mail) {
+    let component = $(componentId)
+    let input = component.$('input')
+
+    input.setValue(mail)
+  }
+  pressEnterWithComponent (componentId) {
+    let component = $(componentId)
+    let input = component.$('input')
+    let keyEnter = '\uE007'
+    input.keys(keyEnter)
+  }
   confirmSuccessful () {
     let component = $('#panel span')
     let result = component.getText()
