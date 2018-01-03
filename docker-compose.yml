@@ -22,7 +22,7 @@ services:
     depends_on:
       - consensus
       - selenium
-    command: sh -c 'npm install && npm run build'
+    command: sh -c 'npm install && npm run build-watch -s'
 
 volumes:
   bundle:
