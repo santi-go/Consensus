@@ -87,6 +87,7 @@ export let Involved = {
   createRemoveButton: function (emailBox) {
     let removeButton = document.createElement('button')
     emailBox.appendChild(removeButton)
+    removeButton.setAttribute("tabindex", "-1")
     removeButton.classList.add('close')
     removeButton.innerHTML = '<span>Delete</span>'
     removeButton.addEventListener('click', this.removeEmail.bind(this))
