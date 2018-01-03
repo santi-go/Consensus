@@ -26,4 +26,16 @@ describe('The proposal', () => {
 
     expect(textInTheBox).to.be.eq(theText)
   })
+
+  it('you can clear the input with the enter key', () => {
+    let page = new Propose()
+    let email = 'consensus@devscola.org'
+    let componentId = '#proposer-email'
+
+    page.inviteWithComponent(componentId, email)
+    page.pressEnterWithComponent(componentId)
+    let focus = browser.selector
+
+    expect(focus).not.to.equal('#proposer-email')
+  })
 })
