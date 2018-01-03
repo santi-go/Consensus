@@ -1,4 +1,5 @@
 var expect = require('chai').expect
+let Propose = require('./page-object/propose')
 
 describe('When identifying the proposer', () => {
   it('it accepts valid emails', () => {
@@ -59,9 +60,9 @@ describe('The submit button', () => {
     let circle = 'raul@cuchame.es'
     page.invite(circle)
     page.lostFocusOnInvited()
-    browser.click('#submit')
+    page.clickSubmit()
 
-    expect(page.confirmSuccessful()).to.be.equal('Sent')
+    expect(page.confirmSuccessful()).to.be.true
   })
 })
 
@@ -107,8 +108,8 @@ describe('When involving a circle member', () => {
     page.lostFocusOnInvited()
 
     expect(page.existCloseButton()).to.be.true
-    browser.click('.close')
-    expect(browser.isExisting('.validBox')).to.be.false
+    page.clickClose()
+    expect(page.existEmailValid()).to.be.false
   })
 
   it('you can clear the input with the enter key', () => {
@@ -127,109 +128,3 @@ describe('When involving a circle member', () => {
     expect(page.inputValue()).to.equal('')
   })
 })
-
-class Propose {
-  constructor () {
-    browser.url('/')
-  }
-  confirmSuccessful () {
-    let component = $('#panel span')
-    let result = component.getText()
-    return result
-  }
-  invite (mail) {
-    let component = $('#circle-email')
-    let input = component.$('input')
-
-    input.setValue(mail)
-  }
-  inputValue () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    return input.getValue()
-  }
-  lostFocusOnInvited () {
-    let keyTab = '\u0009'
-    browser.keys(keyTab)
-  }
-  firstValidInvitation () {
-    let component = $('#circle-email')
-    let divValidBox = component.$('div .validBox')
-
-    return divValidBox.getText()
-  }
-  firstInvalidInvitation () {
-    let component = $('#circle-email')
-    let divValidBox = component.$('div .invalidBox')
-
-    return divValidBox.getText()
-  }
-  identifyProposer (mail) {
-    let component = $('#proposer-email')
-    let input = component.$('input')
-
-    input.setValue(mail)
-    browser.click('body')
-  }
-  isProposerInvalid () {
-    let classes = $('#proposer-email').getAttribute('class')
-    return classes.includes('invalid')
-  }
-  proposalIsMarkedForPaste () {
-    let element = $('#proposal').getAttribute('class')
-    return element
-  }
-  existCloseButton () {
-    let component = $('#circle-email')
-    let divValidBox = component.$('div div')
-
-    return divValidBox.getHTML().includes('<button')
-  }
-  pressEnter () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    let keyEnter = '\uE007'
-    input.keys(keyEnter)
-  }
-  pressComma () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    let keyComma = '\u002C'
-    input.keys(keyComma)
-  }
-  addAndCutFromGuestsEmail (proposal) {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    input.setValue(proposal)
-    browser.keys(['Control', 'ax', 'NULL'])
-  }
-  getTextPastedInProposal () {
-    let component = $('#proposal')
-    browser.click('#proposal')
-    browser.keys(['Control', 'v', 'NULL'])
-    let output = component.$('output')
-    let textFromOutput = output.getText()
-    return textFromOutput
-  }
-  pasteProposal (proposal) {
-    let input = $('#circle-email input')
-    let output = $('#proposal output')
-
-    input.setValue(proposal)
-    this.selectAll()
-    this.copyToClipboard()
-    browser.click('#proposal input')
-    this.pasteFromClipboard()
-
-    return output.getText()
-  }
-  selectAll () {
-    browser.keys(['Control', 'a', 'NULL'])
-  }
-  copyToClipboard () {
-    browser.keys(['Control', 'c', 'NULL'])
-  }
-  pasteFromClipboard () {
-    browser.keys(['Control', 'v', 'NULL'])
-  }
-}
