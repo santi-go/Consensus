@@ -36,7 +36,7 @@ label {
   border-bottom: 1px solid var(--main-color);
   display: block;
   margin-top: 1rem;
-  padding: 1rem 0;  
+  padding: 1rem 0;
 }
 .email > * {
   display: block;
@@ -57,7 +57,7 @@ input {
   font-size: 1rem;
   min-width: 9rem;
   margin-top: 1rem;
-  padding: 1rem;  
+  padding: 1rem;
 }
 .clear {
   clear: both;
@@ -123,10 +123,8 @@ input {
 .close::before {
   content: 'x';
 }
-#proposal input:hover {
-  
-} 
+ 
 #proposal input {
   border: 1px solid var(--main-color);
   color: transparent;
-} 
+}

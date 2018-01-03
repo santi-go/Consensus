@@ -15,16 +15,14 @@ services:
     ports:
       - '4444:4444'
 
-  e2e:
-    build:
-      context: .
-      dockerfile: e2e.docker
+  node:
+    build: .
     volumes:
       - '.:/test'
     depends_on:
       - consensus
       - selenium
-    command: sh -c 'npm install && npm run build'
+    command: sh -c 'npm install && npm run build-watch -s'
 
 volumes:
   bundle:
