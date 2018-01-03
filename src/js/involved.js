@@ -15,7 +15,9 @@ export let Involved = {
   },
 
   acceptKeysPress: function (e) {
-    if (e.keyCode === 13 || e.keyCode === 44) {
+    let comma = e.keyCode === 44 || e.charCode === 44
+    let enter = e.keyCode === 13 || e.charCode === 13
+    if (enter || comma) {
       this.setCircle()
       e.preventDefault()
     }
