@@ -45,6 +45,18 @@ describe('The proposal', () => {
 
     expect(textInTheBox).to.be.eq(theText)
   })
+
+  it('you can clear the input with the enter key', () => {
+    let page = new Propose()
+    let email = 'consensus@devscola.org'
+    let componentId = '#proposer-email'
+
+    page.inviteWithComponent(componentId, email)
+    page.pressEnterWithComponent(componentId)
+    let focus = browser.selector
+
+    expect(focus).not.to.equal('#proposer-email')
+  })
 })
 
 describe('The submit button', () => {
@@ -131,6 +143,18 @@ describe('When involving a circle member', () => {
 class Propose {
   constructor () {
     browser.url('/')
+  }
+  inviteWithComponent (componentId, mail) {
+    let component = $(componentId)
+    let input = component.$('input')
+
+    input.setValue(mail)
+  }
+  pressEnterWithComponent (componentId) {
+    let component = $(componentId)
+    let input = component.$('input')
+    let keyEnter = '\uE007'
+    input.keys(keyEnter)
   }
   confirmSuccessful () {
     let component = $('#panel span')
