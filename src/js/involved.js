@@ -56,6 +56,7 @@ export let Involved = {
     let box = this.insertANewBox()
     box.innerText = emailElement.email
     box.classList.add(this.selectClass(emailElement.valid))
+    box.id = emailElement.id
     this.createRemoveButton(box)
   },
 
@@ -78,7 +79,8 @@ export let Involved = {
 
   removeEmail: function (event) {
     let email = event.target.parentElement.innerText
-    let signal = new CustomEvent('remove.from.circle', {'detail': email})
+    let emailId = event.target.parentElement.id
+    let signal = new CustomEvent('remove.from.circle', {'detail': {'email': email, 'id': emailId}})
     this.container.dispatchEvent(signal)
     event.preventDefault()
   },

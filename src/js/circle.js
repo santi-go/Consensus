@@ -28,7 +28,8 @@ export let Circle = {
   eMail: function (email) {
     return {
       'email': email,
-      'valid': this.validateEmail(email)
+      'valid': this.validateEmail(email),
+      'id': this.circle.length
     }
   },
 
@@ -71,7 +72,7 @@ export let Circle = {
   removeEmail: function (email) {
     let result = []
     this.circle.forEach((involved) => {
-      if (involved.email !== email) {
+      if (involved.id !== parseInt(email.id)) {
         result.push(involved)
       }
     })

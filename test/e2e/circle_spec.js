@@ -62,4 +62,17 @@ describe('When involving a circle member', () => {
     page.pressComma()
     expect(page.inputValue()).to.equal('')
   })
+
+  it('deletes only one email box when you click on it', () => {
+    let page = new Propose()
+    let email = 'hola@devscola.org'
+
+    page.invite(email)
+    page.pressComma()
+    page.invite(email)
+    page.pressComma()
+    page.clickClose()
+
+    expect(page.existEmailValid()).to.be.true
+  })
 })
