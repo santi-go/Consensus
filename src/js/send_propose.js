@@ -5,6 +5,12 @@ let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
   url: 'http://0.0.0.0:4567/send-mail',
+  
+  fields: {
+        proposer: false,
+        involved: 0,
+        proposal: false
+      },
 
   initialize: function (containerId) {
     this.container = document.getElementById(containerId)
@@ -15,6 +21,23 @@ export let SendPropose = {
     let submitButton = this.container.querySelector('#submit')
     submitButton.addEventListener('click', this.submitProposal.bind(this))
   },
+
+  validateField: function (caller, validate) {
+        if (caller === "proposer") this.fields.proposer = validate
+        if (caller === "circle") this.fields.involved = Circle.involved().length
+        if (caller === "proposal") this.fields.proposal = validate
+    
+        if (this.fields.proposer &&  this.fields.involved > 0 && this.fields.proposal ) {
+          this.toggleSubmitButton(false)
+        }
+        else this.toggleSubmitButton(true)
+      },
+    
+      toggleSubmitButton: function (value) {
+        let submitButton = this.container.querySelector('#submit')
+        submitButton.disabled = value
+        },
+
 
   submitProposal: function () {
     let url = this.url
@@ -43,5 +66,6 @@ export let SendPropose = {
       "circle": circle,
       "proposal": proposal
     }
-  }
+  },
+
 }
