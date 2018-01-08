@@ -28,7 +28,6 @@ export let ProposerLogic = {
     if (validated) {
       this.proposerEmail = email
     }
-    SendPropose.validateField("proposer", validated)
     return validated
   },
 

@@ -3,7 +3,7 @@ var expect = require('chai').expect
 var {SendPropose} = require('../../src/js/send_propose')
 
 describe('The submit button', () => {
-  it('enable when proposer input is correct', () => {
+  xit('enable when proposer input is correct', () => {
     
     let status = SendPropose.toggleSubmitButton()
    

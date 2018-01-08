@@ -33,10 +33,10 @@ export let SendPropose = {
         else this.toggleSubmitButton(true)
       },
     
-      toggleSubmitButton: function (value) {
-        let submitButton = this.container.querySelector('#submit')
-        submitButton.disabled = value
-        },
+  toggleSubmitButton: function (value) {
+    let submitButton = this.container.querySelector('#submit')
+    submitButton.disabled = value
+    },
 
 
   submitProposal: function () {
