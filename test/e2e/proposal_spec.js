@@ -7,7 +7,7 @@ describe('The proposal', () => {
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
-  it('once it is pasted, allows HTML tags but appears whitout them', () => {
+  it('once it is pasted, allows HTML tags but appears without them', () => {
     let page = new Propose()
     let proposal = '<p>textwithoutHTML</p>'
     let textWithoutHTML = 'textwithoutHTML'

@@ -11,7 +11,7 @@ export let Involved = {
   prepareEvents: function () {
     let input = this.getInputContainer()
     input.addEventListener('blur', this.setCircle.bind(this))
-    input.addEventListener('keypress', this.acceptKeysPress.bind(this))
+    input.addEventListener('keydown', this.acceptKeysPress.bind(this))
     this.container.addEventListener('click', this.putFocusOnInput.bind(this))
   },
 

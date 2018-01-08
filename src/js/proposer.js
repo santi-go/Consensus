@@ -13,10 +13,13 @@ export let Proposer = {
   prepareEvents: function () {
     let input = this.container.querySelector('input')
     input.addEventListener('blur', this.markValidity.bind(this))
-    input.addEventListener('keypress', this.focusOnCircle.bind(this))
+    input.addEventListener('keydown', this.focusOnCircle.bind(this))
   },
 
   focusOnCircle: function (event) {
+    if (Service.isBackSpaceKey || Service.isTabKey || Service.isDotKey) {
+      return
+    }
     this.maskInput(event)
     if (Service.isEnterKey(event)) {
       this.containerCircle = document.getElementById('circle-email')
