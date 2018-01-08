@@ -116,15 +116,13 @@ class Propose {
     return textFromOutput
   }
   pasteProposal (proposal) {
-    let input = $('#circle-email input')
+    let input = $('#paste-area')
     let output = $('#proposal output')
-
     input.setValue(proposal)
     this.selectAll()
     this.copyToClipboard()
     browser.click('#proposal input')
     this.pasteFromClipboard()
-
     return output.getText()
   }
   selectAll () {
