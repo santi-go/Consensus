@@ -16,17 +16,14 @@ services:
       - '4444:4444'
 
   node:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: node
+    image: node:7.9.0
     working_dir: '/test'
     volumes:
       - '.:/test'
     depends_on:
       - consensus
       - selenium
-    command: sh -c 'npm install && npm run build-watch -s'
+    command: sh -c 'npm install --unsafe-perm && npm run build-watch -s'
 
 volumes:
   bundle:
