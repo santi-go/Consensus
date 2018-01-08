@@ -116,6 +116,11 @@ class Propose {
     return textFromOutput
   }
   pasteProposal (proposal) {
+    browser.execute(() => {
+      let inputElement = document.createElement('input')
+      inputElement.setAttribute('id', 'paste-area')
+     document.body.appendChild(inputElement)
+    })
     let input = $('#paste-area')
     let output = $('#proposal output')
     input.setValue(proposal)
