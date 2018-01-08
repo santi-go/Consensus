@@ -1,5 +1,4 @@
 import {Proposer} from "./proposer"
-import {SendPropose} from './send_propose'
 
 export let ProposerLogic = {
   container: null,

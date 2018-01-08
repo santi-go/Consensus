@@ -17,26 +17,4 @@ describe('The submit button', () => {
 
     expect(page.confirmSuccessful()).to.be.true
   })
-
-  it('enable when proposer is correct', () => {
-    let page = new Propose()
-
-    let email = 'hola@devscola.org'
-    page.identifyProposer(email)
-    let invalid = page.isProposerInvalid()
-
-  
-    expect(page.submitEnabledStatus(invalid)).to.be.false
-  })
-
-  it('disabled when proposer is incorrect', () => {
-    let page = new Propose()
-
-    let email = 'hola@devscola'
-    page.identifyProposer(email)
-    let invalid = page.isProposerInvalid()
-    
-  
-    expect(page.submitEnabledStatus(invalid)).to.be.true
-  })
 })

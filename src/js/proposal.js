@@ -1,5 +1,5 @@
 import {ProposalView} from "./proposal_view"
-import {SendPropose} from './send_propose'
+
 
 export var Proposal = {
   proposalContent: null,
@@ -18,7 +18,6 @@ export var Proposal = {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
     ProposalView.render(newBlock)
-    SendPropose.validateField("proposal", true)
   },
 
   sanitize: function (text) {
