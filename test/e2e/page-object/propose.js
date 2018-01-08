@@ -40,6 +40,12 @@ class Propose {
     browser.click('#submit')
   }
 
+  submitEnabledStatus (status) {
+    let component = $('#submit')
+    component.disabled = status
+    return component.disabled
+  }
+
   firstValidInvitation () {
     let component = $('#circle-email')
     let divValidBox = component.$('div .validBox')
@@ -63,6 +69,7 @@ class Propose {
     let classes = $('#proposer-email').getAttribute('class')
     return classes.includes('invalid')
   }
+
   proposalIsMarkedForPaste () {
     let element = $('#proposal').getAttribute('class')
     return element
@@ -109,6 +116,11 @@ class Propose {
     return textFromOutput
   }
   pasteProposal (proposal) {
+    browser.execute(() => {
+      let inputElement = document.createElement('input')
+      inputElement.setAttribute('id', 'paste-area')
+     document.body.appendChild(inputElement)
+    })
     let input = $('#paste-area')
     let output = $('#proposal output')
     input.setValue(proposal)
