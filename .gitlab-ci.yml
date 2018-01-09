@@ -1,0 +1,17 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+stages:
+  - build
+
+test:
+  stage: build
+  script:
+    - apk add --update py-pip
+    - pip install docker-compose
+    - docker-compose -f docker-compose.ci.yml up --build -d
+    - docker-compose -f docker-compose.ci.yml run node npm install
+    - docker-compose -f docker-compose.ci.yml run node npm run test-all
+    - docker-compose -f docker-compose.ci.yml down
