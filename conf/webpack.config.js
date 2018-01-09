@@ -1,4 +1,6 @@
 const webpack = require('webpack')
+const PermissionsOutputPlugin = require('webpack-permissions-plugin')
+const path = require('path')
 const nodeEnv = process.env.NODE_ENV || 'production'
 
 module.exports = {
@@ -33,6 +35,21 @@ module.exports = {
     }),
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
+    }),
+    new PermissionsOutputPlugin({
+      buildFolders: [
+        {
+          path: path.resolve(__dirname, '../dist/'),
+          fileMode: '777',
+          dirMode: '666'
+        }
+      ],
+      buildFiles: [
+        {
+          path: path.resolve(__dirname, '../dist/bundle.js'),
+          fileMode: '777'
+        }
+      ]
     })
   ]
 }

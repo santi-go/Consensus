@@ -5,12 +5,16 @@ let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
   url: 'http://0.0.0.0:4567/send-mail',
+<<<<<<< HEAD
 
   fields: {
         proposer: false,
         involved: 0,
         proposal: false
       },
+=======
+  
+>>>>>>> 3703aa41002cd418712fb27c6034474f18d20ecf
 
   initialize: function (containerId) {
     this.container = document.getElementById(containerId)
@@ -22,6 +26,7 @@ export let SendPropose = {
     submitButton.addEventListener('click', this.submitProposal.bind(this))
   },
 
+<<<<<<< HEAD
   toggleSubmitButton: function (caller, validate){
     let value = this.validateField(caller, validate)
     let submitButton = this.container.querySelector('#submit')
@@ -39,6 +44,8 @@ export let SendPropose = {
           return true
       },
 
+=======
+>>>>>>> 3703aa41002cd418712fb27c6034474f18d20ecf
   submitProposal: function () {
     let url = this.url
     let proposer = ProposerLogic.proposerEmail.toString()
