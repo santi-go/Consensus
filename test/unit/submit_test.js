@@ -12,26 +12,4 @@ describe('The submit button', () => {
 
     expect(disabledValue).to.be.false
   })
-
-/*
-  xit('enable when proposer input is correct', () => {
-
-
-    let status = SendPropose.toggleSubmitButton()
-
-    expect(status).to.eq(true)
-  })
-
-  xit('enable when circle input is correct', () => {
-
-
-    expect().to.eq()
-  })
-
-  xit('enable when proposal input is correct', () => {
-
-
-    expect().to.eq()
-  })
-*/
 })

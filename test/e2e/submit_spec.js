@@ -17,7 +17,6 @@ describe('The submit button', () => {
 
     expect(page.confirmSuccessful()).to.be.true
   })
-<<<<<<< HEAD
 
   it('enable when proposer is correct', () => {
     let page = new Propose()
@@ -40,6 +39,4 @@ describe('The submit button', () => {
 
     expect(page.submitEnabledStatus(invalid)).to.be.true
   })
-=======
->>>>>>> 3703aa41002cd418712fb27c6034474f18d20ecf
 })

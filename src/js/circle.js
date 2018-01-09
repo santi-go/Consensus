@@ -38,10 +38,7 @@ export let Circle = {
     let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
     Involved.render(this.circle)
-<<<<<<< HEAD
       SendPropose.toggleSubmitButton("circle", true)
-=======
->>>>>>> 3703aa41002cd418712fb27c6034474f18d20ecf
   },
 
   addListEmailsToCircle: function (emailsList) {
@@ -72,10 +69,7 @@ export let Circle = {
   removeEmailFromCircle: function (data) {
     this.removeEmail(data.detail)
     Involved.render(this.circle)
-<<<<<<< HEAD
     SendPropose.toggleSubmitButton("circle", true)
-=======
->>>>>>> 3703aa41002cd418712fb27c6034474f18d20ecf
   },
 
   removeEmail: function (email) {

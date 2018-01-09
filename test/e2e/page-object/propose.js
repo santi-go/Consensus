@@ -40,6 +40,13 @@ class Propose {
     browser.click('#submit')
   }
 
+  submitEnabledStatus (status) {
+    let component = $('#submit')
+    component.disabled = status
+    return component.disabled
+  }
+
+
   firstValidInvitation () {
     let component = $('#circle-email')
     let divValidBox = component.$('div .validBox')
