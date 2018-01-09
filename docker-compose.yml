@@ -16,11 +16,7 @@ services:
       - '4444:4444'
 
   node:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: node
-    working_dir: '/test'
+    build: .
     volumes:
       - '.:/test'
     depends_on:
