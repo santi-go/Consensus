@@ -25,7 +25,7 @@ describe('The submit button', () => {
     page.identifyProposer(email)
     let invalid = page.isProposerInvalid()
 
-  
+
     expect(page.submitEnabledStatus(invalid)).to.be.false
   })
 
@@ -35,8 +35,8 @@ describe('The submit button', () => {
     let email = 'hola@devscola'
     page.identifyProposer(email)
     let invalid = page.isProposerInvalid()
-    
-  
+
+
     expect(page.submitEnabledStatus(invalid)).to.be.true
   })
 })

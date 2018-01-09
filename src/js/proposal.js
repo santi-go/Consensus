@@ -18,7 +18,7 @@ export var Proposal = {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
     ProposalView.render(newBlock)
-    SendPropose.validateField("proposal", true)
+    SendPropose.toggleSubmitButton("proposal", true)
   },
 
   sanitize: function (text) {

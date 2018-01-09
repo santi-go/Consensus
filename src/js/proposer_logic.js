@@ -20,6 +20,8 @@ export let ProposerLogic = {
     let text = data.detail
     let isValid = this.validateEmail(text)
     Proposer.setValidity(isValid)
+    SendPropose.toggleSubmitButton("proposer", isValid)
+
   },
 
   validateEmail: function (email) {
@@ -28,7 +30,6 @@ export let ProposerLogic = {
     if (validated) {
       this.proposerEmail = email
     }
-    SendPropose.validateField("proposer", validated)
     return validated
   },
 
