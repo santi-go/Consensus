@@ -1,6 +1,7 @@
 import {MailChecker} from "./mail_checker"
 import {Service} from "./service"
 
+
 export let Proposer = {
   container: null,
   EMAIL_PATTERN: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,

@@ -1,5 +1,5 @@
 import {ProposalView} from "./proposal_view"
-
+import {SendPropose} from './send_propose'
 
 export var Proposal = {
   proposalContent: null,

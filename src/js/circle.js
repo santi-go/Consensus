@@ -1,4 +1,5 @@
 import {Involved} from "./involved"
+import {SendPropose} from './send_propose'
 
 
 export let Circle = {
