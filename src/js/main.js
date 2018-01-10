@@ -1,11 +1,13 @@
 import {Circle} from './circle'
-import {ProposerLogic} from './proposer_logic'
 import {Proposal} from './proposal'
 import {SendPropose} from './send_propose'
+import {ProposerLogic} from './proposer_logic'
 
 let circle = new Circle()
 circle.initialize()
 
-ProposerLogic.initialize()
+let proposerLogic = new ProposerLogic()
+proposerLogic.initialize()
+
 Proposal.initialize()
-SendPropose.initialize('panel', circle)
+SendPropose.initialize('panel', proposerLogic, circle)

@@ -5,14 +5,16 @@ var {ProposerLogic} = require('../../src/js/proposer_logic')
 
 describe('The proposer field', function () {
   it('accepts a valid email', function () {
+    let proposerLogic = new ProposerLogic('proposer-email')
     let validEmail = 'hola@devscola.org'
-    let isValid = ProposerLogic.validateEmail(validEmail)
+    let isValid = proposerLogic.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
   it('does not accept an invalid email', function () {
+    let proposerLogic = new ProposerLogic('proposer-email')
     let invalidEmail = 'holadevscola.org'
-    let isValid = ProposerLogic.validateEmail(invalidEmail)
+    let isValid = proposerLogic.validateEmail(invalidEmail)
     expect(isValid).to.be.false
   })
 
@@ -64,9 +66,10 @@ describe('The proposer field', function () {
 
   it('save the mail', function () {
     let proposer = 'consensus@devscola.org'
+    let proposerLogic = new ProposerLogic('proposer-email')
 
-    ProposerLogic.validateEmail(proposer)
-    let result = ProposerLogic.proposerEmail
+    proposerLogic.validateEmail(proposer)
+    let result = proposerLogic.proposerEmail
 
     expect(result).to.be.equal(proposer)
   })

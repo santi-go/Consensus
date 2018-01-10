@@ -1,21 +1,22 @@
 import {Circle} from './circle'
-import {ProposerLogic} from './proposer_logic'
 import {Proposal} from './proposal'
 let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
   url: 'http://0.0.0.0:4567/send-mail',
   circle: null,
+  proposerLogic: null,
   fields: {
         proposer: false,
         involved: 0,
         proposal: false
       },
 
-  initialize: function (containerId, circle) {
+  initialize: function (containerId, proposerLogic, circle) {
     this.container = document.getElementById(containerId)
     this.circle = circle
     this.prepareEvents()
+    this.proposerLogic = proposerLogic
   },
 
   prepareEvents: function () {
@@ -41,7 +42,7 @@ export let SendPropose = {
 
   submitProposal: function () {
     let url = this.url
-    let proposer = ProposerLogic.proposerEmail.toString()
+    let proposer = this.proposerLogic.proposerEmail.toString()
     let circle = this.circle.involved()
     let proposal = Proposal.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)

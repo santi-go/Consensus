@@ -1,6 +1,5 @@
-import {MailChecker} from "./mail_checker"
-import {Service} from "./service"
-
+import {MailChecker} from './mail_checker'
+import {Service} from './service'
 
 export let Proposer = {
   container: null,
