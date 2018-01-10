@@ -16,7 +16,6 @@ describe('When identifying the proposer', () => {
     let invalidMail = 'errordecorreo'
 
     page.identifyProposer(invalidMail)
-
     expect(page.isProposerInvalid()).to.be.true
   })
 
