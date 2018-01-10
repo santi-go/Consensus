@@ -4,10 +4,10 @@ services:
   - docker:dind
 
 stages:
-  - build
+  - test
 
 test:
-  stage: build
+  stage: test
   script:
     - apk add --update py-pip
     - pip install docker-compose
