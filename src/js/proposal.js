@@ -1,5 +1,5 @@
 
-export class ProposalView {
+export class Proposal {
 
   constructor() {
     this.inputContainer = null

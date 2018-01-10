@@ -45,7 +45,7 @@ export let SendPropose = {
     let url = this.url
     let proposer = this.proposerLogic.proposerEmail.toString()
     let circle = this.circle.involved()
-    let proposal = this.proposalLogic.proposalContent.toString()
+    let proposal = this.proposalLogic.content.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
     this.post(url, packagedProposal)
     this.finishRequest('Sent')

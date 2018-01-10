@@ -1,27 +1,27 @@
-import {ProposalView} from "./proposal_view"
+import {Proposal} from "./proposal"
 import {SendPropose} from './send_propose'
 
 export class ProposalLogic {
 
   constructor(){
-    this.proposalContent = null
-    this.proposalView = new ProposalView()
+    this.content = null
+    this.proposal = new Proposal()
   }
 
   initialize() {
-    this.proposalView.initialize()
+    this.proposal.initialize()
     this.listen()
   }
 
   listen() {
-    let visualComponent = this.proposalView.container
+    let visualComponent = this.proposal.container
     visualComponent.addEventListener('send.text', this.formatText.bind(this))
   }
 
   formatText(pastedText) {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
-    this.proposalView.render(newBlock)
+    this.proposal.render(newBlock)
     SendPropose.toggleSubmitButton("proposal", true)
   }
 
@@ -36,7 +36,7 @@ export class ProposalLogic {
     for (let line of lines) {
       newBlock += this.addTag(line)
     }
-    this.proposalContent = newBlock
+    this.content = newBlock
     return newBlock
   }
 
