@@ -5,10 +5,11 @@ export class Circle {
   constructor () {
     this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.circle = []
+    this.involvedPeople = new Involved()
   }
 
   initialize () {
-    Involved.initialize('circle-email')
+    this.involvedPeople.initialize('circle-email')
     this.listen()
   }
 
@@ -39,7 +40,7 @@ export class Circle {
   extractMails (data) {
     let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
-    Involved.render(this.circle)
+    this.involvedPeople.render(this.circle)
       SendPropose.toggleSubmitButton("circle", this.involved().length)
   }
 
@@ -70,7 +71,7 @@ export class Circle {
 
   removeEmailFromCircle (data) {
     this.removeEmail(data.detail)
-    Involved.render(this.circle)
+    this.involvedPeople.render(this.circle)
     SendPropose.toggleSubmitButton("circle", this.involved().length)
   }
 

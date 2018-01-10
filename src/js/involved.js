@@ -1,91 +1,94 @@
 import {Service} from "./service"
 
-export let Involved = {
-  container: null,
+export class Involved {
 
-  initialize: function (containerId) {
+  constructor(){
+    this.container = null
+  }
+
+  initialize(containerId) {
     this.container = document.getElementById(containerId)
     this.prepareEvents()
-  },
+  }
 
-  prepareEvents: function () {
+  prepareEvents() {
     let input = this.getInputContainer()
     input.addEventListener('blur', this.setCircle.bind(this))
     input.addEventListener('keydown', this.acceptKeysPress.bind(this))
     this.container.addEventListener('click', this.putFocusOnInput.bind(this))
-  },
+  }
 
-  acceptKeysPress: function (e) {
+  acceptKeysPress(e) {
     if (Service.isEnterKey(e) || Service.isCommaKey(e)) {
       this.setCircle()
       e.preventDefault()
     }
-  },
+  }
 
-  setCircle: function () {
+  setCircle() {
     let text = this.getInputContainer().value
     if (text === '') return
     let signal = new CustomEvent('circle.set', {'detail': text})
     this.container.dispatchEvent(signal)
-  },
+  }
 
-  getInputContainer: function () {
+  getInputContainer() {
     return this.container.querySelector('input')
-  },
+  }
 
-  putFocusOnInput: function () {
+  putFocusOnInput() {
     this.getInputContainer().focus()
-  },
+  }
 
-  render: function (data) {
+  render(data) {
     this.cleanBoxes()
     data.forEach((email) => {
       this.createEmailBox(email)
     })
     this.cleanInput()
-  },
+  }
 
-  cleanBoxes: function () {
+  cleanBoxes() {
     let boxes = document.querySelectorAll('div.circle-email-list div')
     boxes.forEach((box) => {
       box.parentElement.removeChild(box)
     })
-  },
+  }
 
-  createEmailBox: function (emailElement) {
+  createEmailBox(emailElement) {
     let box = this.insertANewBox()
     box.innerText = emailElement.email
     box.classList.add(this.selectClass(emailElement.valid))
     box.id = emailElement.id
     this.createRemoveButton(box)
-  },
+  }
 
-  cleanInput: function () {
+  cleanInput() {
     let input = this.getInputContainer()
     input.value = ''
-  },
+  }
 
-  selectClass: function (valid) {
+  selectClass(valid) {
     if (valid) { return 'validBox' }
     return 'invalidBox'
-  },
+  }
 
-  insertANewBox: function () {
+  insertANewBox() {
     let box = document.createElement('div')
     let input = this.getInputContainer()
     this.container.querySelector('div').insertBefore(box, input)
     return box
-  },
+  }
 
-  removeEmail: function (event) {
+  removeEmail(event) {
     let email = event.target.parentElement.innerText
     let emailId = event.target.parentElement.id
     let signal = new CustomEvent('remove.from.circle', {'detail': {'email': email, 'id': emailId}})
     this.container.dispatchEvent(signal)
     event.preventDefault()
-  },
+  }
 
-  createRemoveButton: function (emailBox) {
+  createRemoveButton(emailBox) {
     let removeButton = document.createElement('button')
     emailBox.appendChild(removeButton)
     removeButton.setAttribute("tabindex", "-1")
