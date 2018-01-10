@@ -1,5 +1,6 @@
 import {Proposer} from './proposer'
 import {SendPropose} from './send_propose'
+
 export class ProposerLogic {
   constructor () {
     this.container = null
@@ -14,7 +15,7 @@ export class ProposerLogic {
 
   listen () {
     let visualComponent = document.getElementById('proposer-email')
-    this.event = visualComponent.addEventListener('proposer.check', this.checkForMail.bind(this))
+    visualComponent.addEventListener('proposer.check', this.checkForMail.bind(this))
   }
 
   checkForMail (data) {

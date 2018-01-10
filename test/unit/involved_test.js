@@ -3,11 +3,12 @@ var expect = require('chai').expect
 var {Circle} = require('../../src/js/circle')
 
 describe('The Involved field', () => {
+  let circle = new Circle()
   context('recognizes an email as', () => {
     it('valid', function () {
       let validEmail = 'hola@devscola.org'
 
-      let isValid = Circle.validateEmail(validEmail)
+      let isValid = circle.validateEmail(validEmail)
 
       expect(isValid).to.be.true
     })
@@ -15,7 +16,7 @@ describe('The Involved field', () => {
     it('invalid', () => {
       let invalidEmail = 'invalid.email'
 
-      let result = Circle.validateEmail(invalidEmail)
+      let result = circle.validateEmail(invalidEmail)
 
       expect(result).to.equal(false)
     })
@@ -25,7 +26,7 @@ describe('The Involved field', () => {
     it('by breaking the emails appart using spaces', () => {
       let chainGuestEmails = 'invalid.email hola@samuel.com'
 
-      let result = Circle.tokenize(chainGuestEmails)
+      let result = circle.tokenize(chainGuestEmails)
 
       expect(result[0]).to.equal('invalid.email hola@samuel.com')
     })
@@ -33,7 +34,7 @@ describe('The Involved field', () => {
     it('by breaking the emails appart by commas', () => {
       let chainGuestEmails = 'invalid.email, valid_with_spaces_prefix@domain.com,valid_with_spaces_suffix@domain.com ,valid@domain.com'
 
-      let result = Circle.tokenize(chainGuestEmails)
+      let result = circle.tokenize(chainGuestEmails)
 
       expect(result.length).to.equal(4)
       expect(result[3]).to.equal('valid@domain.com')
@@ -42,7 +43,7 @@ describe('The Involved field', () => {
     it('by removing empty chains', () => {
       let chainGuestEmails = ' ,,,, , , ,,, , ,       ,valid@domain.com'
 
-      let result = Circle.tokenize(chainGuestEmails)
+      let result = circle.tokenize(chainGuestEmails)
 
       expect(result[0]).to.equal('valid@domain.com')
     })

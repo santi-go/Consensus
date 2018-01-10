@@ -8,9 +8,10 @@ describe('The submit button', () => {
     let proposal = 'A new proposal is here'
     page.addAndCutFromGuestsEmail(proposal)
     page.getTextPastedInProposal()
-    let proposer = 'raul@cuchame.es'
+    page.lostFocusOnInvited()
+    let proposer = 'user@user.es'
     page.identifyProposer(proposer)
-    let circle = 'raul@cuchame.es'
+    let circle = 'user@user.es'
     page.invite(circle)
     page.lostFocusOnInvited()
     page.clickSubmit()
