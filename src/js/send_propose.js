@@ -1,6 +1,6 @@
 import {Circle} from './circle'
 import {ProposerLogic} from './proposer_logic'
-import {Proposal} from './proposal'
+import {ProposalLogic} from './proposal_logic'
 let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
@@ -43,7 +43,8 @@ export let SendPropose = {
     let url = this.url
     let proposer = ProposerLogic.proposerEmail.toString()
     let circle = Circle.involved()
-    let proposal = Proposal.proposalContent.toString()
+    let proposalLogic = new ProposalLogic()
+    let proposal = proposalLogic.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
     this.post(url, packagedProposal)
     this.finishRequest('Sent')

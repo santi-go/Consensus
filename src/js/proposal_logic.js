@@ -1,32 +1,35 @@
 import {ProposalView} from "./proposal_view"
 import {SendPropose} from './send_propose'
 
-export var Proposal = {
-  proposalContent: null,
+export class ProposalLogic {
 
-  initialize: function () {
+  constructor(){
+    this.proposalContent = null
+  }
+
+  initialize() {
     ProposalView.initialize()
     this.listen()
-  },
+  }
 
-  listen: function () {
+  listen() {
     let visualComponent = ProposalView.container
     visualComponent.addEventListener('send.text', this.formatText.bind(this))
-  },
+  }
 
-  formatText: function (pastedText) {
+  formatText(pastedText) {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
     ProposalView.render(newBlock)
     SendPropose.toggleSubmitButton("proposal", true)
-  },
+  }
 
-  sanitize: function (text) {
+  sanitize(text) {
     let result = text.replace(/<(?:.|\n)*?>/gm, '')
     return result
-  },
+  }
 
-  addBlockTags: function (text) {
+  addBlockTags(text) {
     let newBlock = ''
     let lines = text.split('\n')
     for (let line of lines) {
@@ -34,9 +37,9 @@ export var Proposal = {
     }
     this.proposalContent = newBlock
     return newBlock
-  },
+  }
 
-  addTag: function (line) {
+  addTag(line) {
     let convertedLine = ''
     let lineInProcess = line.trim()
     if (lineInProcess === '') {
@@ -45,13 +48,13 @@ export var Proposal = {
       convertedLine = this.addParagraphTag(lineInProcess)
     }
     return convertedLine
-  },
+  }
 
-  addBrTag: () => {
+  addBrTag() {
     return '<br>\n'
-  },
+  }
 
-  addParagraphTag: (lineInProcess) => {
+  addParagraphTag(lineInProcess) {
     return '<p>' + lineInProcess + '</p>\n'
   }
 }
