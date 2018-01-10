@@ -49,21 +49,21 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 ### Run all test of e2e
 
-`docker-compose run --rm node npm run test-all -s`
+`docker-compose run --rm node npm run test-all`
 
 
 ### Run end to end test of e2e:
 
-`docker-compose run --rm node npm run test-e2e -s`
+`docker-compose run --rm node npm run test-e2e`
 
 
 ### Run unit tests of e2e:
 
-`docker-compose run --rm node npm run test-unit -s`
+`docker-compose run --rm node npm run test-unit`
 
 
 ## ESLint
 
 ### Run ESLint
 
-`docker-compose run --rm node npm run linter -s`
+`docker-compose run --rm node npm run linter`

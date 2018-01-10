@@ -1,22 +1,24 @@
 import {MailChecker} from './mail_checker'
 import {Service} from './service'
 
-export let Proposer = {
-  container: null,
-  EMAIL_PATTERN: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+export class Proposer {
 
-  initialize: function (containerId) {
+  constructor(){
+    this.container = null
+  }
+
+  initialize(containerId) {
     this.container = document.getElementById(containerId)
     this.prepareEvents()
-  },
+  }
 
-  prepareEvents: function () {
+  prepareEvents() {
     let input = this.container.querySelector('input')
     input.addEventListener('blur', this.markValidity.bind(this))
     input.addEventListener('keydown', this.focusOnCircle.bind(this))
-  },
+  }
 
-  focusOnCircle: function (event) {
+  focusOnCircle(event) {
     if (Service.isBackSpaceKey || Service.isTabKey || Service.isDotKey) {
       return
     }
@@ -25,24 +27,24 @@ export let Proposer = {
       this.containerCircle = document.getElementById('circle-email')
       this.containerCircle.querySelector('input').focus()
     }
-  },
+  }
 
-  markValidity: function (event) {
+  markValidity(event) {
     let email = event.target.value
     let isValid = new CustomEvent('proposer.check', {'detail': email})
     this.container.dispatchEvent(isValid)
-  },
+  }
 
-  setValidity: function (isValid) {
+  setValidity(isValid) {
     let mark = 'invalid'
     if (isValid) {
       this.container.classList.remove(mark)
     } else {
       this.container.classList.add(mark)
     }
-  },
+  }
 
-  maskInput: function (event) {
+  maskInput(event) {
     let text = event.target.value
     let pressedKeyCode = event.which
     let position = event.target.selectionStart
