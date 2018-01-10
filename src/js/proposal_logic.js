@@ -5,22 +5,23 @@ export class ProposalLogic {
 
   constructor(){
     this.proposalContent = null
+    this.proposalView = new ProposalView()
   }
 
   initialize() {
-    ProposalView.initialize()
+    this.proposalView.initialize()
     this.listen()
   }
 
   listen() {
-    let visualComponent = ProposalView.container
+    let visualComponent = this.proposalView.container
     visualComponent.addEventListener('send.text', this.formatText.bind(this))
   }
 
   formatText(pastedText) {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
-    ProposalView.render(newBlock)
+    this.proposalView.render(newBlock)
     SendPropose.toggleSubmitButton("proposal", true)
   }
 
