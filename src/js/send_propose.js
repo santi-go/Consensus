@@ -5,6 +5,8 @@ let XMLHttpRequest = require('xhr2')
 
 export let SendPropose = {
   url: 'http://0.0.0.0:4567/send-mail',
+  proposerLogic: null,
+  proposalLogic: null,
 
   fields: {
         proposer: false,
@@ -12,9 +14,11 @@ export let SendPropose = {
         proposal: false
       },
 
-  initialize: function (containerId) {
+  initialize: function (containerId, proposerLogic, proposalLogic) {
     this.container = document.getElementById(containerId)
     this.prepareEvents()
+    this.proposerLogic = proposerLogic
+    this.proposalLogic = proposalLogic
   },
 
   prepareEvents: function () {
@@ -41,10 +45,9 @@ export let SendPropose = {
 
   submitProposal: function () {
     let url = this.url
-    let proposer = ProposerLogic.proposerEmail.toString()
+    let proposer = this.proposerLogic.proposerEmail.toString()
     let circle = Circle.involved()
-    let proposalLogic = new ProposalLogic()
-    let proposal = proposalLogic.proposalContent.toString()
+    let proposal = this.proposalLogic.proposalContent.toString()
     let packagedProposal = this.packaging(proposer, circle, proposal)
     this.post(url, packagedProposal)
     this.finishRequest('Sent')
