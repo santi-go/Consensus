@@ -25,7 +25,8 @@ describe('When identifying the proposer', () => {
     let componentId = '#proposer-email'
 
     page.inviteWithComponent(componentId, email)
-    page.pressEnterWithComponent(componentId)
+    let keyEnter = '\uE007'
+    page.putCharacterInComponent(componentId, keyEnter)
     let focus = browser.selector
 
     expect(focus).not.to.equal('#proposer-email')
@@ -39,7 +40,7 @@ describe('When input characters', () => {
     let componentId = '#proposer-email'
 
     page.inviteWithComponent(componentId, email)
-    page.pressCharacterInComponent(componentId, '@')
+    page.putCharacterInComponent(componentId, '@')
     let result = page.contentOfComponent(componentId)
 
     expect(result).to.equal('consensus@devscola.org')

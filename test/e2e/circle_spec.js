@@ -6,8 +6,8 @@ describe('When involving a circle member', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
 
-    page.invite(validMail)
-    page.lostFocusOnInvited()
+    page.inviteWithComponent('#circle-email',validMail)
+    page.pressTab()
 
     expect(page.firstValidInvitation()).to.include(validMail)
   })
@@ -16,8 +16,8 @@ describe('When involving a circle member', () => {
     let invalidMail = 'invalidMail'
     let page = new Propose()
 
-    page.invite(invalidMail)
-    page.lostFocusOnInvited()
+    page.inviteWithComponent('#circle-email',invalidMail)
+    page.pressTab()
 
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
   })
@@ -28,8 +28,8 @@ describe('When involving a circle member', () => {
     let mails = validMail + ', ' + invalidMail
     let page = new Propose()
 
-    page.invite(mails)
-    page.lostFocusOnInvited()
+    page.inviteWithComponent('#circle-email',mails)
+    page.pressTab()
 
     expect(page.firstValidInvitation()).to.include(validMail)
     expect(page.firstInvalidInvitation()).to.include(invalidMail)
@@ -39,8 +39,8 @@ describe('When involving a circle member', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
 
-    page.invite(validMail)
-    page.lostFocusOnInvited()
+    page.inviteWithComponent('#circle-email',validMail)
+    page.pressTab()
 
     expect(page.existCloseButton()).to.be.true
     page.clickClose()
@@ -50,27 +50,34 @@ describe('When involving a circle member', () => {
   it('you can clear the input with the enter key', () => {
     let page = new Propose()
     let email = 'hola@devscola.org'
-    page.invite(email)
-    page.pressEnter()
-    expect(page.inputValue()).to.equal('')
+    let keyEnter = '\uE007'
+
+    page.inviteWithComponent('#circle-email',email)
+    page.putCharacterInComponent('#circle-email',keyEnter)
+
+    expect(page.contentOfComponent('#circle-email')).to.equal('')
   })
 
   it('you can clear the input with the comma key', () => {
     let page = new Propose()
     let email = 'hola@devscola.org'
-    page.invite(email)
-    page.pressComma()
-    expect(page.inputValue()).to.equal('')
+    let keyComma = '\u002C'
+
+    page.inviteWithComponent('#circle-email',email)
+    page.putCharacterInComponent('#circle-email',keyComma)
+
+    expect(page.contentOfComponent('#circle-email')).to.equal('')
   })
 
   it('deletes only one email box when you click on it', () => {
     let page = new Propose()
     let email = 'hola@devscola.org'
+    let keyComma = '\u002C'
 
-    page.invite(email)
-    page.pressComma()
-    page.invite(email)
-    page.pressComma()
+    page.inviteWithComponent('#circle-email',email)
+    page.putCharacterInComponent('#circle-email',keyComma)
+    page.inviteWithComponent('#circle-email',email)
+    page.putCharacterInComponent('#circle-email',keyComma)
     page.clickClose()
 
     expect(page.existEmailValid()).to.be.true

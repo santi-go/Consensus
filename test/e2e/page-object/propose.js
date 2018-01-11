@@ -6,7 +6,6 @@ class Propose {
   inviteWithComponent (componentId, mail) {
     let component = $(componentId)
     let input = component.$('input')
-
     input.setValue(mail)
   }
 
@@ -17,7 +16,7 @@ class Propose {
     input.keys(keyEnter)
   }
 
-  pressCharacterInComponent (componentId,character) {
+  putCharacterInComponent (componentId,character) {
     let component = $(componentId)
     let input = component.$('input')
     let anyKey = character
@@ -36,19 +35,7 @@ class Propose {
     return result === 'Sent'
   }
 
-  invite (mail) {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    input.setValue(mail)
-  }
-
-  inputValue () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    return input.getValue()
-  }
-
-  lostFocusOnInvited () {
+  pressTab () {
     let keyTab = '\u0009'
     browser.keys(keyTab)
   }
@@ -104,20 +91,6 @@ class Propose {
 
   existEmailValid () {
     return browser.isExisting('.validBox')
-  }
-
-  pressEnter () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    let keyEnter = '\uE007'
-    input.keys(keyEnter)
-  }
-
-  pressComma () {
-    let component = $('#circle-email')
-    let input = component.$('input')
-    let keyComma = '\u002C'
-    input.keys(keyComma)
   }
 
   addAndCutFromGuestsEmail (proposal) {

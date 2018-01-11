@@ -8,12 +8,12 @@ describe('The submit button', () => {
     let proposal = 'A new proposal is here'
     page.addAndCutFromGuestsEmail(proposal)
     page.getTextPastedInProposal()
-    page.lostFocusOnInvited()
+    page.pressTab()
     let proposer = 'user@user.es'
     page.identifyProposer(proposer)
     let circle = 'user@user.es'
-    page.invite(circle)
-    page.lostFocusOnInvited()
+    page.inviteWithComponent('#circle-email',circle)
+    page.pressTab()
     page.clickSubmit()
 
     expect(page.confirmSuccessful()).to.be.true
