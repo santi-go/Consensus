@@ -1,7 +1,7 @@
-import {Involved} from "./involved"
-import {SendPropose} from './send_propose'
-import {Proposer} from './proposer'
-import {Proposal} from "./proposal"
+import {Involved} from "../involved"
+import {SendPropose} from '../send_propose'
+import {Proposer} from '../proposer'
+import {Proposal} from "../proposal"
 
 export class ProposalLogic {
 

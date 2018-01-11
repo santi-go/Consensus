@@ -1,11 +1,11 @@
 var expect = require('chai').expect
 
 var {MailChecker} = require('../../src/js/mail_checker')
-var {ProposerLogic} = require('../../src/js/controller')
+var {ProposerLogic} = require('../../src/js/components/controller')
 
 describe('The proposer field', function () {
   var mailChecker = new MailChecker()
-  
+
   it('accepts a valid email', function () {
     let proposerLogic = new ProposerLogic('proposer-email')
     let validEmail = 'hola@devscola.org'

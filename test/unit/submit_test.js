@@ -2,7 +2,7 @@ var expect = require('chai').expect
 
 var {SendPropose} = require('../../src/js/send_propose')
 
-var {Circle} = require('../../src/js/controller')
+var {Circle} = require('../../src/js/components/controller')
 
 describe('The submit button', () => {
   let circle = new Circle()
