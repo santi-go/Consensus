@@ -20,7 +20,7 @@ export class Proposer {
   }
 
   focusOnCircle(event) {
-    if (this.keyPressed.isBackSpace || this.keyPressed.isTab || this.keyPressed.isDot) {
+    if (this.keyPressed.isBackSpace(event) || this.keyPressed.isTab(event) || this.keyPressed.isDot(event)) {
       return
     }
     this.maskInput(event)
@@ -50,7 +50,8 @@ export class Proposer {
     let pressedKeyCode = event.which
     let position = event.target.selectionStart
     let character = String.fromCharCode(pressedKeyCode)
-    let isAllowed = MailChecker.isAllowedIn(text, character, position)
+    let mailChecker = new MailChecker
+    let isAllowed = mailChecker.isAllowedIn(text, character, position)
     if (!isAllowed) {
       event.preventDefault()
     }
