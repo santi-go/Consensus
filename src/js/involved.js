@@ -1,10 +1,10 @@
-import {Service} from "./service"
+import {KeyPressed} from "./service"
 
 export class Involved {
 
   constructor(){
     this.container = null
-    this.service = new Service()
+    this.keyPressed = new KeyPressed()
   }
 
   initialize(containerId) {
@@ -20,7 +20,7 @@ export class Involved {
   }
 
   acceptKeysPress(e) {
-    if (this.service.isEnterKey(e) || this.service.isCommaKey(e)) {
+    if (this.keyPressed.isEnter(e) || this.keyPressed.isComma(e)) {
       this.setCircle()
       e.preventDefault()
     }

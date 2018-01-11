@@ -1,27 +1,27 @@
-export class Service {
+export class KeyPressed {
   constructor(){}
 
-  isEnterKey(e) {
+  isEnter(e) {
     if (e.keyCode === 13) { return true }
     return false
   }
 
-  isCommaKey(e) {
+  isComma(e) {
     if (e.keyCode === 188) { return true }
     return false
   }
 
-  isBackSpaceKey(e) {
+  isBackSpace(e) {
     if (e.keyCode === 8) { return true }
     return false
   }
 
-  isTabKey(e) {
+  isTab(e) {
     if (e.keyCode === 9) { return true }
     return false
   }
 
-  isDotKey(e) {
+  isDot(e) {
     if (e.keyCode === 190) { return true }
     return false
   }

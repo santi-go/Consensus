@@ -1,11 +1,11 @@
 import {MailChecker} from './mail_checker'
-import {Service} from './service'
+import {KeyPressed} from './service'
 
 export class Proposer {
 
   constructor(){
     this.container = null
-    this.service = new Service()
+    this.keyPressed = new KeyPressed()
   }
 
   initialize(containerId) {
@@ -20,11 +20,11 @@ export class Proposer {
   }
 
   focusOnCircle(event) {
-    if (this.service.isBackSpaceKey || this.service.isTabKey || this.service.isDotKey) {
+    if (this.keyPressed.isBackSpace || this.keyPressed.isTab || this.keyPressed.isDot) {
       return
     }
     this.maskInput(event)
-    if (this.service.isEnterKey(event)) {
+    if (this.keyPressed.isEnter(event)) {
       this.containerCircle = document.getElementById('circle-email')
       this.containerCircle.querySelector('input').focus()
     }
