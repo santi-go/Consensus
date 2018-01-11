@@ -1,6 +1,6 @@
 var expect = require('chai').expect
 
-var {ProposalLogic} = require('../../src/js/proposal_logic')
+var {ProposalLogic} = require('../../src/js/controller')
 
 describe('The proposal field', function () {
   it('sanitizes the text', function () {

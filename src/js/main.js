@@ -1,6 +1,6 @@
-import {Circle} from './circle'
-import {ProposerLogic} from './proposer_logic'
-import {ProposalLogic} from './proposal_logic'
+import {Circle} from './controller'
+import {ProposerLogic} from './controller'
+import {ProposalLogic} from './controller'
 import {SendPropose} from './send_propose'
 
 let circle = new Circle()
