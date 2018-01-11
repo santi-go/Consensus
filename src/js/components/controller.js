@@ -5,9 +5,10 @@ import {Proposal} from "../proposal"
 
 export class ProposalLogic {
 
-  constructor(){
+  constructor(sendPropose){
     this.content = null
     this.proposal = new Proposal()
+    this.sendPropose = sendPropose
   }
 
   initialize() {
@@ -24,7 +25,7 @@ export class ProposalLogic {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
     this.proposal.render(newBlock)
-    SendPropose.toggleSubmitButton("proposal", true)
+    this.sendPropose.toggleSubmitButton("proposal", true)
   }
 
   sanitize(text) {
@@ -64,11 +65,13 @@ export class ProposalLogic {
 
 
 export class ProposerLogic {
-  constructor () {
+  constructor (sendPropose) {
     this.container = null
     this.proposerEmail = null
     this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.proposer = new Proposer()
+    this.sendPropose = sendPropose
+
   }
 
   initialize (containerId) {
@@ -85,7 +88,7 @@ export class ProposerLogic {
     let text = data.detail
     let isValid = this.validateEmail(text)
     this.proposer.setValidity(isValid)
-    SendPropose.toggleSubmitButton('proposer', isValid)
+    this.sendPropose.toggleSubmitButton('proposer', isValid)
   }
 
   validateEmail (email) {
@@ -116,10 +119,11 @@ export class ProposerLogic {
 }
 
 export class Circle {
-  constructor () {
+  constructor (sendPropose) {
     this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.circle = []
     this.involvedPeople = new Involved()
+    this.sendPropose = sendPropose
   }
 
   initialize () {
@@ -155,7 +159,7 @@ export class Circle {
     let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
     this.involvedPeople.render(this.circle)
-      SendPropose.toggleSubmitButton("circle", this.involved().length)
+      this.sendPropose.toggleSubmitButton("circle", this.involved().length)
   }
 
   addListEmailsToCircle (emailsList) {
@@ -186,7 +190,7 @@ export class Circle {
   removeEmailFromCircle (data) {
     this.removeEmail(data.detail)
     this.involvedPeople.render(this.circle)
-    SendPropose.toggleSubmitButton("circle", this.involved().length)
+    this.sendPropose.toggleSubmitButton("circle", this.involved().length)
   }
 
   removeEmail (email) {

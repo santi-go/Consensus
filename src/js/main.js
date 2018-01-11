@@ -3,11 +3,12 @@ import {ProposerLogic} from './components/controller'
 import {ProposalLogic} from './components/controller'
 import {SendPropose} from './send_propose'
 
-let circle = new Circle()
-let proposerLogic = new ProposerLogic()
-let proposalLogic = new ProposalLogic()
+let sendPropose = new SendPropose()
+let circle = new Circle(sendPropose)
+let proposerLogic = new ProposerLogic(sendPropose)
+let proposalLogic = new ProposalLogic(sendPropose)
 
 circle.initialize()
 proposerLogic.initialize()
 proposalLogic.initialize()
-SendPropose.initialize('panel', circle, proposerLogic, proposalLogic)
+sendPropose.initialize('panel', circle, proposerLogic, proposalLogic)
