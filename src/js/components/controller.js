@@ -159,7 +159,7 @@ export class Circle {
     let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
     this.involvedPeople.render(this.circle)
-      this.sendPropose.toggleSubmitButton("circle", this.involved().length)
+      this.sendPropose.toggleSubmitButton("involved", this.circleHasMembers())
   }
 
   addListEmailsToCircle (emailsList) {
@@ -187,10 +187,14 @@ export class Circle {
     return result
   }
 
+  circleHasMembers () {
+    return this.involved().length > 0
+  }
+
   removeEmailFromCircle (data) {
     this.removeEmail(data.detail)
     this.involvedPeople.render(this.circle)
-    this.sendPropose.toggleSubmitButton("circle", this.involved().length)
+    this.sendPropose.toggleSubmitButton("involved", this.circleHasMembers())
   }
 
   removeEmail (email) {

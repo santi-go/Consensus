@@ -4,15 +4,22 @@ var {SendPropose} = require('../../src/js/send_propose')
 
 var {Circle} = require('../../src/js/components/controller')
 
-describe('The submit button', () => {
+describe('The fields validation', () => {
   let sendPropose = new SendPropose()
   let circle = new Circle()
-  it('is enabled when proposer, circle and proposal fields are correctly added', () => {
+  it('is true when proposer, circle and proposal fields are correctly added', () => {
     sendPropose.validateField("proposer", true)
-    circle.addEmailToCircle({ 'email': 'user@devscola.org', 'valid': true, 'id': 0 })
-    sendPropose.validateField("circle", 1)
-    let disabledValue = sendPropose.validateField("proposal", true)
+    sendPropose.validateField("involved", true)
+    let allValidFields = sendPropose.validateField("proposal", true)
 
-    expect(disabledValue).to.be.false
+    expect(allValidFields).to.be.true
+  })
+
+  it('is false when any field is not correct', () => {
+    sendPropose.validateField("proposer", true)
+    sendPropose.validateField("involved", false)
+    let allValidFields = sendPropose.validateField("proposal", true)
+
+    expect(allValidFields).to.be.false
   })
 })

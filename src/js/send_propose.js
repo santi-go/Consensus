@@ -9,7 +9,7 @@ export class SendPropose {
 
     this.fields = {
           proposer: false,
-          involved: 0,
+          involved: false,
           proposal: false
         }
   }
@@ -28,23 +28,25 @@ export class SendPropose {
   }
 
   toggleSubmitButton(caller, validate){
-    let value = this.validateField(caller, validate)
+    let isValid = this.validateField(caller, validate)
     let submitButton = this.container.querySelector('#submit')
-    submitButton.disabled = value
+    submitButton.disabled = false
+    if (!isValid) {
+      submitButton.disabled = true
+    }
   }
 
   validateField(caller, validate) {
-        if (caller === "proposer") this.fields.proposer = validate
-        if (caller === "circle") this.fields.involved = validate
-        if (caller === "proposal") this.fields.proposal = validate
-        if (this.fields.proposer &&  this.fields.involved > 0 && this.fields.proposal ) {
-          return false
-        }
-          return true
+    this.fields[caller] = validate
+    for (let field in this.fields) {
+      if (!this.fields[field]){
+        return false
       }
+    }
+    return true
+  }
 
   submitProposal() {
-
     let proposer = this.proposerLogic.proposerEmail.toString()
     let circle = this.circle.involved()
     let proposal = this.proposalLogic.content.toString()
@@ -67,7 +69,7 @@ export class SendPropose {
   packaging(proposer, circle, proposal) {
     return {
       "proposer": proposer,
-      "circle": circle,
+      "involved": circle,
       "proposal": proposal
     }
   }
