@@ -5,6 +5,7 @@ export class Proposer {
 
   constructor(){
     this.container = null
+    this.service = new Service()
   }
 
   initialize(containerId) {
@@ -19,11 +20,11 @@ export class Proposer {
   }
 
   focusOnCircle(event) {
-    if (Service.isBackSpaceKey || Service.isTabKey || Service.isDotKey) {
+    if (this.service.isBackSpaceKey || this.service.isTabKey || this.service.isDotKey) {
       return
     }
     this.maskInput(event)
-    if (Service.isEnterKey(event)) {
+    if (this.service.isEnterKey(event)) {
       this.containerCircle = document.getElementById('circle-email')
       this.containerCircle.querySelector('input').focus()
     }

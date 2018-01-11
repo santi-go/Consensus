@@ -4,6 +4,7 @@ export class Involved {
 
   constructor(){
     this.container = null
+    this.service = new Service()
   }
 
   initialize(containerId) {
@@ -19,7 +20,7 @@ export class Involved {
   }
 
   acceptKeysPress(e) {
-    if (Service.isEnterKey(e) || Service.isCommaKey(e)) {
+    if (this.service.isEnterKey(e) || this.service.isCommaKey(e)) {
       this.setCircle()
       e.preventDefault()
     }
