@@ -1,6 +1,6 @@
 var expect = require('chai').expect
 
-var {MailChecker} = require('../../src/js/mail_checker')
+var {MailChecker} = require('../../src/js/components/controller')
 var {ProposerLogic} = require('../../src/js/components/controller')
 
 describe('The proposer field', function () {

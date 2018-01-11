@@ -31,3 +31,17 @@ describe('When identifying the proposer', () => {
     expect(focus).not.to.equal('#proposer-email')
   })
 })
+
+describe('When input characters', () => {
+  it('checks you can not write two @', () => {
+    let page = new Propose()
+    let email = 'consensus@devscola.org'
+    let componentId = '#proposer-email'
+
+    page.inviteWithComponent(componentId, email)
+    page.pressCharacterInComponent(componentId, '@')
+    let result = page.contentOfComponent(componentId)
+
+    expect(result).to.equal('consensus@devscola.org')
+  })
+})

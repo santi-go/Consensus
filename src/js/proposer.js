@@ -1,4 +1,4 @@
-import {MailChecker} from './mail_checker'
+import {MailChecker} from './components/controller.js'
 import {KeyPressed} from './libraries/key_mapping'
 
 export class Proposer {
@@ -47,9 +47,8 @@ export class Proposer {
 
   maskInput(event) {
     let text = event.target.value
-    let pressedKeyCode = event.which
     let position = event.target.selectionStart
-    let character = String.fromCharCode(pressedKeyCode)
+    let character = event.key
     let mailChecker = new MailChecker
     let isAllowed = mailChecker.isAllowedIn(text, character, position)
     if (!isAllowed) {
