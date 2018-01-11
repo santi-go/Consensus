@@ -1,4 +1,4 @@
-import {KeyPressed} from "./service"
+import {KeyPressed} from "./libraries/key_mapping"
 
 export class Involved {
 
