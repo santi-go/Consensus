@@ -11,6 +11,11 @@
   --header-color: #EFEFEF;
   --text-color: #111111;
 }
+#submit:disabled{
+  cursor: default;
+  border-color: var(--success-color);
+  color: var(--success-color);
+}
 body {
     align-items: center;
     color: var(--text-color);
