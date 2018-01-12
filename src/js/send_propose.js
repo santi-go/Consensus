@@ -2,7 +2,7 @@ let XMLHttpRequest = require('xhr2')
 
 export class SendPropose {
   constructor(){
-    this.url = 'http://0.0.0.0:4567/send-mail'
+    this.url = 'http://0.0.0.0:4567/create-proposal'
     this.circle = null
     this.proposerLogic = null
     this.proposalLogic = null
