@@ -1,17 +1,12 @@
-let XMLHttpRequest = require('xhr2')
+import {SendProposeLogic} from './components/send_propose'
+let sendProposeLogic = new SendProposeLogic()
+sendProposeLogic.initialize()
 
 export class SendPropose {
   constructor(){
-    this.url = 'http://0.0.0.0:4567/create-proposal'
     this.circle = null
     this.proposerLogic = null
     this.proposalLogic = null
-
-    this.fields = {
-          proposer: false,
-          involved: false,
-          proposal: false
-        }
   }
 
   initialize(containerId, circle, proposerLogic, proposalLogic) {
@@ -27,56 +22,30 @@ export class SendPropose {
     submitButton.addEventListener('click', this.submitProposal.bind(this))
   }
 
-  toggleSubmitButton(caller, validate){
-    let isValid = this.validateField(caller, validate)
-    let submitButton = this.container.querySelector('#submit')
-    submitButton.disabled = false
-    if (!isValid) {
-      submitButton.disabled = true
-    }
+  sendPropertyToSubmitButton(caller, validate){
+    let button = this.container.querySelector('#submit')
+    let ifItIsValid = sendProposeLogic.validateField(caller, validate)
+    this.toggleSubmit(button, ifItIsValid)
   }
 
-  validateField(caller, validate) {
-    this.fields[caller] = validate
-    for (let field in this.fields) {
-      if (!this.fields[field]){
-        return false
-      }
+  toggleSubmit(button, ifItIsValid) {
+    button.disabled = false
+    if (!ifItIsValid) {
+      button.disabled = true
     }
-    return true
   }
 
   submitProposal() {
     let proposer = this.proposerLogic.proposerEmail.toString()
     let circle = this.circle.involved()
     let proposal = this.proposalLogic.content.toString()
-    let packagedProposal = this.packaging(proposer, circle, proposal)
-    this.post(this.url, packagedProposal)
-    this.finishRequest('Sent')
+    let packagedProposal = sendProposeLogic.packaging(proposer, circle, proposal)
+    sendProposeLogic.post(packagedProposal)
+    this.notifyRequest('Sent')
   }
 
-  post(url, data) {
-    let xhr = new XMLHttpRequest()
-    xhr.open('POST', url, true)
-     xhr.onreadystatechange = function() {
-      if (this.readyState == 4 && this.status == 200) {
-        console.log(this.responseText);
-      }
-    }
-    xhr.send(JSON.stringify(data))
-  }
-
-  finishRequest(message) {
+  notifyRequest(message) {
     let confirmSuccessful = this.container.querySelector('span')
     confirmSuccessful.innerHTML = message
   }
-
-  packaging(proposer, circle, proposal) {
-    return {
-      "proposer": proposer,
-      "involved": circle,
-      "proposal": proposal
-    }
-  }
-
 }

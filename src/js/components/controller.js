@@ -4,7 +4,6 @@ import {Proposer} from '../proposer'
 import {Proposal} from "../proposal"
 
 export class ProposalLogic {
-
   constructor(sendPropose){
     this.content = null
     this.proposal = new Proposal()
@@ -25,7 +24,7 @@ export class ProposalLogic {
     let text = this.sanitize(pastedText.detail)
     let newBlock = this.addBlockTags(text)
     this.proposal.render(newBlock)
-    this.sendPropose.toggleSubmitButton("proposal", true)
+    this.sendPropose.sendPropertyToSubmitButton("proposal", true)
   }
 
   sanitize(text) {
@@ -88,7 +87,7 @@ export class ProposerLogic {
     let text = data.detail
     let isValid = this.validateEmail(text)
     this.proposer.setValidity(isValid)
-    this.sendPropose.toggleSubmitButton('proposer', isValid)
+    this.sendPropose.sendPropertyToSubmitButton('proposer', isValid)
   }
 
   validateEmail (email) {
@@ -159,7 +158,7 @@ export class Circle {
     let emailsList = this.parseEmail(data.detail)
     this.addListEmailsToCircle(emailsList)
     this.involvedPeople.render(this.circle)
-      this.sendPropose.toggleSubmitButton("involved", this.circleHasMembers())
+      this.sendPropose.sendPropertyToSubmitButton("involved", this.circleHasMembers())
   }
 
   addListEmailsToCircle (emailsList) {
@@ -194,7 +193,7 @@ export class Circle {
   removeEmailFromCircle (data) {
     this.removeEmail(data.detail)
     this.involvedPeople.render(this.circle)
-    this.sendPropose.toggleSubmitButton("involved", this.circleHasMembers())
+    this.sendPropose.sendPropertyToSubmitButton("involved", this.circleHasMembers())
   }
 
   removeEmail (email) {

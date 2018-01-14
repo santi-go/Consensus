@@ -1,24 +1,23 @@
 var expect = require('chai').expect
 
-var {SendPropose} = require('../../src/js/send_propose')
-
+var {SendProposeLogic} = require('../../src/js/components/send_propose')
 var {Circle} = require('../../src/js/components/controller')
 
 describe('The fields validation', () => {
-  let sendPropose = new SendPropose()
+  let sendProposeLogic = new SendProposeLogic()
   let circle = new Circle()
   it('is true when proposer, circle and proposal fields are correctly added', () => {
-    sendPropose.validateField("proposer", true)
-    sendPropose.validateField("involved", true)
-    let allValidFields = sendPropose.validateField("proposal", true)
+    sendProposeLogic.validateField("proposer", true)
+    sendProposeLogic.validateField("involved", true)
+    let allValidFields = sendProposeLogic.validateField("proposal", true)
 
     expect(allValidFields).to.be.true
   })
 
   it('is false when any field is not correct', () => {
-    sendPropose.validateField("proposer", true)
-    sendPropose.validateField("involved", false)
-    let allValidFields = sendPropose.validateField("proposal", true)
+    sendProposeLogic.validateField("proposer", true)
+    sendProposeLogic.validateField("involved", false)
+    let allValidFields = sendProposeLogic.validateField("proposal", true)
 
     expect(allValidFields).to.be.false
   })
