@@ -1,15 +1,11 @@
-import {KeyPressed} from "./libraries/key_mapping"
+import {KeyPressed} from "../libraries/key_mapping"
 
 export class Involved {
 
   constructor(){
-    this.container = null
-    this.keyPressed = new KeyPressed()
-  }
-
-  initialize(containerId) {
-    this.container = document.getElementById(containerId)
+    this.container = document.getElementById('circle-email')
     this.prepareEvents()
+    this.keyPressed = new KeyPressed()
   }
 
   prepareEvents() {
@@ -29,7 +25,7 @@ export class Involved {
   setCircle() {
     let text = this.getInputContainer().value
     if (text === '') return
-    let signal = new CustomEvent('circle.set', {'detail': text})
+    let signal = new CustomEvent('circle.set', {'detail': text,'bubbles':true})
     this.container.dispatchEvent(signal)
   }
 
@@ -84,7 +80,9 @@ export class Involved {
   removeEmail(event) {
     let email = event.target.parentElement.innerText
     let emailId = event.target.parentElement.id
-    let signal = new CustomEvent('remove.from.circle', {'detail': {'email': email, 'id': emailId}})
+    let signal = new CustomEvent('remove.from.circle',
+                                {'detail': {'email': email, 'id': emailId},
+                                'bubbles': true})
     this.container.dispatchEvent(signal)
     event.preventDefault()
   }

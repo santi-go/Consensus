@@ -1,13 +1,6 @@
-
 export class Proposal {
 
   constructor() {
-    this.inputContainer = null
-    this.outputContainer = null
-    this.container = null
-  }
-
-  initialize() {
     this.container = document.getElementById('proposal')
     this.inputContainer = this.container.querySelector('input')
     this.outputContainer = this.container.querySelector('output')
@@ -28,7 +21,7 @@ export class Proposal {
 
   pasteProposal(event) {
     let pastedText = event.clipboardData.getData('text')
-    let signal = new CustomEvent('send.text', {'detail': pastedText})
+    let signal = new CustomEvent('send.text', {'detail': pastedText, 'bubbles':true})
     this.container.dispatchEvent(signal)
     event.preventDefault()
   }

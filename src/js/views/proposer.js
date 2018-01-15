@@ -1,16 +1,12 @@
-import {MailChecker} from './components/controller.js'
-import {KeyPressed} from './libraries/key_mapping'
+import {MailChecker} from '../libraries/mail_checker.js'
+import {KeyPressed} from '../libraries/key_mapping'
 
 export class Proposer {
 
   constructor(){
-    this.container = null
-    this.keyPressed = new KeyPressed()
-  }
-
-  initialize(containerId) {
-    this.container = document.getElementById(containerId)
+    this.container = document.getElementById('proposer-email')
     this.prepareEvents()
+    this.keyPressed = new KeyPressed()
   }
 
   prepareEvents() {
@@ -32,7 +28,7 @@ export class Proposer {
 
   markValidity(event) {
     let email = event.target.value
-    let isValid = new CustomEvent('proposer.check', {'detail': email})
+    let isValid = new CustomEvent('proposer.check', {'detail': email, 'bubbles':true})
     this.container.dispatchEvent(isValid)
   }
 
