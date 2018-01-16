@@ -1,5 +1,8 @@
 export class ConsensusProposition {
   constructor() {
+    this.proposer = false
+    this.proposal = false
+    this.circle = []
   }
 
   setCircle(circle){
@@ -15,8 +18,8 @@ export class ConsensusProposition {
   }
 
   isSubmitable(){
-    let hasData=(this.proposer && this.proposal)
-    let hasInvolved = ( this.circle && this.circle.length > 0 )
+    let hasData = ( this.proposer && this.proposal )
+    let hasInvolved = ( this.circle.length > 0 )
     return hasData && hasInvolved
   }
 
