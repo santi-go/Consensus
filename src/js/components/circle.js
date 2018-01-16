@@ -52,9 +52,6 @@ export class Circle {
     return result
   }
 
-  hasMembers () {
-    return this.involved().length > 0
-  }
 
   removeEmail (email) {
     let result = []

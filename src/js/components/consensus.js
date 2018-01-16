@@ -6,10 +6,11 @@ import {Send} from '../views/send'
 import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
 import {Circle} from './circle'
+import {ConsensusProposition} from './consensus_proposition'
 
 export class Consensus {
   constructor(elementID){
-    this.data = {}
+    this.data = new ConsensusProposition()
     this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.circle = new Circle()
     this.initialize_views()
@@ -47,44 +48,48 @@ export class Consensus {
   }
 
   submit(event){
-    Bus.publish('submit.proposal',this.data)
+    Bus.publish('submit.proposal',this.data.asObject())
   }
 
   formatProposal(event){
-      this.data.proposal = Formatter.formatText(event.detail)
-      this.proposal.render(this.data.proposal)
+      let proposal = Formatter.formatText(event.detail)
+      this.proposal.render(proposal)
+      this.data.setProposal(proposal)
       this.checkSubmitable()
   }
 
   parseCircle(event){
       this.circle.extractMails(event.detail)
       this.involved.render(this.circle.circle)
+      this.data.setCircle(this.circle.involved())
       this.checkSubmitable()
   }
 
   removeFromCircle(event){
     this.circle.removeEmail(event.detail)
     this.involved.render(this.circle.circle)
+    this.data.setCircle(this.circle.involved())
     this.checkSubmitable()
   }
 
   checkForMail(event){
     let mail = event.detail
-    this.data.proposer = null
+    let proposer = null
     let valid=false
     if (this.validateEmail(mail)){
-      this.data.proposer = mail
+      proposer = mail
       valid = true
     }
+    this.data.setProposer(proposer)
     this.proposer.setValidity(valid)
     this.checkSubmitable()
   }
 
 
   checkSubmitable(){
-    let submitable=(this.data.proposer && this.data.proposal && this.circle.hasMembers())
-    this.send.toggleSubmit(submitable)
+    this.send.toggleSubmit(this.data.isSubmitable())
   }
+
   validateEmail (email) {
     if (email.trim() === '') return true
     let validated = this.EMAIL_PATTERN.test(email)

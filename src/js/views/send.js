@@ -18,9 +18,10 @@ export class Send {
     }
   }
 
-  submitProposal() {
+  submitProposal(event) {
     let signal = new CustomEvent('submit.proposal', {'bubbles':true})
     this.container.dispatchEvent(signal)
+    event.preventDefault()
   }
 
 }
