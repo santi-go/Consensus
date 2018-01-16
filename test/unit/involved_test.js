@@ -1,6 +1,6 @@
 var expect = require('chai').expect
 
-var {Circle} = require('../../src/js/components/controller')
+var {Circle} = require('../../src/js/components/circle')
 
 describe('The Involved field', () => {
   let circle = new Circle()
