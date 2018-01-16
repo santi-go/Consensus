@@ -29,10 +29,17 @@ class Propose {
     return input.getValue()
   }
 
+  outputOfComponent (componentId) {
+    let component = $(componentId)
+    let input = component.$('output')
+    return input.getValue()
+  }
+
   confirmSuccessful () {
-    let component = $('#panel span')
-    let result = component.getText()
-    return result === 'Sent'
+    let proposer = this.contentOfComponent('#proposer-email')
+    let proposal = this.outputOfComponent('#proposal')
+    let circle =this.contentOfComponent('#circle-email')
+    return (!proposer && !proposal && !circle)
   }
 
   pressTab () {

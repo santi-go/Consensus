@@ -2,7 +2,7 @@ var expect = require('chai').expect
 let Propose = require('./page-object/propose')
 
 describe('The submit button', () => {
-  it('launch the proposal to system', () => {
+  xit('launch the proposal to system', () => {
     let page = new Propose()
 
     let proposal = 'A new proposal is here'
