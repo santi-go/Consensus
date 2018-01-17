@@ -5,13 +5,14 @@ import {Send} from '../views/send'
 
 import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
+import {MailValidator} from '../libraries/mail_validator'
 import {Circle} from './circle'
 import {ConsensusProposition} from './consensus_proposition'
 
 export class Consensus {
   constructor(elementID){
     this.data = new ConsensusProposition()
-    this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    this.mailValidator = new MailValidator()
     this.circle = new Circle()
     this.initialize_views()
     this.listen(elementID)
@@ -76,26 +77,21 @@ export class Consensus {
     let mail = event.detail
     let proposer = null
     let valid=false
-    if (this.validateEmail(mail)){
+    if (this.mailValidator.validateEmail(mail)){
       proposer = mail
       valid = true
     }
-    this.data.setProposer(proposer)
-    this.proposer.setValidity(valid)
+    this.saveEmail(proposer,valid)
     this.checkSubmitable()
   }
 
+  saveEmail(proposer,valid) {
+    this.data.setProposer(proposer)
+    this.proposer.setValidity(valid)
+  }
 
   checkSubmitable(){
     this.send.toggleSubmit(this.data.isSubmitable())
   }
 
-  validateEmail (email) {
-    if (email.trim() === '') return true
-    let validated = this.EMAIL_PATTERN.test(email)
-    if (validated) {
-      this.proposerEmail = email
-    }
-    return validated
-  }
 }

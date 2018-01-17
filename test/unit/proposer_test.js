@@ -1,22 +1,24 @@
 var expect = require('chai').expect
 
-var {MailChecker} = require('../../src/js/components/controller')
-var {ProposerLogic} = require('../../src/js/components/controller')
+var {MailChecker} = require('../../src/js/libraries/mail_checker')
+var {MailValidator} = require('../../src/js/libraries/mail_validator')
+var {Circle} = require('../../src/js/components/circle')
+var {ConsensusProposition} = require('../../src/js/components/consensus_proposition')
 
 describe('The proposer field', function () {
   var mailChecker = new MailChecker()
 
   it('accepts a valid email', function () {
-    let proposerLogic = new ProposerLogic('proposer-email')
+    let circle = new Circle('proposer-email')
     let validEmail = 'hola@devscola.org'
-    let isValid = proposerLogic.validateEmail(validEmail)
+    let isValid = circle.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
   it('does not accept an invalid email', function () {
-    let proposerLogic = new ProposerLogic('proposer-email')
+    let circle = new Circle('proposer-email')
     let invalidEmail = 'holadevscola.org'
-    let isValid = proposerLogic.validateEmail(invalidEmail)
+    let isValid = circle.validateEmail(invalidEmail)
     expect(isValid).to.be.false
   })
 
@@ -68,10 +70,13 @@ describe('The proposer field', function () {
 
   it('save the mail', function () {
     let proposer = 'consensus@devscola.org'
-    let proposerLogic = new ProposerLogic('proposer-email')
+    let mailValidator = new MailValidator()
+    let consensusProposition = new ConsensusProposition()
 
-    proposerLogic.validateEmail(proposer)
-    let result = proposerLogic.proposerEmail
+    let valid = mailValidator.validateEmail(proposer)
+    consensusProposition.setProposer(proposer)
+
+    let result = consensusProposition.proposer
 
     expect(result).to.be.equal(proposer)
   })
