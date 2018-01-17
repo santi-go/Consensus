@@ -9,7 +9,7 @@ import {MailValidator} from '../libraries/mail_validator'
 import {Circle} from './circle'
 import {ConsensusProposition} from './consensus_proposition'
 
-export class Consensus {
+export class App {
   constructor(elementID){
     this.data = new ConsensusProposition()
     this.mailValidator = new MailValidator()
