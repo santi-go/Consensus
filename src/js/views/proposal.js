@@ -9,14 +9,6 @@ export class Proposal {
 
   prepareEvents() {
     this.inputContainer.addEventListener('paste', this.pasteProposal.bind(this))
-    this.inputContainer.addEventListener('keypress', this.preventCharRender.bind(this))
-  }
-
-  preventCharRender(event) {
-    let notCtrlV = !event.ctrlKey && event.keyCode !== 86
-    if (notCtrlV) {
-      event.preventDefault()
-    }
   }
 
   pasteProposal(event) {
