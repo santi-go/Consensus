@@ -22,14 +22,14 @@ describe('When identifying the proposer', () => {
   it('you can change the focus with the enter key', () => {
     let page = new Propose()
     let email = 'consensus@devscola.org'
-    let componentId = '#proposer-email'
+    let componentId = '#proposer'
 
     page.inviteWithComponent(componentId, email)
     let keyEnter = '\uE007'
     page.putCharacterInComponent(componentId, keyEnter)
     let focus = browser.selector
 
-    expect(focus).not.to.equal('#proposer-email')
+    expect(focus).not.to.equal('#proposer')
   })
 })
 
@@ -37,7 +37,7 @@ describe('When input characters', () => {
   it('checks you can not write two @', () => {
     let page = new Propose()
     let email = 'consensus@devscola.org'
-    let componentId = '#proposer-email'
+    let componentId = '#proposer'
 
     page.inviteWithComponent(componentId, email)
     page.putCharacterInComponent(componentId, '@')

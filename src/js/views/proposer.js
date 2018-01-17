@@ -4,7 +4,7 @@ import {KeyPressed} from '../libraries/key_mapping'
 export class Proposer {
 
   constructor(){
-    this.container = document.getElementById('proposer-email')
+    this.container = document.getElementById('proposer')
     this.prepareEvents()
     this.keyPressed = new KeyPressed()
   }

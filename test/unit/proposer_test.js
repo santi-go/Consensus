@@ -9,14 +9,14 @@ describe('The proposer field', function () {
   var mailChecker = new MailChecker()
 
   it('accepts a valid email', function () {
-    let circle = new Circle('proposer-email')
+    let circle = new Circle('proposer')
     let validEmail = 'hola@devscola.org'
     let isValid = circle.validateEmail(validEmail)
     expect(isValid).to.be.true
   })
 
   it('does not accept an invalid email', function () {
-    let circle = new Circle('proposer-email')
+    let circle = new Circle('proposer')
     let invalidEmail = 'holadevscola.org'
     let isValid = circle.validateEmail(invalidEmail)
     expect(isValid).to.be.false

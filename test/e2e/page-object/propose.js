@@ -36,7 +36,7 @@ class Propose {
   }
 
   confirmSuccessful () {
-    let proposer = this.contentOfComponent('#proposer-email')
+    let proposer = this.contentOfComponent('#proposer')
     let proposal = this.outputOfComponent('#proposal')
     let circle =this.contentOfComponent('#circle-email')
     return (!proposer && !proposal && !circle)
@@ -70,14 +70,14 @@ class Propose {
   }
 
   identifyProposer (mail) {
-    let component = $('#proposer-email')
+    let component = $('#proposer')
     let input = component.$('input')
     input.setValue(mail)
     browser.click('body')
   }
 
   isProposerInvalid () {
-    let classes = $('#proposer-email').getAttribute('class')
+    let classes = $('#proposer').getAttribute('class')
     return classes.includes('invalid')
   }
 
