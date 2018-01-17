@@ -20,8 +20,18 @@ module.exports = {
         query: {
           presets: ['es2015-native-modules']
         }
+      },
+      {
+        test: /\.vue$/,
+        loader: 'vue-loader'
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'vue$': 'vue/dist/vue.esm.js'
+    },
+    extensions: ['*', '.js', '.vue', '.json']
   },
   plugins: [
     new webpack.optimize.UglifyJsPlugin({
