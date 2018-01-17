@@ -38,7 +38,7 @@ class Propose {
   confirmSuccessful () {
     let proposer = this.contentOfComponent('#proposer')
     let proposal = this.outputOfComponent('#proposal')
-    let circle =this.contentOfComponent('#circle-email')
+    let circle =this.contentOfComponent('#involved')
     return (!proposer && !proposal && !circle)
   }
 
@@ -58,13 +58,13 @@ class Propose {
   }
 
   firstValidInvitation () {
-    let component = $('#circle-email')
+    let component = $('#involved')
     let divValidBox = component.$('div .validBox')
     return divValidBox.getText()
   }
 
   firstInvalidInvitation () {
-    let component = $('#circle-email')
+    let component = $('#involved')
     let divValidBox = component.$('div .invalidBox')
     return divValidBox.getText()
   }
@@ -87,7 +87,7 @@ class Propose {
   }
 
   existCloseButton () {
-    let component = $('#circle-email')
+    let component = $('#involved')
     let divValidBox = component.$('div div')
     return divValidBox.getHTML().includes('<button')
   }
@@ -101,7 +101,7 @@ class Propose {
   }
 
   addAndCutFromGuestsEmail (proposal) {
-    let component = $('#circle-email')
+    let component = $('#involved')
     let input = component.$('input')
     input.setValue(proposal)
     browser.keys(['Control', 'ax', 'NULL'])

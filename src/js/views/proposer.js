@@ -21,7 +21,7 @@ export class Proposer {
     }
     this.maskInput(event)
     if (this.keyPressed.isEnter(event)) {
-      this.containerCircle = document.getElementById('circle-email')
+      this.containerCircle = document.getElementById('involved')
       this.containerCircle.querySelector('input').focus()
     }
   }

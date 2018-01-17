@@ -86,23 +86,23 @@ input {
   display: none;
   color: var(--error-color);
 }
-#circle-email {
+#involved {
   margin-top: 1rem;
 }
-.circle-email-list {
+.involved-list {
   width: -moz-fit-content;
 }
-.circle-email-list > * {
+.involved-list > * {
   display: block;
 }
-.circle-email-list input {
+.involved-list input {
   float: left;
   width: 50%;
 }
-.circle-email-list > div {
+.involved-list > div {
   float: left;
 }
-#circle-email > div > div {
+#involved > div > div {
   margin: 0.5rem 0.5rem 0 0.5rem;
   padding: 0.5rem 1.5rem 0.5rem 0.5rem;
 }

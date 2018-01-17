@@ -3,7 +3,7 @@ import {KeyPressed} from "../libraries/key_mapping"
 export class Involved {
 
   constructor(){
-    this.container = document.getElementById('circle-email')
+    this.container = document.getElementById('involved')
     this.prepareEvents()
     this.keyPressed = new KeyPressed()
   }
@@ -46,7 +46,7 @@ export class Involved {
   }
 
   cleanBoxes() {
-    let boxes = document.querySelectorAll('div.circle-email-list div')
+    let boxes = document.querySelectorAll('div.involved-list div')
     boxes.forEach((box) => {
       box.parentElement.removeChild(box)
     })

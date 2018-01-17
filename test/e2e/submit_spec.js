@@ -12,7 +12,7 @@ describe('The submit button', () => {
     let proposer = 'user@user.es'
     page.identifyProposer(proposer)
     let circle = 'user@user.es'
-    page.inviteWithComponent('#circle-email',circle)
+    page.inviteWithComponent('#involved',circle)
     page.pressTab()
     page.clickSubmit()
 
