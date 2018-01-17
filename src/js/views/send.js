@@ -21,6 +21,7 @@ export class Send {
   submitProposal(event) {
     let signal = new CustomEvent('submit.proposal', {'bubbles':true})
     this.container.dispatchEvent(signal)
+    location.reload(true)
     event.preventDefault()
   }
 
