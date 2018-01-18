@@ -1,4 +1,3 @@
-import {Proposer} from '../views/proposer'
 import {Involved} from '../views/involved'
 import {Proposal} from '../views/proposal'
 import {Send} from '../views/send'
@@ -8,6 +7,10 @@ import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
 import {Circle} from './circle'
 import {ConsensusProposition} from './consensus_proposition'
+
+import Vue from 'vue'
+import Proposer from '../views/con_proposer'
+
 
 export class App {
   constructor(elementID){
@@ -19,7 +22,15 @@ export class App {
   }
 
   initialize_views(){
-    this.proposer = new Proposer()
+    new Vue({
+      el: '#consensus-call',
+      data: this.data,
+      components: {
+        'con-proposer': Proposer
+      }
+    })
+
+
     this.involved = new Involved()
     this.proposal = new Proposal()
     this.send = new Send()
@@ -87,7 +98,7 @@ export class App {
 
   saveEmail(proposer,valid) {
     this.data.setProposer(proposer)
-    this.proposer.setValidity(valid)
+    this.data.showBadMail=(!valid)
   }
 
   checkSubmitable(){

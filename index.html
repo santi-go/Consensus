@@ -14,11 +14,7 @@
     <con-title></con-title>
   </span>
     <form name="consensus-call" id="consensus-call" action="">
-      <div id="proposer" class="email">
-        <label for="proposer-input">Insert your email:</label>
-        <span>The introduced email address is invalid</span>
-        <input type="text" id="proposer-input" name="proposer-input" autofocus>
-      </div>
+      <con-proposer v-bind:show="showBadMail" id="proposer"></con-proposer>
 
       <div id="involved" class="email">
         <div class="involved-list">

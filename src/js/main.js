@@ -7,7 +7,7 @@ new App('consensus-call')
 new Api('http://0.0.0.0:4567')
 
 
-let a = new Vue({
+new Vue({
   el: '#tal',
   components: {
     'con-title': Title

@@ -3,6 +3,7 @@ export class ConsensusProposition {
     this.proposer = false
     this.proposal = false
     this.circle = []
+    this.showBadMail = false
   }
 
   setCircle(circle){
