@@ -1,4 +1,4 @@
-import {App} from './components/app'
+import App from './components/app'
 import Api from './services/api'
 
 new App('consensus-call')

@@ -12,7 +12,7 @@ import Vue from 'vue'
 import Proposer from '../views/con_proposer'
 
 
-export class App {
+export default class App {
   constructor(elementID){
     this.data = new ConsensusProposition()
     this.circle = new Circle()
