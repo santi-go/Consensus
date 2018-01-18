@@ -70,10 +70,9 @@ describe('The proposer field', function () {
 
   it('save the mail', function () {
     let proposer = 'consensus@devscola.org'
-    let mailValidator = new MailValidator()
     let consensusProposition = new ConsensusProposition()
 
-    let valid = mailValidator.validateEmail(proposer)
+    let valid = MailValidator.validateEmail(proposer)
     consensusProposition.setProposer(proposer)
 
     let result = consensusProposition.proposer

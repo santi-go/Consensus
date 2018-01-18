@@ -15,7 +15,6 @@ import Proposer from '../views/con_proposer'
 export class App {
   constructor(elementID){
     this.data = new ConsensusProposition()
-    this.mailValidator = new MailValidator()
     this.circle = new Circle()
     this.initialize_views()
     this.listen(elementID)
@@ -88,7 +87,8 @@ export class App {
     let mail = event.detail
     let proposer = null
     let valid=false
-    if (this.mailValidator.validateEmail(mail)){
+    let mailValidator = MailValidator.validateEmail(mail)
+    if (mailValidator){
       proposer = mail
       valid = true
     }
