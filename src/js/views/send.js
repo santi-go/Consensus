@@ -1,4 +1,4 @@
-export class Send {
+export default class Send {
   constructor(){
     this.container = document.getElementById('panel')
     this.prepareEvents()
