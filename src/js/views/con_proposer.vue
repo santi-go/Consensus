@@ -5,7 +5,6 @@
     <input  type="text"
             v-on:blur="markValidity"
             v-on:keydown="maskInput"
-            v-on:keyup.enter="sendTabInstead"
             name="proposer-input"
             v-model="proposedMail"
             autofocus>
@@ -39,12 +38,6 @@ export default {
       if (!isAllowed) {
         event.preventDefault()
       }
-    },
-
-    sendTabInstead(event){
-      let newEvent= new KeyboardEvent('keydown',{key:'tab',keyCode: 9,charCode: 9, bubbles:true })
-      this.$el.dispatchEvent(newEvent)
-      event.preventDefault()
     }
   }
 
