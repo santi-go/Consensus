@@ -2,7 +2,7 @@ var expect = require('chai').expect
 
 var {MailChecker} = require('../../src/js/libraries/mail_checker')
 var {MailValidator} = require('../../src/js/libraries/mail_validator')
-var {Circle} = require('../../src/js/components/circle')
+import Circle from '../../src/js/components/circle'
 var {ConsensusProposition} = require('../../src/js/components/consensus_proposition')
 
 describe('The proposer field', function () {

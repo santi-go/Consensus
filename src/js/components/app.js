@@ -5,7 +5,7 @@ import Send from '../views/send'
 import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
-import {Circle} from './circle'
+import Circle from './circle'
 import {ConsensusProposition} from './consensus_proposition'
 
 import Vue from 'vue'
