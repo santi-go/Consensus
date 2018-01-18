@@ -1,6 +1,6 @@
 var expect = require('chai').expect
 
-var {ConsensusProposition} = require('../../src/js/components/consensus_proposition')
+import ConsensusProposition from '../../src/js/components/consensus_proposition'
 
 describe('A consensus proposition', () => {
 
