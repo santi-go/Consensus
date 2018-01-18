@@ -1,7 +1,7 @@
 import {Bus} from '../infrastructure/bus'
 let XMLHttpRequest = require('xhr2')
 
-export class Api {
+export default class Api {
   constructor(baseURL) {
     this.url= baseURL+'/create-proposal'
     Bus.subscribe('submit.proposal',this.createProposal.bind(this))
