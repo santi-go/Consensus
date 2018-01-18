@@ -1,27 +1,25 @@
-export class KeyPressed {
-  constructor(){}
-
-  isEnter(e) {
+export let KeyPressed = {
+  isEnter: (e) => {
     if (e.keyCode === 13) { return true }
     return false
-  }
+  },
 
-  isComma(e) {
+  isComma: (e) => {
     if (e.keyCode === 188) { return true }
     return false
-  }
+  },
 
-  isBackSpace(e) {
+  isBackSpace: (e) => {
     if (e.keyCode === 8) { return true }
     return false
-  }
+  },
 
-  isTab(e) {
+  isTab: (e) => {
     if (e.keyCode === 9) { return true }
     return false
-  }
+  },
 
-  isDot(e) {
+  isDot: (e) => {
     if (e.keyCode === 190) { return true }
     return false
   }

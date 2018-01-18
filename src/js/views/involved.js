@@ -5,7 +5,6 @@ export class Involved {
   constructor(){
     this.container = document.getElementById('involved')
     this.prepareEvents()
-    this.keyPressed = new KeyPressed()
   }
 
   prepareEvents() {
@@ -16,7 +15,7 @@ export class Involved {
   }
 
   acceptKeysPress(e) {
-    if (this.keyPressed.isEnter(e) || this.keyPressed.isComma(e)) {
+    if (KeyPressed.isEnter(e) || KeyPressed.isComma(e)) {
       this.setCircle()
       e.preventDefault()
     }
