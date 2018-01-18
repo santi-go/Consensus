@@ -1,25 +1,22 @@
-export class MailChecker {
-  constructor(){
-    this.twoDotRegex = /[\.]{2}/
-    this.twoAtRegex = /[\@]{2}/
-  }
-
+export let MailChecker = {
   isAllowedIn(text, character, position) {
+    let twoDotRegex = /[\.]{2}/
+    let twoAtRegex = /[\@]{2}/
     let chain = text + character
-    if (eval(this.twoDotRegex).test(chain)) {return null}
-    if (eval(this.twoAtRegex).test(chain)) {return null}
+    if (eval(twoDotRegex).test(chain)) {return null}
+    if (eval(twoAtRegex).test(chain)) {return null}
     let thePattern = this.selectPattern(text, position)
     let isAllowed = this.matches(thePattern, character)
     return isAllowed
-  }
+  },
 
-  matches(pattern, character) {
+  matches: (pattern, character) => {
     let matcher = new RegExp(pattern)
     let result = matcher.exec(character)
     return result
-  }
+  },
 
-  selectPattern(text, position) {
+  selectPattern: (text, position) => {
     let patterns = {
       local: /[@!#$%&'*+/=?^_`{|}~.-]|[a-z]|[0-9]/ig,
       domain: /[.-]|[a-z]|[0-9]/ig

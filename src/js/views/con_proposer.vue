@@ -33,8 +33,7 @@ export default {
       let text = event.target.value
       let position = event.target.selectionStart
       let character = event.key
-      let mailChecker = new MailChecker
-      let isAllowed = mailChecker.isAllowedIn(text, character, position)
+      let isAllowed = MailChecker.isAllowedIn(text, character, position)
       if (!isAllowed) {
         event.preventDefault()
       }

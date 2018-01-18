@@ -6,7 +6,6 @@ var {Circle} = require('../../src/js/components/circle')
 var {ConsensusProposition} = require('../../src/js/components/consensus_proposition')
 
 describe('The proposer field', function () {
-  var mailChecker = new MailChecker()
 
   it('accepts a valid email', function () {
     let circle = new Circle('proposer')
@@ -28,7 +27,7 @@ describe('The proposer field', function () {
       let pushedCharacter = '@'
       let positionOfNewCharacter = 0
 
-      let isValid = mailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+      let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
       expect(isValid).to.equal(null)
     })
@@ -39,7 +38,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '%'
         let positionOfNewCharacter = 7
 
-        let isValid = mailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.equal(null)
       })
@@ -51,7 +50,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '¬'
         let positionOfNewCharacter = 0
 
-        let isValid = mailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.equal(null)
       })
@@ -61,7 +60,7 @@ describe('The proposer field', function () {
         let pushedCharacter = '%'
         let positionOfNewCharacter = 0
 
-        let isValid = mailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
+        let isValid = MailChecker.isAllowedIn(text, pushedCharacter, positionOfNewCharacter)
 
         expect(isValid).to.not.equal(null)
       })
