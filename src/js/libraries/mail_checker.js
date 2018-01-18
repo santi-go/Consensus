@@ -1,8 +1,13 @@
 export class MailChecker {
+  constructor(){
+    this.twoDotRegex = /[\.]{2}/
+    this.twoAtRegex = /[\@]{2}/
+  }
+
   isAllowedIn(text, character, position) {
     let chain = text + character
-    if (/[\.]{2,}/.test(chain)) {return null}
-    if (/[\@]{2,}/.test(chain)) {return null}
+    if (eval(this.twoDotRegex).test(chain)) {return null}
+    if (eval(this.twoAtRegex).test(chain)) {return null}
     let thePattern = this.selectPattern(text, position)
     let isAllowed = this.matches(thePattern, character)
     return isAllowed
