@@ -1,5 +1,5 @@
 import Involved from '../views/involved'
-import {Proposal} from '../views/proposal'
+import Proposal from '../views/proposal'
 import {Send} from '../views/send'
 
 import {Formatter} from '../libraries/formatter'

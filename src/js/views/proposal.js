@@ -1,4 +1,4 @@
-export class Proposal {
+export default class Proposal {
 
   constructor() {
     this.container = document.getElementById('proposal')
