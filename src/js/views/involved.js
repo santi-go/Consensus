@@ -1,6 +1,6 @@
 import {KeyPressed} from "../libraries/key_mapping"
 
-export class Involved {
+export default class Involved {
 
   constructor(){
     this.container = document.getElementById('involved')

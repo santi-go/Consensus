@@ -1,4 +1,4 @@
-import {Involved} from '../views/involved'
+import Involved from '../views/involved'
 import {Proposal} from '../views/proposal'
 import {Send} from '../views/send'
 
