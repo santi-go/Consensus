@@ -32,4 +32,16 @@ describe('When input characters', () => {
 
     expect(result).to.equal('consensus@devscola.org')
   })
+
+  it('checks you can not write two dots', () => {
+    let page = new Propose()
+    let email = 'consensus@devscola.'
+    let componentId = '#proposer'
+
+    page.inviteWithComponent(componentId, email)
+    page.putCharacterInComponent(componentId, '.')
+    let result = page.contentOfComponent(componentId)
+
+    expect(result).to.equal('consensus@devscola.')
+  })
 })

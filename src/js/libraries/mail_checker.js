@@ -1,8 +1,8 @@
 export class MailChecker {
   isAllowedIn(text, character, position) {
-    if (text.includes('@') && character === '@') {
-      return null
-    }
+    let chain = text + character
+    if (/[\.]{2,}/.test(chain)) {return null}
+    if (/[\@]{2,}/.test(chain)) {return null}
     let thePattern = this.selectPattern(text, position)
     let isAllowed = this.matches(thePattern, character)
     return isAllowed
