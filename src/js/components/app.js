@@ -1,5 +1,6 @@
 import Involved from '../views/involved'
 import Send from '../views/send'
+import Proposal from '../views/proposal'
 
 import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
@@ -9,7 +10,7 @@ import ConsensusProposition from './consensus_proposition'
 import Vue from 'vue'
 import Proposer from '../views/con_proposer'
 import Proposal from '../views/con_proposal'
-
+import Send from '../views/con_send'
 
 export default class App {
   constructor(elementID){
@@ -25,12 +26,14 @@ export default class App {
       data: this.data,
       components: {
         'con-proposer': Proposer,
-        'con-proposal': Proposal
+        'con-proposal': Proposal,
+        'con-send': Send
       }
     })
 
     this.involved = new Involved()
     this.send = new Send()
+    this.proposal = new Proposal()
   }
 
   listen(elementID){
@@ -62,21 +65,21 @@ export default class App {
 
   formatProposal(event){
       this.data.setProposal(proposal)
-      this.checkSubmitable()
+      this.data.checkSubmitable()
   }
 
   parseCircle(event){
       this.circle.extractMails(event.detail)
       this.involved.render(this.circle.circle)
       this.data.setCircle(this.circle.involved())
-      this.checkSubmitable()
+      this.data.checkSubmitable()
   }
 
   removeFromCircle(event){
     this.circle.removeEmail(event.detail)
     this.involved.render(this.circle.circle)
     this.data.setCircle(this.circle.involved())
-    this.checkSubmitable()
+    this.data.checkSubmitable()
   }
 
   checkForMail(event){
@@ -89,16 +92,11 @@ export default class App {
       valid = true
     }
     this.saveEmail(proposer,valid)
-    this.checkSubmitable()
+    this.data.checkSubmitable()
   }
 
   saveEmail(proposer,valid) {
     this.data.setProposer(proposer)
     this.data.showBadMail=(!valid)
   }
-
-  checkSubmitable(){
-    this.send.toggleSubmit(this.data.isSubmitable())
-  }
-
 }
