@@ -1,5 +1,6 @@
 import Involved from '../views/involved'
 
+import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
 import Circle from './circle'
@@ -60,6 +61,8 @@ export default class App {
   }
 
   formatProposal(event){
+      let proposal = Formatter.formatText(event.detail)
+      console.log(proposal)
       this.data.setProposal(proposal)
       this.data.checkSubmitable()
   }

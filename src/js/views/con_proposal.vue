@@ -23,10 +23,10 @@ export default {
   methods: {
       pasteProposal(event) {
         let pastedText = event.clipboardData.getData('text')
-        let signal = new CustomEvent('send.text', {'detail': pastedText, 'bubbles':true})
+        let formattedText = Formatter.formatText(pastedText)
+        let signal = new CustomEvent('send.text', {'detail': formattedText, 'bubbles':true})
         this.$el.dispatchEvent(signal)
         event.preventDefault()
-        let formattedText = Formatter.formatText(signal.detail)
         this.render(formattedText)
       },
 
