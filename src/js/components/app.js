@@ -62,7 +62,6 @@ export default class App {
 
   formatProposal(event){
       let proposal = Formatter.formatText(event.detail)
-      console.log(proposal)
       this.data.setProposal(proposal)
       this.data.checkSubmitable()
   }
