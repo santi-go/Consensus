@@ -1,6 +1,4 @@
 import Involved from '../views/involved'
-import Send from '../views/send'
-import Proposal from '../views/proposal'
 
 import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
@@ -32,8 +30,6 @@ export default class App {
     })
 
     this.involved = new Involved()
-    this.send = new Send()
-    this.proposal = new Proposal()
   }
 
   listen(elementID){
