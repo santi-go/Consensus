@@ -1,8 +1,8 @@
 <template>
     <div>
-        <button 
-            id="submit" 
-            form="consensus-call" 
+        <button
+            id="submit"
+            form="consensus-call"
             v-on:click="submitProposal"
             v-bind:disabled="!submiteable"
             >Submit
@@ -18,7 +18,7 @@ export default {
         submitProposal(event) {
             let signal = new CustomEvent('submit.proposal', {'bubbles':true})
             this.$el.dispatchEvent(signal)
-            location.reload(true)
+            $el.reset()
             event.preventDefault()
         }
     }
