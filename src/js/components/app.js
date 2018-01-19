@@ -1,8 +1,6 @@
 import Involved from '../views/involved'
-import Proposal from '../views/proposal'
 import Send from '../views/send'
 
-import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
 import {MailValidator} from '../libraries/mail_validator'
 import Circle from './circle'
@@ -10,6 +8,7 @@ import ConsensusProposition from './consensus_proposition'
 
 import Vue from 'vue'
 import Proposer from '../views/con_proposer'
+import Proposal from '../views/con_proposal'
 
 
 export default class App {
@@ -25,13 +24,12 @@ export default class App {
       el: '#consensus-call',
       data: this.data,
       components: {
-        'con-proposer': Proposer
+        'con-proposer': Proposer,
+        'con-proposal': Proposal
       }
     })
 
-
     this.involved = new Involved()
-    this.proposal = new Proposal()
     this.send = new Send()
   }
 
@@ -63,8 +61,6 @@ export default class App {
   }
 
   formatProposal(event){
-      let proposal = Formatter.formatText(event.detail)
-      this.proposal.render(proposal)
       this.data.setProposal(proposal)
       this.checkSubmitable()
   }
