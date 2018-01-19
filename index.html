@@ -27,10 +27,8 @@
         <output></output>
       </div>
 
-      <div id="panel">
-        <button id="submit" form="consensus-call" disabled>Submit</button>
-        <span></span>
-      </div>
+      <con-send v-bind:submiteable="submiteable"></con-send>
+
     </form>
 
   </main>
