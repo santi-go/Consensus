@@ -10,13 +10,13 @@ describe('A consensus proposition', () => {
     consensusProposition.setProposal("This is a string.")
     consensusProposition.setProposer("proposer@proposer.com")
 
-    expect(consensusProposition.isSubmitable()).to.be.true
+    expect(consensusProposition.checkSubmitable()).to.be.true
   })
 
   it('is not submitable if some field are not added', ()=>{
     let consensusProposition = new ConsensusProposition()
     consensusProposition.setCircle(["sample@sample.com"])
 
-    expect(consensusProposition.isSubmitable()).to.be.false
+    expect(consensusProposition.checkSubmitable()).to.be.false
   })
 })

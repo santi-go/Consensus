@@ -23,6 +23,7 @@ export default class ConsensusProposition {
     let hasData = ( this.proposer && this.proposal )
     let hasInvolved = ( this.circle.length > 0 )
     this.submiteable = hasData && hasInvolved
+    return this.submiteable
   }
 
   asObject(){
