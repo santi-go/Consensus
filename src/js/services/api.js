@@ -12,7 +12,7 @@ export default class Api {
   }
 
   post(data, topic) {
-    let xhr = new XMLHttpRequest()
+    //let xhr = new XMLHttpRequest()
     xhr.open('POST', this.url, true)
      xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
