@@ -13,6 +13,8 @@
 
 <script>
 import {MailChecker} from '../libraries/mail_checker.js'
+import {KeyPressed} from '../libraries/key_mapping.js'
+
 export default {
   name: 'con-proposer',
   data: function(){
@@ -30,6 +32,9 @@ export default {
     },
 
     maskInput(event){
+      if (KeyPressed.isEnter(event)) {
+        event.preventDefault()
+      }
       let text = event.target.value
       let position = event.target.selectionStart
       let character = event.key
