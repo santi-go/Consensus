@@ -84,6 +84,7 @@ export default class App {
     let mail = event.detail
     let proposer = null
     let valid=false
+    mail = mail.trim()
     let mailValidator = MailValidator.validateEmail(mail)
     if (mailValidator){
       proposer = mail

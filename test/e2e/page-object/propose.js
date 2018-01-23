@@ -77,6 +77,23 @@ class Propose {
     browser.click('body')
   }
 
+  pasteProposer (mail) {
+    browser.execute(() => {
+      let inputElement = document.createElement('input')
+      inputElement.setAttribute('id', 'paste-area')
+     document.body.appendChild(inputElement)
+    })
+    let input = $('#paste-area')
+    let proposer = $('#proposer input')
+    input.setValue(mail)
+    this.selectAll()
+    this.copyToClipboard()
+    browser.click('#proposer input')
+    this.pasteFromClipboard()
+    browser.click('#proposal input')
+    return proposer.getText()
+  }
+
   isProposerInvalid () {
     let classes = $('#proposer').getAttribute('class')
     return classes.includes('invalid')
