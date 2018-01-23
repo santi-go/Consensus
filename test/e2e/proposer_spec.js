@@ -11,6 +11,15 @@ describe('When identifying the proposer', () => {
     expect(page.isProposerInvalid()).to.be.false
   })
 
+  it('it accepts valid emails pasted from clipboard with white spaces after and before', () => {
+    let page = new Propose()
+    let validMail = '  hola@devscola.org  '
+
+    page.pasteProposer(validMail)
+    expect(page.isProposerInvalid()).to.be.false
+  })
+
+
   it(`it doesn't accept invalid emails`, () => {
     let page = new Propose()
     let invalidMail = 'errordecorreo'
