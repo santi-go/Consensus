@@ -4,7 +4,7 @@ export default class ConsensusProposition {
     this.proposal = false
     this.circle = []
     this.showBadMail = false
-    this.submiteable = false
+    this.submittable = false
   }
 
   setCircle(circle){
@@ -22,8 +22,8 @@ export default class ConsensusProposition {
   checkSubmitable(){
     let hasData = ( this.proposer && this.proposal )
     let hasInvolved = ( this.circle.length > 0 )
-    this.submiteable = hasData && hasInvolved
-    return this.submiteable
+    this.submittable = hasData && hasInvolved
+    return this.submittable
   }
 
   asObject(){

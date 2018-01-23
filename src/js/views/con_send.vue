@@ -4,7 +4,7 @@
             id="submit"
             form="consensus-call"
             v-on:click="submitProposal"
-            v-bind:disabled="!submiteable"
+            v-bind:disabled="!submittable"
             >Submit
         </button>
       </div>
@@ -13,7 +13,7 @@
 <script>
 export default {
     name: 'con-send',
-    props: ['submiteable'],
+    props: ['submittable'],
     methods: {
         submitProposal(event) {
             let signal = new CustomEvent('submit.proposal', {'bubbles':true})
@@ -23,6 +23,4 @@ export default {
         }
     }
 }
-
-
 </script>

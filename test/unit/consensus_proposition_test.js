@@ -4,7 +4,7 @@ import ConsensusProposition from '../../src/js/components/consensus_proposition'
 
 describe('A consensus proposition', () => {
 
-  it('is submitable if all fields are added', ()=>{
+  it('is submittable if all fields are added', ()=>{
     let consensusProposition = new ConsensusProposition()
     consensusProposition.setCircle(["sample@sample.com"])
     consensusProposition.setProposal("This is a string.")
@@ -13,7 +13,7 @@ describe('A consensus proposition', () => {
     expect(consensusProposition.checkSubmitable()).to.be.true
   })
 
-  it('is not submitable if some field are not added', ()=>{
+  it('is not submittable if some field are not added', ()=>{
     let consensusProposition = new ConsensusProposition()
     consensusProposition.setCircle(["sample@sample.com"])
 
