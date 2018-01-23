@@ -1,5 +1,4 @@
 import {Bus} from '../infrastructure/bus'
-let XMLHttpRequest = require('xhr2')
 
 export default class Api {
   constructor(baseURL) {
