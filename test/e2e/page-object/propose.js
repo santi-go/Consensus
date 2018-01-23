@@ -3,6 +3,7 @@ class Propose {
     browser.url('/')
   }
 
+
   inviteWithComponent (componentId, mail) {
     let component = $(componentId)
     let input = component.$('input')
