@@ -1,5 +1,4 @@
 import {Bus} from '../infrastructure/bus'
-let XMLHttpRequest = require('xhr2')
 
 export default class Api {
   constructor(baseURL) {
@@ -12,7 +11,7 @@ export default class Api {
   }
 
   post(data, topic) {
-    //let xhr = new XMLHttpRequest()
+    let xhr = new XMLHttpRequest()
     xhr.open('POST', this.url, true)
      xhr.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
