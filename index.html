@@ -11,19 +11,12 @@
   <header></header>
   <main>
     <form name="consensus-call" id="consensus-call" action="">
-      <con-proposer v-bind:show="showBadMail" id="proposer"></con-proposer>
-
-      <div id="involved" class="email">
-        <div class="involved-list">
-          <label for="involved-input">Who do you want to invite?</label>
-          <input type="text" id="involved-input" name="involved-input">
-        </div>
-        <div class="clear"></div>
-      </div>
+      <con-proposer v-bind:show="data.showBadMail" id="proposer"></con-proposer>
+      <con-involved v-bind:involved="circle.circle" id="involved"></con-involved>
 
       <con-proposal id="proposal"></con-proposal>
 
-      <con-send v-bind:submittable="submittable"></con-send>
+      <con-send v-bind:submittable="data.submittable"></con-send>
 
     </form>
 

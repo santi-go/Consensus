@@ -1,4 +1,3 @@
-import Involved from '../views/involved'
 
 import {Formatter} from '../libraries/formatter'
 import {Bus} from '../infrastructure/bus'
@@ -8,6 +7,7 @@ import ConsensusProposition from './consensus_proposition'
 
 import Vue from 'vue'
 import Proposer from '../views/con_proposer'
+import Involved from '../views/con_involved'
 import Proposal from '../views/con_proposal'
 import Send from '../views/con_send'
 
@@ -22,15 +22,17 @@ export default class App {
   initialize_views(){
     new Vue({
       el: '#consensus-call',
-      data: this.data,
+      data: {
+        data: this.data,
+        circle: this.circle
+      },
       components: {
         'con-proposer': Proposer,
+        'con-involved': Involved,
         'con-proposal': Proposal,
         'con-send': Send
       }
     })
-
-    this.involved = new Involved()
   }
 
   listen(elementID){
@@ -68,14 +70,12 @@ export default class App {
 
   parseCircle(event){
       this.circle.extractMails(event.detail)
-      this.involved.render(this.circle.circle)
       this.data.setCircle(this.circle.involved())
       this.data.checkSubmitable()
   }
 
   removeFromCircle(event){
     this.circle.removeEmail(event.detail)
-    this.involved.render(this.circle.circle)
     this.data.setCircle(this.circle.involved())
     this.data.checkSubmitable()
   }
