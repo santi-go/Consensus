@@ -2,9 +2,10 @@
   <div class="email">
     <div class="involved-list">
       <label for="involved-input">Who do you want to invite?</label>
-      <con-invited v-for="invited in involved"
+      <con-invited v-for="(invited, index) in involved"
+                   v-bind:invited="invited"
                    v-bind:key="invited.id"
-                   v-bind:invited="invited">
+                   v-on:delete-invited="deleteThisInvited(index)">
      </con-invited>
       <input
           type="text"
@@ -32,6 +33,12 @@
       "con-invited" : Invited
     },
     methods: {
+      deleteThisInvited: function(index) {
+        this.involved.splice(index, 1);
+        event.preventDefault()
+      },
+
+
       acceptKeysPress(e) {
         if (KeyPressed.isEnter(e) || KeyPressed.isComma(e)) {
           this.setCircle()
