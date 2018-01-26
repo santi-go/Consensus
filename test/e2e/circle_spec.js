@@ -44,7 +44,7 @@ describe('When involving a circle member', () => {
 
     expect(page.existCloseButton()).to.be.true
     page.clickClose()
-    expect(page.existEmailValid()).to.be.false
+    expect(page.anyEmail()).to.be.false
   })
 
   it('you can clear the input with the enter key', () => {

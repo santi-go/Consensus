@@ -60,7 +60,7 @@ class Propose {
 
   firstValidInvitation () {
     let component = $('#involved')
-    let divValidBox = component.$('div .validBox')
+    let divValidBox = component.$('div div:not(.invalidBox)')
     return divValidBox.getText()
   }
 
@@ -115,7 +115,10 @@ class Propose {
   }
 
   existEmailValid () {
-    return browser.isExisting('.validBox')
+    return browser.isExisting('.involved-list div:not(.invalidBox)')
+  }
+  anyEmail(){
+    return browser.isExisting('.involved-list div')
   }
 
   addAndCutFromGuestsEmail (proposal) {

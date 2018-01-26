@@ -2,6 +2,7 @@ export default class Circle {
   constructor () {
     this.EMAIL_PATTERN = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
     this.circle = []
+    this.counter = 0
   }
 
   involved () {
@@ -18,7 +19,7 @@ export default class Circle {
     return {
       'email': email,
       'valid': this.validateEmail(email),
-      'id': this.circle.length
+      'id': this.counter++
     }
   }
 
