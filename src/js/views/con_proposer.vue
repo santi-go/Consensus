@@ -44,5 +44,30 @@ export default {
 </script>
 
 <style>
-
+  .email {
+    border-bottom: 1px solid var(--main-color);
+    display: block;
+    margin-top: 1rem;
+    padding: 1rem 0;
+  }
+  .email > * {
+    display: block;
+  }
+  .email.invalid {
+    border: none;
+    box-shadow: inset -1px -1px 0px 3px var(--error-color);
+    -moz-box-shadow: inset -1px -1px 0px 3px var(--error-color);
+    -webkit-box-shadow: inset -1px -1px 0px 3px var(--error-color);
+  }
+  .email.invalid span{
+    display: inline-block;
+    padding-left: 1rem;
+  }
+  .email span {
+    display: none;
+    color: var(--error-color);
+  }
+  #proposer label{
+  display: inline-block;
+  }
 </style>

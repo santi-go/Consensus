@@ -41,4 +41,12 @@ export default {
 </script>
 
 <style>
+  #proposal input {
+    border: 1px solid var(--main-color);
+    color: transparent;
+  }
+  #proposal input:focus {
+    background-color: var(--header-color);
+  }
+
 </style>

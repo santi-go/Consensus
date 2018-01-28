@@ -11,11 +11,6 @@
   --header-color: #EFEFEF;
   --text-color: #111111;
 }
-#submit:disabled{
-  cursor: default;
-  border-color: var(--success-color);
-  color: var(--success-color);
-}
 body {
     align-items: center;
     color: var(--text-color);
@@ -38,15 +33,6 @@ label {
   font-size: 1.2rem;
   margin-left: 1rem;
 }
-.email {
-  border-bottom: 1px solid var(--main-color);
-  display: block;
-  margin-top: 1rem;
-  padding: 1rem 0;
-}
-.email > * {
-  display: block;
-}
 input {
   background-color: transparent;
   border: none;
@@ -55,86 +41,4 @@ input {
   margin-top: 1rem;
   padding-left: 1rem;
   width: 100%;
-}
-#proposer label{
-  display: inline-block;
-}
-#submit {
-  background-color: transparent;
-  border: 1px solid var(--main-color);
-  border-radius: 24px;
-  cursor: pointer;
-  font-size: 1rem;
-  min-width: 9rem;
-  margin-top: 1rem;
-  padding: 1rem;
-}
-.clear {
-  clear: both;
-}
-.email.invalid {
-  border: none;
-  box-shadow: inset -1px -1px 0px 3px var(--error-color);
-  -moz-box-shadow: inset -1px -1px 0px 3px var(--error-color);
-  -webkit-box-shadow: inset -1px -1px 0px 3px var(--error-color);
-}
-.email.invalid span{
-  display: inline-block;
-  padding-left: 1rem;
-}
-.email span {
-  display: none;
-  color: var(--error-color);
-}
-#involved {
-  margin-top: 1rem;
-}
-.involved-list {
-  width: -moz-fit-content;
-}
-.involved-list > * {
-  display: block;
-}
-.involved-list input {
-  float: left;
-  width: 50%;
-}
-.involved-list > div {
-  float: left;
-}
-#involved > div > div {
-  margin: 0.5rem 0.5rem 0 0.5rem;
-  padding: 0.5rem 1.5rem 0.5rem 0.5rem;
-  border: 1px solid var(--success-color);
-}
-.invalidBox {
-  box-shadow: inset -1px -1px 0px 3px var(--error-color);
-  -webkit-box-shadow: inset -1px -1px 0px 3px var(--error-color);
-  -moz-box-shadow: inset -1px -1px 0px 3px var(--error-color);
-}
-.close {
-  background-color: var(--text-color);
-  border: none;
-  color: #ffffff;
-  cursor: pointer;
-  float: right;
-  line-height: 20px;
-  margin-right: -28px;
-  margin-top: -11px;
-  text-align: center;
-  position: relative;
-  width: 20px;
-  }
-.close span {
-  visibility: hidden;
-}
-.close::before {
-  content: 'x';
-}
-#proposal input {
-  border: 1px solid var(--main-color);
-  color: transparent;
-}
-#proposal input:focus {
-  background-color: var(--header-color);
 }

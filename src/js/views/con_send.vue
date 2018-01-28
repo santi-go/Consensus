@@ -24,3 +24,21 @@ export default {
     }
 }
 </script>
+
+<style>
+  #submit {
+    background-color: transparent;
+    border: 1px solid var(--main-color);
+    border-radius: 24px;
+    cursor: pointer;
+    font-size: 1rem;
+    min-width: 9rem;
+    margin-top: 1rem;
+    padding: 1rem;
+  }
+  #submit:disabled{
+  cursor: default;
+  border-color: var(--success-color);
+  color: var(--success-color);
+  }
+</style>

@@ -35,17 +35,14 @@
     methods: {
       deleteThisInvited: function(index) {
         this.involved.splice(index, 1);
-        event.preventDefault()
+        event.preventDefault(index)
       },
-
-
       acceptKeysPress(e) {
         if (KeyPressed.isEnter(e) || KeyPressed.isComma(e)) {
           this.setCircle()
           e.preventDefault()
         }
       },
-
       setCircle() {
         let text = this.invited
         this.cleanInput()
@@ -53,11 +50,9 @@
         let signal = new CustomEvent('circle.set', {'detail': text,'bubbles':true})
         this.$el.dispatchEvent(signal)
       },
-
       putFocusOnInput() {
         this.$el.querySelector('input').focus()
       },
-
       cleanInput() {
         this.invited = ""
       }
@@ -66,5 +61,28 @@
 
 </script>
 <style>
-
+  #involved {
+    margin-top: 1rem;
+  }
+  .involved-list {
+    width: -moz-fit-content;
+  }
+  .involved-list > * {
+    display: block;
+  }
+  .involved-list input {
+    float: left;
+    width: 50%;
+  }
+  .involved-list > div {
+    float: left;
+  }
+  #involved > div > div {
+    margin: 0.5rem 0.5rem 0 0.5rem;
+    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    border: 1px solid var(--success-color);
+  }
+  .clear {
+    clear: both;
+  }
 </style>

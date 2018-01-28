@@ -16,4 +16,28 @@ export default {
 </script>
 
 <style>
+  .invalidBox {
+    box-shadow: inset -1px -1px 0px 3px var(--error-color);
+    -webkit-box-shadow: inset -1px -1px 0px 3px var(--error-color);
+    -moz-box-shadow: inset -1px -1px 0px 3px var(--error-color);
+  }
+  .close {
+    background-color: var(--text-color);
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    float: right;
+    line-height: 20px;
+    margin-right: -28px;
+    margin-top: -11px;
+    text-align: center;
+    position: relative;
+    width: 20px;
+    }
+  .close span {
+    visibility: hidden;
+  }
+  .close::before {
+    content: 'x';
+  }
 </style>
