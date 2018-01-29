@@ -29,14 +29,12 @@
     "css-loader": "*"
   },
   "scripts": {
-    "pre": "npm run build",
-    "post": "npm run linter",
-    "test-unit": "npm run pre -s && mocha test/unit --compilers js:babel-core/register && npm run post -s",
-    "test-e2e": "npm run pre -s && wdio ./conf/wdio.conf.js && npm run post -s",
-    "test-all": "npm run pre -s && wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register && npm run post -s",
-    "build": "cd conf && webpack --progress",
-    "build-watch": "cd conf && webpack --progress --watch",
-    "linter": "cd conf && eslint --ignore-path ../.gitignore . /dist/"
+    "build": "webpack --config ./conf/webpack.config.js",
+    "build-watch": "webpack --config ./conf/webpack.config.js --watch",
+    "test-unit": "mocha test/unit --compilers js:babel-core/register && npm run linter -s",
+    "test-e2e": "wdio ./conf/wdio.conf.js && npm run linter -s",
+    "test-all": "wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
+    "linter": "eslint --config ./conf/.eslintrc.js ./src/*"
   },
   "babel": {
     "presets": [

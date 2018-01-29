@@ -7,6 +7,7 @@ module.exports = {
     },
     "rules": {
         "quotes": ["off", "double"],
+        "eqeqeq": "off",
         "no-unused-expressions": 0,
         "no-undef": 0,
         "chai-friendly/no-unused-expressions": 2
