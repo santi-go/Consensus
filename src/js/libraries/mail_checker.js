@@ -1,10 +1,10 @@
 export let MailChecker = {
-  isAllowedIn(text, character, position) {
-    let twoDotRegex = /[\.]{2}/
-    let twoAtRegex = /[\@]{2}/
+  isAllowedIn (text, character, position) {
+    let twoDotRegex = /[.]{2}/
+    let twoAtRegex = /[@]{2}/
     let chain = text + character
-    if (eval(twoDotRegex).test(chain)) {return null}
-    if (eval(twoAtRegex).test(chain)) {return null}
+    if (eval(twoDotRegex).test(chain)) { return null }
+    if (eval(twoAtRegex).test(chain)) { return null }
     let thePattern = this.selectPattern(text, position)
     let isAllowed = this.matches(thePattern, character)
     return isAllowed

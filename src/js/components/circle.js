@@ -53,7 +53,6 @@ export default class Circle {
     return result
   }
 
-
   removeEmail (email) {
     let result = []
     this.circle.forEach((involved) => {
