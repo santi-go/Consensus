@@ -12,14 +12,14 @@ import Proposal from '../views/con_proposal'
 import Send from '../views/con_send'
 
 export default class App {
-  constructor(elementID){
+  constructor (elementID) {
     this.data = new ConsensusProposition()
     this.circle = new Circle()
-    this.initialize_views()
+    this.initializeViews()
     this.listen(elementID)
   }
 
-  initialize_views(){
+  initializeViews () {
     new Vue({
       el: '#consensus-call',
       data: {
@@ -35,8 +35,8 @@ export default class App {
     })
   }
 
-  listen(elementID){
-    let element=document.getElementById(elementID)
+  listen (elementID) {
+    let element = document.getElementById(elementID)
     element.addEventListener(
       'proposer.check',
       this.checkForMail.bind(this))
@@ -51,51 +51,51 @@ export default class App {
 
     element.addEventListener(
       'send.text',
-       this.formatProposal.bind(this))
+      this.formatProposal.bind(this))
 
-   element.addEventListener(
-     'submit.proposal',
+    element.addEventListener(
+      'submit.proposal',
       this.submit.bind(this))
   }
 
-  submit(event){
-    Bus.publish('submit.proposal',this.data.asObject())
+  submit (event) {
+    Bus.publish('submit.proposal', this.data.asObject())
   }
 
-  formatProposal(event){
-      let proposal = Formatter.formatText(event.detail)
-      this.data.setProposal(proposal)
-      this.data.checkSubmitable()
+  formatProposal (event) {
+    let proposal = Formatter.formatText(event.detail)
+    this.data.setProposal(proposal)
+    this.data.checkSubmitable()
   }
 
-  parseCircle(event){
-      this.circle.extractMails(event.detail)
-      this.data.setCircle(this.circle.involved())
-      this.data.checkSubmitable()
+  parseCircle (event) {
+    this.circle.extractMails(event.detail)
+    this.data.setCircle(this.circle.involved())
+    this.data.checkSubmitable()
   }
 
-  removeFromCircle(event){
+  removeFromCircle (event) {
     this.circle.removeEmail(event.detail)
     this.data.setCircle(this.circle.involved())
     this.data.checkSubmitable()
   }
 
-  checkForMail(event){
+  checkForMail (event) {
     let mail = event.detail
     let proposer = null
-    let valid=false
+    let valid = false
     mail = mail.trim()
     let mailValidator = MailValidator.validateEmail(mail)
-    if (mailValidator){
+    if (mailValidator) {
       proposer = mail
       valid = true
     }
-    this.saveEmail(proposer,valid)
+    this.saveEmail(proposer, valid)
     this.data.checkSubmitable()
   }
 
-  saveEmail(proposer,valid) {
+  saveEmail (proposer, valid) {
     this.data.setProposer(proposer)
-    this.data.showBadMail=(!valid)
+    this.data.showBadMail = (!valid)
   }
 }

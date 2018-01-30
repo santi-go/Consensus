@@ -1,5 +1,5 @@
 export default class ConsensusProposition {
-  constructor() {
+  constructor () {
     this.proposer = false
     this.proposal = false
     this.circle = []
@@ -7,31 +7,30 @@ export default class ConsensusProposition {
     this.submittable = false
   }
 
-  setCircle(circle){
+  setCircle (circle) {
     this.circle = circle
   }
 
-  setProposer(proposer){
+  setProposer (proposer) {
     this.proposer = proposer
   }
 
-  setProposal(proposal){
+  setProposal (proposal) {
     this.proposal = proposal
   }
 
-  checkSubmitable(){
-    let hasData = ( this.proposer && this.proposal )
-    let hasInvolved = ( this.circle.length > 0 )
+  checkSubmitable () {
+    let hasData = (this.proposer && this.proposal)
+    let hasInvolved = (this.circle.length > 0)
     this.submittable = hasData && hasInvolved
     return this.submittable
   }
 
-  asObject(){
+  asObject () {
     return {
-      'proposer':this.proposer,
-      'proposal':this.proposal,
-      'circle':this.circle
+      'proposer': this.proposer,
+      'proposal': this.proposal,
+      'circle': this.circle
     }
   }
-
 }

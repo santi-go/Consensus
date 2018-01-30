@@ -1,17 +1,17 @@
 export let Formatter = {
 
-  formatText:(pastedText)=>{
+  formatText: (pastedText) => {
     let text = Formatter.sanitize(pastedText)
     let newBlock = Formatter.addBlockTags(text)
     return newBlock
   },
 
-  sanitize:(text)=>{
+  sanitize: (text) => {
     let result = text.replace(/<(?:.|\n)*?>/gm, '')
     return result
   },
 
-  addBlockTags:(text)=>{
+  addBlockTags: (text) => {
     let newBlock = ''
     let lines = text.split('\n')
     for (let line of lines) {
@@ -21,7 +21,7 @@ export let Formatter = {
     return newBlock
   },
 
-  addTag:(line)=>{
+  addTag: (line) => {
     let convertedLine = ''
     let lineInProcess = line.trim()
     if (lineInProcess === '') {
@@ -32,11 +32,11 @@ export let Formatter = {
     return convertedLine
   },
 
-  addBrTag:()=>{
+  addBrTag: () => {
     return '<br>\n'
   },
 
-  addParagraphTag:(lineInProcess)=>{
+  addParagraphTag: (lineInProcess) => {
     return '<p>' + lineInProcess + '</p>\n'
   }
 }
