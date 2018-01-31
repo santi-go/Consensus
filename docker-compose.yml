@@ -1,5 +1,8 @@
 version: '2'
 services:
+  api:
+    image: registry.gitlab.com/devscola/consensus-api:latest
+
   consensus:
     image: nginx
     ports:
