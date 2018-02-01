@@ -10,6 +10,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-es2015-native-modules": "^6.9.4",
     "chai": "^3.5.0",
+    "css-loader": "*",
     "eslint": "^4.13.1",
     "eslint-config-standard": "^11.0.0-beta.0",
     "eslint-plugin-chai-friendly": "^0.4.1",
@@ -18,15 +19,15 @@
     "eslint-plugin-promise": "^3.6.0",
     "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.4.1",
+    "vue": "^2.5.13",
+    "vue-loader": "^13.7.0",
+    "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.5.13",
     "wdio-mocha-framework": "^0.5.10",
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
     "webpack": "^3.10.0",
-    "webpack-permissions-plugin": "0.0.2",
-    "vue": "^2.5.13",
-    "vue-loader": "^13.7.0",
-    "vue-template-compiler": "^2.5.13",
-    "css-loader": "*"
+    "webpack-permissions-plugin": "0.0.2"
   },
   "scripts": {
     "build": "webpack --config ./conf/webpack.config.js",
