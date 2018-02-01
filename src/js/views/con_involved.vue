@@ -8,8 +8,8 @@
      </con-invited>
       <input
           type="text"
-          v-on:blur="setCircle"
-          v-on:keydown="acceptKeysPress"
+          v-on:blur="send"
+          v-on:keydown="sendWhenApply"
           v-on:click="putFocusOnInput"
           v-model="invited"
           name="involved-input">
@@ -32,16 +32,23 @@
       "con-invited" : Invited
     },
     methods: {
-      acceptKeysPress(e) {
-        if (KeyPressed.isEnter(e) || KeyPressed.isComma(e)) {
-          this.setCircle()
+      sendWhenApply(e) {
+        let sendingApplies = KeyPressed.isEnter(e) || KeyPressed.isComma(e)
+        if (sendingApplies) {
+          this.send()
           e.preventDefault()
         }
       },
-      setCircle() {
-        let text = this.invited
+
+      send(){
+        this.sendValue()
         this.cleanInput()
+      },
+
+      sendValue() {
+        let text = this.invited
         if (text === '') return
+
         let signal = new CustomEvent('circle.set', {'detail': text,'bubbles':true})
         this.$el.dispatchEvent(signal)
       },
