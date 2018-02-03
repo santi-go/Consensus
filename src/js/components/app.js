@@ -47,7 +47,6 @@ export default class App {
         'con-send': Send
       }
     })
-    home.currentView = 'home'
   }
 
   listen (elementID) {
