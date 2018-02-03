@@ -1,0 +1,1 @@
+FROM registry.gitlab.com/devscola/consensus-api:latest
