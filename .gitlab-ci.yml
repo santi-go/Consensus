@@ -1,4 +1,4 @@
-image: docker:latest
+image: tmaier/docker-compose:latest
 
 services:
   - docker:dind
@@ -9,8 +9,6 @@ stages:
 test:
   stage: test
   script:
-    - apk add --update py-pip
-    - pip install docker-compose
     - docker-compose -f docker-compose.ci.yml up --build -d
     - docker-compose -f docker-compose.ci.yml run node npm install
     - docker-compose -f docker-compose.ci.yml run node npm run build

@@ -1,11 +1,9 @@
 version: '2'
 services:
   api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
+    image: registry.gitlab.com/devscola/consensus-api
     ports:
-      - "4567:4567"
+      - '4567:4567'
 
   consensus:
     image: nginx
