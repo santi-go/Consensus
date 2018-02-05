@@ -1,8 +1,8 @@
 <template lang="html">
   <section class="vote-section">
     <h2>This is the circle votation:</h2>
-    <p>There are <span class="counter con">90</span> persons in consensus</p>
-    <p>There are <span class="counter dis">90</span> persons in disensus</p>
+    <p>There are <span class="counter con">90</span> people in consensus</p>
+    <p>There are <span class="counter dis">90</span> people in disensus</p>
   </section>
 </template>
 
