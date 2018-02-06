@@ -12,6 +12,11 @@
 `docker-compose up`
 
 
+### Up docker without Api image
+
+`docker-compose -f docker-compose.yml up`
+
+
 ### For system with different UID of 1000
 
 ~~~
