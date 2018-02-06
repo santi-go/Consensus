@@ -4,7 +4,7 @@
 
 ### Build (launch the script)
 
-`sh build-docker`
+`docker-compose build`
 
 
 ### Up docker
@@ -12,10 +12,20 @@
 `docker-compose up`
 
 
+### For system with different UID of 1000
+
+~~~
+cd scripts
+sh build-docker
+~~~
+
+Not use if you need sudo to run docker or docker-compose.
+
+
 #### The content of script:
 
 ~~~
-docker pull registry.gitlab.com/devscola/consensus-api
+cd ..
 docker-compose build --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` node
 docker-compose build api
 docker-compose build consensus

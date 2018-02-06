@@ -1,5 +1,10 @@
 version: '2'
 services:
+  api:
+    image: registry.gitlab.com/devscola/consensus-api:v0.1
+    ports:
+      - '4567:4567'
+
   consensus:
     image: nginx
     ports:
@@ -16,7 +21,10 @@ services:
       - '4444:4444'
 
   node:
-    image: node:7.9.0
+    build:
+      context: .
+      dockerfile: Dockerfile
+    user: node
     working_dir: '/test'
     volumes:
       - '.:/test'
