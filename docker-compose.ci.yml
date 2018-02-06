@@ -16,10 +16,7 @@ services:
       - '4444:4444'
 
   node:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    user: node
+    image: node:7.9.0
     working_dir: '/test'
     volumes:
       - '.:/test'

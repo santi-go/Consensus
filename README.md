@@ -4,7 +4,7 @@
 
 ### Build (launch the script)
 
-`docker-compose build`
+`sh build-docker`
 
 
 ### Up docker
@@ -12,6 +12,7 @@
 `docker-compose up`
 
 
+<<<<<<< HEAD
 ### Up docker without Api image
 
 `docker-compose -f docker-compose.yml up`
@@ -27,10 +28,12 @@ sh build-docker
 Not use if you need sudo to run docker or docker-compose.
 
 
+=======
+>>>>>>> parent of 08df133... Add tag to image load
 #### The content of script:
 
 ~~~
-cd ..
+docker pull registry.gitlab.com/devscola/consensus-api
 docker-compose build --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` node
 docker-compose build api
 docker-compose build consensus
