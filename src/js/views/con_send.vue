@@ -18,8 +18,8 @@ export default {
         submitProposal(event) {
             let signal = new CustomEvent('submit.proposal', {'bubbles':true})
             this.$el.dispatchEvent(signal)
-            $el.reset()
             event.preventDefault()
+            document.getElementById('consensus-call').reset()
         }
     }
 }

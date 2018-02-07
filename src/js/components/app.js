@@ -74,6 +74,16 @@ export default class App {
 
   submit (event) {
     Bus.publish('submit.proposal', this.data.asObject())
+    this.cleanForm()
+  }
+
+  cleanForm() {
+    this.data.proposer = false
+    this.data.proposal = ""
+    this.data.circle = []
+    this.circle.circle = []
+    this.data.showBadMail = false
+    this.data.submittable = false
   }
 
   formatProposal (event) {

@@ -1,7 +1,7 @@
 export default class ConsensusProposition {
   constructor () {
     this.proposer = false
-    this.proposal = false
+    this.proposal = ""
     this.circle = []
     this.showBadMail = false
     this.submittable = false

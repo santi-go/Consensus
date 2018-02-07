@@ -8,8 +8,8 @@ export let Bus = {
   },
 
   publish: function (topic, data) {
-    console.log(topic)
-    console.log(data)
+    // console.log(topic)
+    // console.log(data)
     if (!this.subscriptions[topic]) return
     this.subscriptions[topic].forEach(function (handler) {
       handler(data)

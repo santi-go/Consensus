@@ -8,7 +8,7 @@
             name = "proposal-input" >
     </input>
     <output
-            v-html = "formattedText">
+            v-html = "proposal">
     </output>
   </div>
 </template>
@@ -17,12 +17,14 @@
 import {Formatter} from '../libraries/formatter'
 export default {
   name: 'con-proposal',
+  props: ['proposal'],
   data: function(){
     return {
       proposalText: "",
       formattedText: ""
     }
   },
+
   methods: {
       pasteProposal(event) {
         let pastedText = event.clipboardData.getData('text')
@@ -30,12 +32,7 @@ export default {
         let signal = new CustomEvent('send.text', {'detail': formattedText, 'bubbles':true})
         this.$el.dispatchEvent(signal)
         event.preventDefault()
-        this.render(formattedText)
       },
-
-      render(formattedText) {
-        this.formattedText = formattedText
-      }
   }
 }
 </script>
