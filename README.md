@@ -2,68 +2,25 @@
 
 ## Start project
 
-### Build (launch the script)
-
-`sh build-docker`
-
-
 ### Up docker
 
-`docker-compose up`
-
-
-<<<<<<< HEAD
-### Up docker without Api image
-
-`docker-compose -f docker-compose.yml up`
-
-
-### For system with different UID of 1000
-
-~~~
-cd scripts
-sh build-docker
-~~~
-
-Not use if you need sudo to run docker or docker-compose.
-
-
-=======
->>>>>>> parent of 08df133... Add tag to image load
-#### The content of script:
-
-~~~
-docker pull registry.gitlab.com/devscola/consensus-api
-docker-compose build --build-arg HOST_USER_ID=`id -u` --build-arg HOST_GROUP_ID=`id -g` node
-docker-compose build api
-docker-compose build consensus
-docker-compose build selenium
-~~~
-
-
-## Build assets
-
-`docker-compose run --rm node npm run build`
-
-`docker-compose run --rm node npm run build-watch`
-
+`docker-compose up --build`
 
 ## Launch tests
 
-The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script build) and the posttest (script linter).
+The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script build).
 
-
-### Run all test of e2e
+### Run all tests:
 
 `docker-compose run --rm node npm run test-all`
 
 
-### Run end to end test of e2e:
+### Run end to end tests:
 
 `docker-compose run --rm node npm run test-e2e`
 
 
-### Run unit tests of e2e:
+### Run unit tests:
 
 `docker-compose run --rm node npm run test-unit`
 

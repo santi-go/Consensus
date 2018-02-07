@@ -1,12 +1,15 @@
-FROM node:7.9.0
+FROM node:8.9.4
 
-ARG HOST_USER_ID=1000
-ARG HOST_GROUP_ID=1000
+ENV PROJECT_PATH /opt/consensus
 
-ENV USER_ID ${HOST_USER_ID}
-ENV GROUP_ID ${HOST_GROUP_ID}
+WORKDIR $PROJECT_PATH
 
-RUN groupmod -g $GROUP_ID node \
- && usermod -u $USER_ID -g $GROUP_ID node
+COPY package.json $PROJECT_PATH
+RUN npm install
 
-CMD npm install
+COPY . $PROJECT_PATH
+RUN npm run build
+
+EXPOSE 8080
+
+CMD ["npm", "run", "up"]

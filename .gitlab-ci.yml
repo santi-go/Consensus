@@ -10,7 +10,5 @@ test:
   stage: test
   script:
     - docker-compose -f docker-compose.ci.yml up --build -d
-    - docker-compose -f docker-compose.ci.yml run node npm install
-    - docker-compose -f docker-compose.ci.yml run node npm run build
-    - docker-compose -f docker-compose.ci.yml run node npm run test-all
+    - docker-compose -f docker-compose.ci.yml run consensus npm run test-all
     - docker-compose -f docker-compose.ci.yml down

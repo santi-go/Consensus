@@ -8,7 +8,7 @@ exports.config = {
   maxInstances: 1,
   host: 'selenium',
   port: 4444,
-  baseUrl: 'http://consensus',
+  baseUrl: 'http://consensus:8080',
   capabilities: [{
     browserName: 'chrome'
   }],
