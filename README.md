@@ -12,24 +12,24 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 
 ### Run all tests:
 
-`docker-compose run --rm node npm run test-all`
+`docker-compose run --rm consensus npm run test-all`
 
 
 ### Run end to end tests:
 
-`docker-compose run --rm node npm run test-e2e`
+`docker-compose run --rm consensus npm run test-e2e`
 
 
 ### Run unit tests:
 
-`docker-compose run --rm node npm run test-unit`
+`docker-compose run --rm consensus npm run test-unit`
 
 
 ## ESLint
 
 ### Run ESLint
 
-`docker-compose run --rm node npm run linter`
+`docker-compose run --rm consensus npm run linter`
 
 
 # License
