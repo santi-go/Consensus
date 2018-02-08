@@ -7,7 +7,7 @@
   <link href="https://fonts.googleapis.com/css?family=Barlow" rel="stylesheet">
 </head>
 
-<body>
+<body onload="parseUrl()">
   <header></header>
   <main>
     <div id="reunion-consensus">
@@ -18,6 +18,24 @@
     </div>
 
   </main>
+  <script>
+    function parseUrl() {
+        let urlParams = window.location.search
+        let url = urlParams.substring(1)
+        let urlJson = {'token': url}
+        this.post(urlJson)
+    }
+    function post (data) {
+        let xhr = new XMLHttpRequest()
+        xhr.open('POST','http://0.0.0.0:4567/vote-consensus', true)
+        xhr.send(JSON.stringify(data))
+        xhr.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            console.log(xhr.responseText)
+            }
+        }
+    }
+  </script>
   <script type="text/javascript" src="dist/bundle.js"></script>
 
 </body>
