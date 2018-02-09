@@ -1,8 +1,11 @@
 class Propose {
   constructor () {
     browser.url('/')
+    this.proposer = '#proposer'
+    this.involved = '#involved'
+    this.proposal = '#proposal'
+    this.submit = '#submit'
   }
-
 
   inviteWithComponent (componentId, mail) {
     let component = $(componentId)
@@ -37,9 +40,9 @@ class Propose {
   }
 
   confirmSuccessful () {
-    let proposer = this.contentOfComponent('#proposer')
-    let proposal = this.outputOfComponent('#proposal')
-    let circle =this.contentOfComponent('#involved')
+    let proposer = this.contentOfComponent(this.proposer)
+    let proposal = this.outputOfComponent(this.proposal)
+    let circle =this.contentOfComponent(this.involved )
     return (!proposer && !proposal && !circle)
   }
 
@@ -49,29 +52,29 @@ class Propose {
   }
 
   clickSubmit () {
-    browser.click('#submit')
+    browser.click(this.submit)
   }
 
   submitEnabledStatus (status) {
-    let component = $('#submit')
+    let component = $(this.submit)
     component.disabled = status
     return component.disabled
   }
 
   firstValidInvitation () {
-    let component = $('#involved')
+    let component = $(this.involved )
     let divValidBox = component.$('div div:not(.invalidBox)')
     return divValidBox.getText()
   }
 
   firstInvalidInvitation () {
-    let component = $('#involved')
+    let component = $(this.involved )
     let divValidBox = component.$('div .invalidBox')
     return divValidBox.getText()
   }
 
   identifyProposer (mail) {
-    let component = $('#proposer')
+    let component = $(this.proposer)
     let input = component.$('input')
     input.setValue(mail)
     browser.click('body')
@@ -81,7 +84,7 @@ class Propose {
     browser.execute(() => {
       let inputElement = document.createElement('input')
       inputElement.setAttribute('id', 'paste-area')
-     document.body.appendChild(inputElement)
+      document.body.appendChild(inputElement)
     })
     let input = $('#paste-area')
     let proposer = $('#proposer input')
@@ -95,17 +98,17 @@ class Propose {
   }
 
   isProposerInvalid () {
-    let classes = $('#proposer').getAttribute('class')
+    let classes = $(this.proposer).getAttribute('class')
     return classes.includes('invalid')
   }
 
   proposalIsMarkedForPaste () {
-    let element = $('#proposal').getAttribute('class')
+    let element = $(this.proposal).getAttribute('class')
     return element
   }
 
   existCloseButton () {
-    let component = $('#involved')
+    let component = $(this.involved )
     let divValidBox = component.$('div div')
     return divValidBox.getHTML().includes('<button')
   }
@@ -122,15 +125,15 @@ class Propose {
   }
 
   addAndCutFromGuestsEmail (proposal) {
-    let component = $('#involved')
+    let component = $(this.involved )
     let input = component.$('input')
     input.setValue(proposal)
     browser.keys(['Control', 'ax', 'NULL'])
   }
 
   getTextPastedInProposal () {
-    let component = $('#proposal')
-    browser.click('#proposal')
+    let component = $(this.proposal)
+    browser.click(this.proposal)
     browser.keys(['Control', 'v', 'NULL'])
     let output = component.$('output')
     let textFromOutput = output.getText()
@@ -141,7 +144,7 @@ class Propose {
     browser.execute(() => {
       let inputElement = document.createElement('input')
       inputElement.setAttribute('id', 'paste-area')
-     document.body.appendChild(inputElement)
+      document.body.appendChild(inputElement)
     })
     let input = $('#paste-area')
     let output = $('#proposal output')

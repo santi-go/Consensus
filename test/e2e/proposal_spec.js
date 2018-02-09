@@ -4,6 +4,7 @@ let Propose = require('./page-object/propose')
 describe('The proposal', () => {
   it('has a visual clue when you hoover on top in order to paste', () => {
     let page = new Propose()
+
     expect(page.proposalIsMarkedForPaste()).to.not.equal(null)
   })
 
@@ -13,7 +14,7 @@ describe('The proposal', () => {
     let textWithoutHTML = 'textwithoutHTML'
 
     let textProposal = page.pasteProposal(proposal)
-
+    
     expect(textProposal).to.equal(textWithoutHTML)
   })
 

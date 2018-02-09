@@ -30,7 +30,7 @@ describe('The proposal field', function () {
     })
   })
 
-  it('save the proposal', function () {
+  it('saves the proposal', function () {
     let text = 'Lorem impsum'
 
     let result = Formatter.addBlockTags(text)

@@ -1,8 +1,8 @@
 var expect = require('chai').expect
 let Propose = require('./page-object/propose')
 
-describe('When identifying the proposer', () => {
-  it('it accepts valid emails', () => {
+describe('The proposer', () => {
+  it('accepts valid emails', () => {
     let page = new Propose()
     let validMail = 'hola@devscola.org'
 
@@ -11,20 +11,21 @@ describe('When identifying the proposer', () => {
     expect(page.isProposerInvalid()).to.be.false
   })
 
-  it('it accepts valid emails pasted from clipboard with white spaces after and before', () => {
+  it('accepts valid emails pasted from clipboard with white spaces after and before', () => {
     let page = new Propose()
     let validMail = '  hola@devscola.org  '
 
     page.pasteProposer(validMail)
+
     expect(page.isProposerInvalid()).to.be.false
   })
 
-
-  it(`it doesn't accept invalid emails`, () => {
+  it(`doesn't accept invalid emails`, () => {
     let page = new Propose()
     let invalidMail = 'errordecorreo'
 
     page.identifyProposer(invalidMail)
+    
     expect(page.isProposerInvalid()).to.be.true
   })
 })
@@ -33,7 +34,7 @@ describe('When input characters', () => {
   it('checks you can not write two @', () => {
     let page = new Propose()
     let email = 'consensus@devscola.org'
-    let componentId = '#proposer'
+    let componentId = page.proposer
 
     page.inviteWithComponent(componentId, email)
     page.putCharacterInComponent(componentId, '@')
@@ -45,7 +46,7 @@ describe('When input characters', () => {
   it('checks you can not write two dots', () => {
     let page = new Propose()
     let email = 'consensus@devscola.'
-    let componentId = '#proposer'
+    let componentId = page.proposer
 
     page.inviteWithComponent(componentId, email)
     page.putCharacterInComponent(componentId, '.')

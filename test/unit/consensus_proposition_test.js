@@ -3,7 +3,6 @@ var expect = require('chai').expect
 import ConsensusProposition from '../../src/js/components/consensus_proposition'
 
 describe('A consensus proposition', () => {
-
   it('is submittable if all fields are added', ()=>{
     let consensusProposition = new ConsensusProposition()
     consensusProposition.setCircle(["sample@sample.com"])
