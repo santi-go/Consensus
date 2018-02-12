@@ -11,10 +11,6 @@ import Proposer from '../views/con_proposer'
 import Involved from '../views/con_involved'
 import Proposal from '../views/con_proposal'
 import Send from '../views/con_send'
-import VoteGreeting from '../views/vote_greeting'
-import VoteCounter from '../views/vote_counter'
-import VoteInvited from '../views/vote_invited'
-import VoteProposal from '../views/vote_proposal'
 
 export default class App {
   constructor (elementID) {
@@ -25,15 +21,7 @@ export default class App {
   }
 
   initializeViews () {
-    new Vue({
-      el: '#reunion-consensus',
-      components: {
-        'vote-greeting': VoteGreeting,
-        'vote-counter': VoteCounter,
-        'vote-invited': VoteInvited,
-        'vote-proposal': VoteProposal
-      }
-    })
+
     new Vue({
       el: '#consensus-call',
       data: {
