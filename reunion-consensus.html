@@ -11,32 +11,16 @@
   <header></header>
   <main>
     <div id="reunion-consensus">
-      <vote-greeting></vote-greeting>
-      <vote-counter></vote-counter>
-      <vote-invited></vote-invited>
-      <vote-proposal></vote-proposal>
+        <h1>Hello <span class="invited"></span>!</h1>
+        <p>You've been invited to the following proposal</p>
+        <p>You have voted <span class="vote"> Consensus </span> to the proposal of <span class="proposer"></span> </p>
+        <h2>This is the proposal:</h2>
+        <p class="proposal-box">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum.</p>
     </div>
 
   </main>
-  <script>
-    function parseUrl() {
-        let urlParams = window.location.search
-        let url = urlParams.substring(1)
-        let urlJson = {'token': url}
-        this.post(urlJson)
-    }
-    function post (data) {
-        let xhr = new XMLHttpRequest()
-        xhr.open('POST','http://0.0.0.0:4567/vote-consensus', true)
-        xhr.send(JSON.stringify(data))
-        xhr.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            console.log(xhr.responseText)
-            }
-        }
-    }
-  </script>
-  <script type="text/javascript" src="dist/bundle.js"></script>
+ 
+  <script type="text/javascript" src="src/js/reunion-consensus.js"></script>
 
 </body>
 </html>

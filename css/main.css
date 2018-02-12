@@ -63,3 +63,20 @@ h2 {
 .clear {
   clear: both;
 }
+#reunion-consensus * {
+  padding-top: 1.5em
+}
+.proposal-box {
+  background-color: var(--header-color);
+  border: 1px solid var(--main-color);
+  width: 100%;
+  padding: 1em;
+}
+.vote {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+.proposer {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
