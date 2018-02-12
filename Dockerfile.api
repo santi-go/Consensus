@@ -1,0 +1,12 @@
+FROM ruby:2.4.2
+
+ENV PROJECT_PATH /opt/consensus_api/
+
+WORKDIR $PROJECT_PATH
+
+RUN git clone https://gitlab.com/devscola/consensus-api.git .
+RUN bundle install
+
+EXPOSE 4567
+
+CMD ["bundle", "exec", "rake"]

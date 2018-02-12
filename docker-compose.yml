@@ -28,6 +28,13 @@ services:
         source: ./package.json
         target: /opt/consensus_applicative/package.json
 
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    ports:
+      - '4567:4567'
+
   selenium:
     image: selenium/standalone-chrome:3.8.1
     environment:
