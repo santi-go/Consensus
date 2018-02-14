@@ -2,6 +2,7 @@
 /node_modules/
 /dist/
 /src/build/
+package-lock.json
 
 .Spotlight-V100
 .DS_Store
