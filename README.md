@@ -6,6 +6,10 @@
 
 `docker-compose up --build`
 
+### Build last consensus-api image
+
+`docker-compose build --no-cache api`
+
 ## Launch tests
 
 The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script build).
