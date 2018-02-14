@@ -7,23 +7,17 @@ services:
       - '8080:8080'
     volumes:
       - type: bind
+        source: ./public/
+        target: /opt/consensus_applicative/public/
+      - type: bind
         source: ./src/
         target: /opt/consensus_applicative/src/
-      - type: bind
-        source: ./css/
-        target: /opt/consensus_applicative/css/
       - type: bind
         source: ./conf/
         target: /opt/consensus_applicative/conf/
       - type: bind
         source: ./test/
         target: /opt/consensus_applicative/test/
-      - type: bind
-        source: ./index.html
-        target: /opt/consensus_applicative/index.html
-      - type: bind
-        source: ./reunion-consensus.html
-        target: /opt/consensus_applicative/reunion-consensus.html
       - type: bind
         source: ./package.json
         target: /opt/consensus_applicative/package.json

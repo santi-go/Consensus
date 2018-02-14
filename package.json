@@ -25,10 +25,11 @@
     "wdio-spec-reporter": "^0.1.0",
     "webdriverio": "^4.7.1",
     "webpack": "^3.10.0",
-    "webpack-permissions-plugin": "0.0.2"
+    "webpack-permissions-plugin": "0.0.2",
+    "copy-webpack-plugin": "4.4.1"
   },
   "scripts": {
-    "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server .\"",
+    "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server ./public\"",
     "build": "webpack --config ./conf/webpack.config.js",
     "build-watch": "webpack --config ./conf/webpack.config.js --watch",
     "test-unit": "mocha test/unit --compilers js:babel-core/register",

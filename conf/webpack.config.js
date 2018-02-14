@@ -1,5 +1,6 @@
 const webpack = require('webpack')
 const PermissionsOutputPlugin = require('webpack-permissions-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const path = require('path')
 const nodeEnv = process.env.NODE_ENV || 'production'
 
@@ -9,7 +10,7 @@ module.exports = {
     filename: './src/js/main.js'
   },
   output: {
-    filename: './dist/bundle.js'
+    filename: './public/js/bundle.js'
   },
   module: {
     loaders: [
@@ -46,17 +47,24 @@ module.exports = {
     new PermissionsOutputPlugin({
       buildFolders: [
         {
-          path: path.resolve(__dirname, '../dist/'),
+          path: path.resolve(__dirname, '../public/js/'),
           fileMode: '777',
           dirMode: '666'
         }
       ],
       buildFiles: [
         {
-          path: path.resolve(__dirname, '../dist/bundle.js'),
+          path: path.resolve(__dirname, '../public/js/bundle.js'),
           fileMode: '777'
         }
       ]
-    })
+    }),
+    new CopyWebpackPlugin([
+      {
+        from: path.resolve(__dirname, '../src/js/reunion-consensus.js'),
+        to: path.resolve(__dirname, '../public/js/reunion-consensus.js'),
+        toType: 'file'
+      }
+    ])
   ]
 }
