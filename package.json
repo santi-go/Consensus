@@ -32,9 +32,9 @@
     "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server ./public\"",
     "build": "webpack --config ./conf/webpack.config.js",
     "build-watch": "webpack --config ./conf/webpack.config.js --watch",
-    "test-unit": "mocha test/unit --compilers js:babel-core/register",
+    "test-unit": "mocha test/unit --compilers js:babel-core/register && npm run linter -s",
     "test-e2e": "wdio ./conf/wdio.conf.js && npm run linter -s",
-    "test-all": "wdio ./conf/wdio.conf.js && mocha test/unit --compilers js:babel-core/register",
+    "test-all": "mocha test/unit --compilers js:babel-core/register && wdio ./conf/wdio.conf.js && npm run linter -s",
     "linter": "eslint --config ./conf/.eslintrc.js ./src/*"
   },
   "babel": {

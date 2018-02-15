@@ -21,7 +21,6 @@ export default class App {
   }
 
   initializeViews () {
-
     new Vue({
       el: '#consensus-call',
       data: {
@@ -65,7 +64,7 @@ export default class App {
     this.cleanForm()
   }
 
-  cleanForm() {
+  cleanForm () {
     this.data.proposer = false
     this.data.proposal = ""
     this.data.circle = []
