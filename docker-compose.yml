@@ -21,6 +21,7 @@ services:
       - type: bind
         source: ./package.json
         target: /opt/consensus_applicative/package.json
+    command: sh -c "npm run up"
 
   api:
     build:
