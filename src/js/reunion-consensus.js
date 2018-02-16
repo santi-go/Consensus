@@ -12,12 +12,15 @@ function post (data) {
   xhr.send(JSON.stringify(data))
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      console.log(xhr.responseText)
       let response = JSON.parse(xhr.responseText)
       document.querySelector(".invited").innerText = response['user']
       document.querySelector(".vote").innerText = response['vote']
       document.querySelector(".proposer").innerText = response['proposer']
-      document.querySelector(".proposal-box").innerText = response["proposal_text"]
+      document.querySelector(".proposal-box").innerHTML = sanitizeProposal(response["proposal_text"])
     }
   }
+}
+// eslint-disable-next-line
+function sanitizeProposal (data) {
+  return data.slice(0, -1)
 }
