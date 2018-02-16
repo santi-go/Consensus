@@ -2,6 +2,11 @@
   box-sizing: border-box;
   outline: none;
 }
+a {
+  color: #000;
+  font-weight: 900;
+  text-decoration: none;
+}
 :root{
   --error-color: #FC4A1A;
   --success-color: #A9A9A9;
@@ -32,10 +37,31 @@ header {
   width: 100%;
   border-bottom: 4px double var(--main-color);
 }
+footer {
+  background-color: var(--header-color);
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.devscola-text {
+  float: left;
+  line-height: 2.3em;
+}
+.rs{
+  float: right;
+}
+.rs img{
+  display: inline-block;
+  height: 35px;
+  margin-left: 1em;
+  width: 35px;
+}
 .logo-container {
   width: auto;
   height: 5em;
   display: block;
+  /* float: left; */
   margin: 0.5em;
 }
 .logo-consensus {
@@ -53,6 +79,9 @@ input {
   margin-top: 1rem;
   padding-left: 1rem;
   width: 100%;
+}
+h1 {
+  font-family: 'Varela Round', sans-serif;
 }
 h2 {
   font-size: 1.2rem;
@@ -73,7 +102,8 @@ h2 {
   clear: both;
 }
 #reunion-consensus * {
-  padding-top: 1.5em
+  padding-top: 1.5em;
+  text-align: center;
 }
 .proposal-box {
   background-color: var(--header-color);
