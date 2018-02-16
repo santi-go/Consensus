@@ -1,6 +1,5 @@
 version: '3.2'
 services:
-
   consensus:
     build: .
     ports:
@@ -21,14 +20,7 @@ services:
       - type: bind
         source: ./package.json
         target: /opt/consensus_applicative/package.json
-    command: sh -c "npm run up"
-
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    ports:
-      - '4567:4567'
+    command: sh -c "npm run start"
 
   selenium:
     image: selenium/standalone-chrome:3.8.1

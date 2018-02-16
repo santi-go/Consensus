@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  consensus:
+    build: .
+    command: sh -c "npm run up"
+  api:
+    build:
+      context: ../consensus-api
+      dockerfile: Dockerfile
+    ports:
+      - '4567:4567'

@@ -29,6 +29,7 @@
     "copy-webpack-plugin": "4.4.1"
   },
   "scripts": {
+    "start": "concurrently \"http-server ./public\"",
     "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server ./public\"",
     "build": "webpack --config ./conf/webpack.config.js",
     "build-watch": "webpack --config ./conf/webpack.config.js --watch",

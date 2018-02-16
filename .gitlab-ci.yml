@@ -9,7 +9,7 @@ stages:
 test:
   stage: test
   script:
-    - docker-compose -f docker-compose_ci.yml up --build -d
-    - docker-compose -f docker-compose_ci.yml run consensus npm run build
-    - docker-compose -f docker-compose_ci.yml run consensus npm run test-all
-    - docker-compose -f docker-compose_ci.yml down
+    - docker-compose -f docker-compose.yml up --build -d
+    - docker-compose -f docker-compose.yml run consensus npm run build
+    - docker-compose -f docker-compose.yml run consensus npm run test-all
+    - docker-compose -f docker-compose.yml down
