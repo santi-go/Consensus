@@ -29,8 +29,17 @@ section {
 }
 header {
   background-color: var(--header-color);
-  height: 3rem;
   width: 100%;
+  border-bottom: 4px double var(--main-color);
+}
+.logo-container {
+  width: auto;
+  height: 5em;
+  display: block;
+  margin: 0.5em;
+}
+.logo-consensus {
+  height: 5em;
 }
 label {
   font-size: 1.2rem;
