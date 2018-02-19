@@ -33,12 +33,15 @@ export default {
     cursor: pointer;
     font-size: 1rem;
     min-width: 9rem;
-    margin-top: 1rem;
+    margin: 1rem auto 5rem auto;
     padding: 1rem;
   }
   #submit:disabled{
-  cursor: default;
-  border-color: var(--success-color);
-  color: var(--success-color);
+    border-color: var(--success-color);
+    color: var(--success-color);
+    cursor: default;
+  }
+  #submit:focus {
+    box-shadow: 0px 0px 6px 0px var(--main-color);
   }
 </style>
