@@ -6,3 +6,5 @@ package-lock.json
 
 .Spotlight-V100
 .DS_Store
+
+password_mail.env
