@@ -2,6 +2,7 @@ var expect = require('chai').expect
 let Propose = require('./page-object/propose')
 
 describe('The circle', () => {
+
   it('allows the input of emails', () => {
     let validMail = 'valid@mail.com'
     let page = new Propose()
