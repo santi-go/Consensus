@@ -16,7 +16,7 @@ function post (data) {
       document.querySelector(".invited").innerText = response['user']
       document.querySelector(".vote").innerText = response['vote']
       document.querySelector(".proposer").innerText = response['proposer']
-      document.querySelector(".proposal-box").innerHTML = sanitizeProposal(response["proposal_text"])
+      document.querySelector(".proposal-box").innerHTML = sanitizeProposal(response['proposal_text'])
     }
   }
 }
