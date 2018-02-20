@@ -17,7 +17,8 @@ class Propose {
     let component = $(componentId)
     let input = component.$('input')
     let keyEnter = '\uE007'
-    input.keys(keyEnter)
+    input.click()
+    browser.keys(keyEnter)
   }
 
   putCharacterInComponent (componentId,character) {
@@ -63,7 +64,7 @@ class Propose {
 
   firstValidInvitation () {
     let component = $(this.involved )
-    let divValidBox = component.$('div div:not(.invalidBox)')
+    let divValidBox = component.$('.involved-list div:not(.invalidBox)')
     return divValidBox.getText()
   }
 

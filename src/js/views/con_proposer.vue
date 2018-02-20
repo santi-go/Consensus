@@ -13,6 +13,7 @@
 
 <script>
 import {MailChecker} from '../libraries/mail_checker.js'
+import {FormBehaviour} from '../libraries/form_behaviour.js'
 export default {
   name: 'con-proposer',
   data: function(){
@@ -33,6 +34,7 @@ export default {
       let text = event.target.value
       let position = event.target.selectionStart
       let character = event.key
+      FormBehaviour.avoidEnterDeleteBox(event)
       let isAllowed = MailChecker.isAllowedIn(text, character, position)
       if (!isAllowed) {
         event.preventDefault()

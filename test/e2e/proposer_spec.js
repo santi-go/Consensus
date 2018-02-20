@@ -2,6 +2,19 @@ var expect = require('chai').expect
 let Propose = require('./page-object/propose')
 
 describe('The proposer', () => {
+
+  it('does not remove boxes when click enter on proposer', () => {
+    let validMail = 'valid@mail.com'
+    let page = new Propose()
+
+    page.inviteWithComponent(page.involved,validMail)
+    page.pressTab()
+
+    page.pressEnterWithComponent(page.proposer)
+
+    expect(page.firstValidInvitation()).to.include(validMail)
+  })
+
   it('accepts valid emails', () => {
     let page = new Propose()
     let validMail = 'hola@devscola.org'
@@ -25,7 +38,7 @@ describe('The proposer', () => {
     let invalidMail = 'errordecorreo'
 
     page.identifyProposer(invalidMail)
-    
+
     expect(page.isProposerInvalid()).to.be.true
   })
 })

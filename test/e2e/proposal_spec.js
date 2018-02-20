@@ -2,6 +2,19 @@ var expect = require('chai').expect
 let Propose = require('./page-object/propose')
 
 describe('The proposal', () => {
+
+  it('does not remove boxes when click enter on proposal', () => {
+    let validMail = 'valid@mail.com'
+    let page = new Propose()
+
+    page.inviteWithComponent(page.involved,validMail)
+    page.pressTab()
+
+    page.pressEnterWithComponent(page.proposal)
+
+    expect(page.firstValidInvitation()).to.include(validMail)
+  })
+
   it('has a visual clue when you hoover on top in order to paste', () => {
     let page = new Propose()
 
@@ -14,7 +27,7 @@ describe('The proposal', () => {
     let textWithoutHTML = 'textwithoutHTML'
 
     let textProposal = page.pasteProposal(proposal)
-    
+
     expect(textProposal).to.equal(textWithoutHTML)
   })
 

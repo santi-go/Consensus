@@ -4,6 +4,7 @@
     <input
             type = "text"
             v-on:paste = "pasteProposal"
+            v-on:keydown= "avoidEnterDeleteBox"
             v-model = "proposalText"
             name = "proposal-input" >
     </input>
@@ -15,6 +16,8 @@
 
 <script>
 import {Formatter} from '../libraries/formatter'
+import {FormBehaviour} from '../libraries/form_behaviour.js'
+
 export default {
   name: 'con-proposal',
   props: ['proposal'],
@@ -33,6 +36,9 @@ export default {
         this.$el.dispatchEvent(signal)
         event.preventDefault()
       },
+      avoidEnterDeleteBox(event){
+        FormBehaviour.avoidEnterDeleteBox(event)
+      }
   }
 }
 </script>
@@ -41,7 +47,7 @@ export default {
   #proposal input {
     border: 1px solid var(--main-color);
     color: transparent;
-    margin-bottom: 1em; 
+    margin-bottom: 1em;
   }
   #proposal input:focus {
     background-color: var(--header-color);
