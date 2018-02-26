@@ -1,9 +1,9 @@
 FROM node:8.9.4
 
-USER node
-
-ENV PROJECT_PATH /consensus/app
+ENV PROJECT_PATH /opt/consensus_applicative/
 WORKDIR $PROJECT_PATH
-ADD . $PROJECT_PATH
+COPY . $PROJECT_PATH
 
-EXPOSE 80
+RUN npm install
+
+EXPOSE 8080

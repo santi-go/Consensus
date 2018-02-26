@@ -56,10 +56,6 @@ module.exports = {
         {
           path: path.resolve(__dirname, '../public/js/bundle.js'),
           fileMode: '777'
-        },
-        {
-          path: path.resolve(__dirname, '../public/js/bundle.js.map'),
-          fileMode: '777'
         }
       ]
     }),

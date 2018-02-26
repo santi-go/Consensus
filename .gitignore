@@ -1,8 +1,10 @@
-.Spotlight-V100
-.DS_Store
 .env
 /node_modules/
 /public/js/
 /src/build/
-/dist/
+package-lock.json
+
+.Spotlight-V100
+.DS_Store
+
 password_mail.env
