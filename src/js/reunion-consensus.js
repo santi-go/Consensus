@@ -17,6 +17,8 @@ function post (data) {
       document.querySelector(".vote").innerText = response['vote']
       document.querySelector(".proposer").innerText = response['proposer']
       document.querySelector(".proposal-box").innerHTML = sanitizeProposal(response['proposal_text'])
+      document.querySelector("#reunion-consensus").style.display = "block";
+      document.querySelector("#loading-icon").style.display = "none";
     }
   }
 }
