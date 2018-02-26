@@ -3,7 +3,7 @@
 /public/js/
 /src/build/
 package-lock.json
-
+/dist/
 .Spotlight-V100
 .DS_Store
 
