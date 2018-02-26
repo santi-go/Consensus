@@ -1,28 +1,27 @@
-version: '3.2'
+version: '2.0'
 services:
+  nginx_app:
+    image: nginx
+    ports:
+      - '80:80'
+    volumes:
+      - './public/.:/usr/share/nginx/html'
+      - './conf/nginx.conf:/etc/nginx/nginx.conf'
+
   consensus:
     build: .
-    ports:
-      - '8080:8080'
     volumes:
-      - type: bind
-        source: ./public/
-        target: /opt/consensus_applicative/public/
-      - type: bind
-        source: ./src/
-        target: /opt/consensus_applicative/src/
-      - type: bind
-        source: ./conf/
-        target: /opt/consensus_applicative/conf/
-      - type: bind
-        source: ./test/
-        target: /opt/consensus_applicative/test/
-      - type: bind
-        source: ./package.json
-        target: /opt/consensus_applicative/package.json
-    command: sh -c "npm run start"
+      - '.:/consensus/app'
+    depends_on:
+      - nginx_app
 
   selenium:
     image: selenium/standalone-chrome:3.8.1
     environment:
       - JAVA_OPTS=-Dselenium.LOGGER.level=WARNING
+    ports:
+      - '4444:4444'
+
+volumes:
+  vol_app:
+    driver: local

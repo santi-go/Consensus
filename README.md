@@ -2,17 +2,37 @@
 
 ## Start project
 
+Upping project it launch the build-watch script.
+
+
 ### Up docker
 
 `docker-compose up --build`
 
-### Build last consensus-api image
 
-`docker-compose build --no-cache api`
+## Build
+
+### Only build
+
+`docker-compose run --rm consensus npm run build`
+
+
+### Build and watch changes
+
+`docker-compose run --rm consensus npm run build-watch`
+
+
+## ESLint
+
+### Run ESLint
+
+`docker-compose run --rm consensus npm run linter`
+
 
 ## Launch tests
 
-The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script build).
+The scripts 'test-all', 'test-e2e' and 'test-unit' launch the builder and linter.
+
 
 ### Run all tests:
 
@@ -27,13 +47,6 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 ### Run unit tests:
 
 `docker-compose run --rm consensus npm run test-unit`
-
-
-## ESLint
-
-### Run ESLint
-
-`docker-compose run --rm consensus npm run linter`
 
 
 # License

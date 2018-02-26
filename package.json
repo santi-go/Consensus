@@ -1,7 +1,12 @@
 {
-  "name": "e2e",
-  "version": "1.0.0",
-  "description": "End2end test suite",
+  "repository": {
+    "type": "git",
+    "url": "https://gitlab.com/devscola/consensus.git"
+  },
+  "name": "Consensus_client",
+  "version": "0.1.0",
+  "description": "Client for consensus-api",
+  "private": true,
   "devDependencies": {
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -30,7 +35,6 @@
   },
   "scripts": {
     "start": "concurrently \"http-server ./public\"",
-    "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server ./public\"",
     "build": "webpack --config ./conf/webpack.config.js",
     "build-watch": "webpack --config ./conf/webpack.config.js --watch",
     "test-unit": "mocha test/unit --compilers js:babel-core/register && npm run linter -s",
@@ -39,6 +43,8 @@
     "linter": "eslint --config ./conf/.eslintrc.js ./src/*"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   }
 }

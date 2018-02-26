@@ -1,13 +1,11 @@
-version: '3.2'
+version: '2.0'
 services:
   consensus:
-    build: .
-    command: sh -c "npm run up"
+    command: sh -c "npm install && npm run build-watch -s"
+
   api:
-    build:
-      context: ../consensus-api
-      dockerfile: Dockerfile
+    extends:
+      file: ../consensus-api/docker-compose.yml
+      service: api
     ports:
-      - '4567:4567'
-    env_file: 
-      - password_mail.env
+      - '4567:80'
