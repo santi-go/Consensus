@@ -14,9 +14,11 @@ function post (data) {
     if (this.readyState == 4 && this.status == 200) {
       let response = JSON.parse(xhr.responseText)
       document.querySelector(".invited").innerText = response['user']
-      document.querySelector(".vote").innerText = response['vote']
+      document.querySelector(".vote").innerText = response['decision']
       document.querySelector(".proposer").innerText = response['proposer']
       document.querySelector(".proposal-box").innerHTML = sanitizeProposal(response['proposal_text'])
+      document.querySelector("#reunion-consensus").style.display = "block"
+      document.querySelector("#loading-icon").style.display = "none"
     }
   }
 }
