@@ -1,8 +1,8 @@
 // eslint-disable-next-line
 function parseUrl () {
   let urlParams = window.location.search
-  let url = urlParams.substring(1)
-  let urlJson = {'token': url}
+  let token = urlParams.substring(1).slice(6)
+  let urlJson = {'token': token}
   this.post(urlJson)
 }
 // eslint-disable-next-line
