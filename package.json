@@ -32,6 +32,7 @@
     "start": "concurrently \"http-server ./public\"",
     "up": "concurrently \"webpack --config ./conf/webpack.config.js --watch\" \"http-server ./public\"",
     "build": "webpack --config ./conf/webpack.config.js",
+    "build-deploy": "API_HOST=https://consensus17.herokuapp.com webpack --config ./conf/webpack.config.js",
     "build-watch": "webpack --config ./conf/webpack.config.js --watch",
     "test-unit": "mocha test/unit --compilers js:babel-core/register && npm run linter -s",
     "test-e2e": "wdio ./conf/wdio.conf.js && npm run linter -s",

@@ -44,6 +44,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': { NODE_ENV: JSON.stringify(nodeEnv) }
     }),
+    new webpack.EnvironmentPlugin({'API_HOST': 'http://0.0.0.0:4567'}),
     new PermissionsOutputPlugin({
       buildFolders: [
         {
