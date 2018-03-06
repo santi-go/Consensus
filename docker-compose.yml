@@ -20,6 +20,9 @@ services:
       - type: bind
         source: ./package.json
         target: /opt/consensus_applicative/package.json
+      - type: bind
+        source: ./conf/nginx.conf
+        target: /etc/nginx/nginx.conf
     command: sh -c "npm run start"
 
   selenium:

@@ -40,6 +40,8 @@
     "linter": "eslint --config ./conf/.eslintrc.js ./src/*"
   },
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   }
 }

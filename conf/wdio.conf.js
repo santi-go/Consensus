@@ -3,7 +3,7 @@ exports.config = {
     './test/e2e/**/*.js'
   ],
   mochaOpts: {
-    timeout: 20000
+    timeout: 40000
   },
   maxInstances: 1,
   host: 'selenium',

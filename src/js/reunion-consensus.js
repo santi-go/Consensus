@@ -1,9 +1,13 @@
 // eslint-disable-next-line
 function parseUrl () {
   let urlParams = window.location.search
-  let url = urlParams.substring(1)
-  let urlJson = {'token': url}
+  let token = removeQuestionMark(urlParams)
+  let urlJson = {'token': token}
   this.post(urlJson)
+}
+// eslint-disable-next-line
+function removeQuestionMark (urlParams) {
+  return urlParams.substring(1)
 }
 // eslint-disable-next-line
 function post (data) {
