@@ -12,7 +12,7 @@ function removeQuestionMark (urlParams) {
 // eslint-disable-next-line
 function post (data) {
   let xhr = new XMLHttpRequest()
-  xhr.open('POST', 'http://0.0.0.0:4567/vote-consensus', true)
+  xhr.open('POST', API_HOST + '/vote-consensus', true)
   xhr.send(JSON.stringify(data))
   xhr.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
