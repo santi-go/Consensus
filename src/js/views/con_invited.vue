@@ -1,6 +1,5 @@
 <template>
   <div v-bind:class="{invalidBox:!invited.valid}">{{invited.email}}<button
-       tabindex="-1"
        class="close"
        v-on:click="removeEmail">
    <span>Delete</span></button>

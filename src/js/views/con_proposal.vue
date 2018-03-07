@@ -4,9 +4,10 @@
     <input
             type = "text"
             v-on:paste = "pasteProposal"
-            v-on:keydown= "avoidEnterDeleteBox"
+            v-on:keydown= "checkChar"
             v-model = "proposalText"
-            name = "proposal-input" >
+            name = "proposal-input"
+            autocomplete = "off">
     </input>
     <output
             v-html = "proposal">
@@ -17,6 +18,7 @@
 <script>
 import {Formatter} from '../libraries/formatter'
 import {FormBehaviour} from '../libraries/form_behaviour.js'
+import {KeyPressed} from '../libraries/key_mapping.js'
 
 export default {
   name: 'con-proposal',
@@ -36,7 +38,10 @@ export default {
         this.$el.dispatchEvent(signal)
         event.preventDefault()
       },
-      avoidEnterDeleteBox(event){
+      checkChar(event){
+        if(!KeyPressed.isCtrl(event) && !KeyPressed.isV(event)) {
+          event.preventDefault()
+        }
         FormBehaviour.avoidEnterDeleteBox(event)
       }
   }

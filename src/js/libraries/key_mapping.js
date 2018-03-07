@@ -22,5 +22,14 @@ export let KeyPressed = {
   isDot: (e) => {
     if (e.keyCode === 190) { return true }
     return false
+  },
+
+  isCtrl: (e) => {
+    if(e.keyCode === 17) { return true }
+    return false
+  },
+  isV: (e) => {
+    if(e.keyCode === 86) { return true }
+    return false
   }
 }
