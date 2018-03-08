@@ -25,11 +25,11 @@ export let KeyPressed = {
   },
 
   isCtrl: (e) => {
-    if(e.keyCode === 17) { return true }
+    if (e.keyCode === 17) { return true }
     return false
   },
   isV: (e) => {
-    if(e.keyCode === 86) { return true }
+    if (e.keyCode === 86) { return true }
     return false
   }
 }
