@@ -36,6 +36,28 @@ The scripts 'test-all', 'test-e2e' and 'test-unit' launch the pretest (script bu
 `docker-compose run --rm consensus npm run linter`
 
 
+### Automate fix ESLint warnings
+
+`docker-compose run --rm consensus npm run linter-fix`
+
+
+## Build public folder
+
+### Launch build one time
+
+`docker-compose run --rm consensus npm run build`
+
+
+### Launch build watching changes
+
+`docker-compose run --rm consensus npm run build-watch`
+
+
+### Launch build for deploy to Heroku
+
+`docker-compose run --rm consensus npm run build-deploy`
+
+
 # License
 
 Copyright 2018 Devscola
