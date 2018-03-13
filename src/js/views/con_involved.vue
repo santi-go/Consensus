@@ -70,7 +70,6 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 100%;
-    width: -moz-fit-content;
   }
   .involved-list > * {
     display: flex;
