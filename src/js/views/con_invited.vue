@@ -35,8 +35,10 @@ export default {
     color: #ffffff;
     cursor: pointer;
     float: right;
-    line-height: 20px;
-    margin-right: -28px;
+    font-family: 'Varela Round', sans-serif;
+    font-size: 0.8em;
+    height: 20px;
+    margin-left: 5px;
     margin-top: -11px;
     text-align: center;
     position: relative;

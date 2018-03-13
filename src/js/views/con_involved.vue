@@ -1,7 +1,7 @@
 <template>
   <div class="email">
+    <label for="involved-input">Who do you want to invite?</label>
     <div class="involved-list">
-      <label for="involved-input">Who do you want to invite?</label>
       <con-invited v-for="invited in involved"
                    v-bind:key="invited.id"
                    v-bind:invited="invited">
@@ -66,22 +66,23 @@
   #involved {
     margin-top: 1rem;
   }
-  .involved-list {
+  .email .involved-list {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 100%;
     width: -moz-fit-content;
   }
   .involved-list > * {
-    display: block;
+    display: flex;
   }
   .involved-list input {
+    flex-grow: 1;
     float: left;
-    width: 50%;
-  }
-  .involved-list > div {
-    float: left;
+    width: 20%;
   }
   #involved > div > div {
     margin: 0.5rem 0.5rem 0 0.5rem;
-    padding: 0.5rem 1.5rem 0.5rem 0.5rem;
+    padding: 0.5rem 0rem 0.5rem 0.5rem;
     border: 1px solid var(--success-color);
   }
 </style>
