@@ -9,5 +9,16 @@ services:
       dockerfile: Dockerfile
     ports:
       - '4567:4567'
-    env_file: 
+    environment:
+      - MONGODB_URI=mongodb://mongo:27017/db
+    env_file:
       - password_mail.env
+    links:
+      - mongo
+
+  mongo:
+    image: mongo
+    environment:
+      - AUTH=no
+    ports:
+      - 27017:27017
